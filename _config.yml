@@ -1,0 +1,20 @@
+title: "DPSG Balingen"
+description: "Stamm Heilig Geist"
+
+baseurl: "/dpsg"
+url: "https://pages.faigle.dev"
+
+lang: de
+timezone: Europe/Berlin
+
+markdown: kramdown
+theme: minima
+permalink: pretty
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
+
+sass:
+  style: compressed

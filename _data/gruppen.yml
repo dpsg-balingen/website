@@ -1,0 +1,62 @@
+
+- name: Wichtel und Wölflinge
+  altersgruppe:
+    von: 9
+    bis: 11
+  farbe: "#FFD700"
+  treff:
+    tag: "Donnerstag"
+    start: "18:00"
+    ende: "19:30"
+  leiter:
+    - "Laura"
+    - "Ella"
+    - "Sina"
+    - "Kathi"
+    - "Lara"
+    - "Emilia"
+
+- name: Jupfis
+  altersgruppe:
+    von: 11
+    bis: 13
+  farbe: "#00BFFF"
+  treff:
+    tag: "Dienstag"
+    start: "19:00"
+    ende: "20:30"
+  leiter:
+    - "Sabrina"
+    - "Jessica"
+    - "Josi"
+    - "Leonie"
+    - "Hannah"
+
+- name: Pfadis
+  altersgruppe:
+    von: 13
+    bis: 15
+  farbe: "#228B22"
+  treff:
+    tag: "Mittwoch"
+    start: "20:00"
+    ende: "21:30"
+  leiter:
+    - "Maya"
+    - "Katharina"
+    - "Leonard"
+    - "Felix"
+    - "Silas"
+
+- name: Rover
+  altersgruppe:
+    von: 16
+    bis: 99
+  farbe: "#8B0000"
+  treff:
+    tag: "Freitag"
+    start: "20:00"
+    ende: "22:00"
+  leiter:
+    - "Nick"
+    - "Leon"

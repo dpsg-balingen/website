@@ -1,0 +1,24 @@
+---
+layout: default
+---
+
+<article class="stufe {{ page.stufe-class | default: page.title | downcase }}">
+  <header class="stufe-header">
+    <h1 class="stufe-title">{{ page.title }}</h1>
+    {% if page.stufe %}
+      <div class="stufe-badge">{{ page.stufe }}</div>
+    {% endif %}
+  </header>
+
+  <div class="stufe-content">
+    {{ content }}
+  </div>
+
+  <footer class="stufe-footer">
+    <div class="contact-info">
+      <h3>Interesse?</h3>
+      <p>Komm einfach zu einer unserer Gruppenstunden vorbei oder <a href="{{ '/legal/kontakt' | relative_url }}">nimm Kontakt mit uns auf</a>!</p>
+      <a href="{{ '/legal/kontakt' | relative_url }}" class="btn">Kontakt aufnehmen</a>
+    </div>
+  </footer>
+</article>
