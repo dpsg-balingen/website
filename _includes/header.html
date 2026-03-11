@@ -1,57 +1,43 @@
-<header class="site-header" role="banner">
-  <div class="wrapper">
-    <div class="site-header-content">
-      {%- assign default_paths = site.pages | map: "path" -%}
-      {%- assign page_paths = site.header_pages | default: default_paths -%}
-      
-      <a class="site-title" rel="author" href="{{ "/" | relative_url }}">
-        <span class="site-title-text">{{ site.title | escape }}</span>
-      </a>
-
-      {%- if page_paths -%}
-        <nav class="site-nav">
-          <input type="checkbox" id="nav-trigger" class="nav-trigger" />
-          <label for="nav-trigger">
-            <span class="menu-icon">
-              <svg viewBox="0 0 18 15" width="18px" height="15px">
-                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
-              </svg>
-            </span>
-          </label>
-
-          <div class="trigger">
-            <a class="page-link" href="{{ '/gruppenstunden' | relative_url }}">Gruppenstunden</a>
-            <a class="page-link" href="{{ '/kalender' | relative_url }}">Termine</a>
-            <a class="page-link" href="{{ '/bilder' | relative_url }}">Bilder</a>
+<nav class="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-md">
+    <div class="container mx-auto px-4">
+      <div class="flex h-16 items-center justify-between">
+        <a href="{{ '/' | relative_url }}" class="flex items-center gap-2 font-heading text-xl font-bold text-primary hover:opacity-80 transition-opacity">
+          <!-- <Tent className="h-6 w-6 text-secondary" /> Icon placeholder -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-secondary"><path d="M3.5 21 14 3"/><path d="M20.5 21 10 3"/><path d="M15.5 21 12 15l-3.5 6"/><path d="M2 21h20"/></svg>
+          <span>{{ site.title }}</span>
+        </a>
+  
+        <!-- Desktop Nav -->
+        <div class="hidden md:flex md:items-center md:gap-6">
+            <a href="{{ '/' | relative_url }}" class="text-sm font-medium transition-colors hover:text-primary {% if page.url == '/' %}text-primary font-bold{% else %}text-muted-foreground{% endif %}">Start</a>
+            <a href="{{ '/gruppenstunden' | relative_url }}" class="text-sm font-medium transition-colors hover:text-primary {% if page.url contains '/gruppenstunden' %}text-primary font-bold{% else %}text-muted-foreground{% endif %}">Gruppen</a>
+            <a href="{{ '/kalender' | relative_url }}" class="text-sm font-medium transition-colors hover:text-primary {% if page.url contains '/kalender' %}text-primary font-bold{% else %}text-muted-foreground{% endif %}">Kalender</a>
+            <a href="{{ '/bilder' | relative_url }}" class="text-sm font-medium transition-colors hover:text-primary {% if page.url contains '/bilder' %}text-primary font-bold{% else %}text-muted-foreground{% endif %}">Bilder</a>
+            <a href="{{ '/wiki/stamm-heilig-geist' | relative_url }}" class="text-sm font-medium transition-colors hover:text-primary {% if page.url contains '/wiki' %}text-primary font-bold{% else %}text-muted-foreground{% endif %}">Über Uns</a>
+            <a href="{{ '/legal/kontakt' | relative_url }}" class="text-sm font-medium transition-colors hover:text-primary {% if page.url contains '/kontakt' %}text-primary font-bold{% else %}text-muted-foreground{% endif %}">Kontakt</a>
             
-            <div class="nav-dropdown">
-              <a class="page-link dropdown-toggle" href="#">Stufen</a>
-              <div class="dropdown-content">
-                <a href="{{ '/stufen/wichtel' | relative_url }}">Wichtel</a>
-                <a href="{{ '/stufen/woelflinge' | relative_url }}">Wölflinge</a>
-                <a href="{{ '/stufen/jungpfadfinder' | relative_url }}">Jungpfadfinder</a>
-                <a href="{{ '/stufen/pfadfinder' | relative_url }}">Pfadfinder</a>
-                <a href="{{ '/stufen/rover' | relative_url }}">Rover</a>
-                <a href="{{ '/stufen/leiter' | relative_url }}">Leiter</a>
-                <a href="{{ '/stufen/altrover' | relative_url }}">Altrover</a>
-              </div>
+            <a href="{{ '/legal/kontakt' | relative_url }}" class="btn btn-sm">Mitmachen!</a>
+        </div>
+  
+        <!-- Mobile Menu Button (Simple JS implementation needed or checkbox hack) -->
+        <div class="md:hidden">
+            <label for="mobile-menu-toggle" class="cursor-pointer p-2 text-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+            </label>
+            <input type="checkbox" id="mobile-menu-toggle" class="hidden peer">
+            
+            <div class="hidden peer-checked:block absolute left-0 top-16 w-full border-t bg-background p-4 shadow-lg animate-in slide-in-from-top-5">
+                <div class="flex flex-col space-y-4">
+                    <a href="{{ '/' | relative_url }}" class="text-base font-medium transition-colors hover:text-primary block py-2">Start</a>
+                    <a href="{{ '/gruppenstunden' | relative_url }}" class="text-base font-medium transition-colors hover:text-primary block py-2">Gruppen</a>
+                    <a href="{{ '/kalender' | relative_url }}" class="text-base font-medium transition-colors hover:text-primary block py-2">Kalender</a>
+                    <a href="{{ '/bilder' | relative_url }}" class="text-base font-medium transition-colors hover:text-primary block py-2">Bilder</a>
+                    <a href="{{ '/wiki/stamm-heilig-geist' | relative_url }}" class="text-base font-medium transition-colors hover:text-primary block py-2">Über Uns</a>
+                    <a href="{{ '/legal/kontakt' | relative_url }}" class="text-base font-medium transition-colors hover:text-primary block py-2">Kontakt</a>
+                    <a href="{{ '/legal/kontakt' | relative_url }}" class="btn w-full">Mitmachen!</a>
+                </div>
             </div>
-            
-            <div class="nav-dropdown">
-              <a class="page-link dropdown-toggle" href="#">Über uns</a>
-              <div class="dropdown-content">
-                <a href="{{ '/wiki/stamm-heilig-geist' | relative_url }}">Unser Stamm</a>
-                <a href="{{ '/wiki/dpsg-wosm' | relative_url }}">DPSG & WOSM</a>
-                <a href="{{ '/wiki/robert-baden-powell' | relative_url }}">Baden-Powell</a>
-                <a href="{{ '/wiki/leitlinien' | relative_url }}">Leitlinien</a>
-                <a href="{{ '/wiki/ziele-und-aktivitaeten' | relative_url }}">Ziele & Aktivitäten</a>
-              </div>
-            </div>
-            
-            <a class="page-link" href="{{ '/legal/kontakt' | relative_url }}">Kontakt</a>
-          </div>
-        </nav>
-      {%- endif -%}
+        </div>
+      </div>
     </div>
-  </div>
-</header>
+  </nav>
