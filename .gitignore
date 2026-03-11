@@ -7,7 +7,6 @@ _site/
 
 # Node
 node_modules/
-package-lock.json
 
 # Tailwind
 assets/css/main.css
@@ -15,7 +14,6 @@ assets/css/main.css
 # Ruby
 .bundle/
 vendor/
-Gemfile.lock
 
 # OS
 .DS_Store
