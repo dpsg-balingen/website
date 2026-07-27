@@ -196,10 +196,10 @@ html[data-stufen="on"] .group-tile:nth-child(3){border-left-color:#2f8a3e}
 html[data-stufen="on"] .group-tile:nth-child(3) h3{color:#2f8a3e}
 html[data-stufen="on"] .group-tile:nth-child(4){border-left-color:#d42e1e}
 html[data-stufen="on"] .group-tile:nth-child(4) h3{color:#d42e1e}
-html[data-stufen="on"] .group-tile:nth-child(5){border-left-color:#7d6b4a}
-html[data-stufen="on"] .group-tile:nth-child(5) h3{color:#6f5f40}
-html[data-stufen="on"] .group-tile:nth-child(6){border-left-color:#9a7b45}
-html[data-stufen="on"] .group-tile:nth-child(6) h3{color:#8a6c38}
+html[data-stufen="on"] .group-tile:nth-child(5){border-left-color:#969696}
+html[data-stufen="on"] .group-tile:nth-child(5) h3{color:#969696}
+html[data-stufen="on"] .group-tile:nth-child(6){border-left-color:#000000}
+html[data-stufen="on"] .group-tile:nth-child(6) h3{color:#000000}
 
 /* ===== TWEAKS: Stufenfarbe auf den zugehörigen Gruppenseiten ===== */
 html[data-stufe="woelflinge"]{--stufe:#f39200}
