@@ -1,0 +1,24 @@
+<aside class="sidebar">
+  <div class="card termine-card">
+    <h2>Aktuelle Termine</h2>
+    {% if events and events.length %}
+      <ul class="mini-events">
+        {% for ev in events | limit(4) %}
+          <li>
+            <span class="me-date">{{ ev | eventWhen }}</span>
+            <span class="me-title">{{ ev.title }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+      <a class="btn btn-sm" href="/kalender/">Alle Termine →</a>
+    {% else %}
+      <p class="muted">Zurzeit sind keine Termine eingetragen.</p>
+      <a class="btn btn-sm" href="/kalender/">Zum Kalender →</a>
+    {% endif %}
+  </div>
+  <div class="card contact-card">
+    <h2>Mitmachen?</h2>
+    <p>Interesse an den Pfadfindern? Schau in einer Gruppenstunde vorbei!</p>
+    <a class="btn btn-sm" href="/kontakt/">Kontakt aufnehmen</a>
+  </div>
+</aside>

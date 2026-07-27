@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="de" data-form="stamp" data-stufen="on"{% if stufe %} data-stufe="{{ stufe }}"{% endif %}>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ title }} · {{ site.name }}</title>
+<meta name="description" content="{{ description or site.description }}">
+<link rel="icon" href="/assets/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+{% include "partials/header.njk" %}
+
+{% if heroTitle %}
+<section class="hero">
+  <div class="hero-inner">
+    <img class="hero-logo" src="/assets/img/logo.png" alt="Wappen DPSG Balingen – Stamm Heilig Geist">
+    <div class="hero-text">
+      <h1>{{ heroTitle }}</h1>
+      {% if heroSubtitle %}<p class="hero-sub">{{ heroSubtitle }}</p>{% endif %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<main class="site-main">
+  <div class="container">
+    {% if sidebar != false %}
+    <div class="layout">
+      <article class="content prose">
+        {% if not heroTitle %}<h1 class="page-title">{{ title }}</h1>{% endif %}
+        {{ content | safe }}
+      </article>
+      {% include "partials/sidebar.njk" %}
+    </div>
+    {% else %}
+      {{ content | safe }}
+    {% endif %}
+  </div>
+</main>
+
+{% include "partials/footer.njk" %}
+<script src="/assets/js/nav.js" defer></script>
+</body>
+</html>

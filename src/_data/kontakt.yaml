@@ -1,0 +1,21 @@
+# Kontaktdaten – hier ändern
+anschrift:
+  verein: "DPSG Balingen e.V."
+  strasse: "Hirschbergstraße 112/2"
+  ort: "72336 Balingen"
+email: "info@dpsg-balingen.de"
+
+# Ansprechpartner (Reihenfolge = Anzeige)
+personen:
+  - rolle: "Stammesvorsitzender"
+    name: "David Ott"
+    tel: "0176 8353514"
+    email: "david.ott@dpsg-balingen.de"
+  - rolle: "Stammesvorsitzende"
+    name: "Miriam Max"
+    tel: "0157 33650013"
+    email: "miriam.max@dpsg-balingen.de"
+  - rolle: "Kurat"
+    name: "Jona Damm"
+    tel: "0162 7475470"
+    email: "jona.damm@dpsg-balingen.de"

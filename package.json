@@ -1,22 +1,17 @@
 {
-  "name": "dpsg-website",
+  "name": "dpsg-balingen",
   "version": "1.0.0",
-  "description": "DPSG Balingen Website",
-  "main": "index.js",
+  "description": "Website der DPSG Balingen – Stamm Heilig Geist",
+  "license": "MIT",
   "scripts": {
-    "build:css": "tailwindcss -i ./assets/css/input.css -o ./assets/css/main.css --minify",
-    "watch:css": "tailwindcss -i ./assets/css/input.css -o ./assets/css/main.css --watch",
-    "build": "npm run build:css && bundle exec jekyll build",
-    "serve": "npm run build:css && bundle exec jekyll serve --livereload"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "autoprefixer": "^10.4.20",
-    "postcss": "^8.4.47",
-    "tailwindcss": "^3.4.13"
+    "start": "eleventy --serve",
+    "build": "eleventy",
+    "clean": "rm -rf _site"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.19"
+    "@11ty/eleventy": "^3.0.0"
+  },
+  "dependencies": {
+    "node-ical": "^0.20.1"
   }
 }

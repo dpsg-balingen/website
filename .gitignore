@@ -1,20 +1,5 @@
-# Jekyll
-_site/
-.jekyll-cache/
-.jekyll-metadata
-.sass-cache/
-.cache/
-
-# Node
 node_modules/
-
-# Tailwind
-assets/css/main.css
-
-# Ruby
-.bundle/
-vendor/
-
-# OS
+_site/
 .DS_Store
-Thumbs.db
+*.log
+.claude/settings.local.json

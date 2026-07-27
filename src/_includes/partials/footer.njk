@@ -1,0 +1,34 @@
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <img src="/assets/img/logo.png" alt="DPSG Balingen">
+      <p>{{ site.longName }}</p>
+    </div>
+    <div>
+      <h3>Anschrift</h3>
+      <p>{{ kontakt.anschrift.verein }}<br>{{ kontakt.anschrift.strasse }}<br>{{ kontakt.anschrift.ort }}</p>
+      <p><a href="mailto:{{ kontakt.email }}">{{ kontakt.email }}</a></p>
+    </div>
+    <div>
+      <h3>Seiten</h3>
+      <ul class="footer-links">
+        <li><a href="/gruppenstunden/">Gruppenstunden</a></li>
+        <li><a href="/kalender/">Kalender</a></li>
+        <li><a href="/kontakt/">Kontakt</a></li>
+        <li><a href="/spenden/">Spenden</a></li>
+        <li><a href="/impressum/">Impressum</a></li>
+        <li><a href="/schutzkonzept/">Schutzkonzept</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Folgt uns</h3>
+      <ul class="footer-links">
+        <li><a href="{{ site.social.instagram }}" rel="noopener" target="_blank">Instagram</a></li>
+        <li><a href="{{ site.social.facebook }}" rel="noopener" target="_blank">Facebook</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">© {% year %} {{ site.longName }} · <a href="/impressum/">Impressum</a></div>
+  </div>
+</footer>
