@@ -10,3 +10,6 @@ vier Grundlinien der DPSG:
 - **Leben in Hoffnung**
 - **Leben in Wahrheit**
 - **Leben in tätiger Solidarität** (Gemeinschaftssinn)
+
+Neben den Grundlinien gilt für alle Mitglieder auch das
+[Pfadfindergesetz](/pfadfinder/gesetz/).

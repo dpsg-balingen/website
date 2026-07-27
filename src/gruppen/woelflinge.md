@@ -18,6 +18,12 @@ Deshalb sollen die Mädchen und Jungs gemeinsam in der Meute (Gruppe):
 - zu sich selbst finden und
 - erfahren, dass Gott für sie da ist.
 
+Konkret heißt das: gemeinsam bauen und basteln, auf Schatzsuche gehen, an der
+Eyach wandern oder im Sommer zusammen zelten.
+
 **Leitung:** Hierbei werden die Wölflinge von jungen Erwachsenen begleitet und
 geleitet. Die Leiter/innen helfen den Kindern dabei, das Entdecken immer wieder
 neu zu erlernen und sich dabei als Gemeinschaft zu erleben.
+
+Komm einfach bei einer [Gruppenstunde](/gruppenstunden/) vorbei oder
+[nimm Kontakt auf](/kontakt/).

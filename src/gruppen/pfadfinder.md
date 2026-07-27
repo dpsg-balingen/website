@@ -14,7 +14,19 @@ Erwartungen, Interessen und ihre Ängste äußern und werden dadurch gestärkt. 
 Auseinandersetzung mit dem eigenen Lebensentwurf beginnt mit der Verwirklichung
 der eigenen Träume.
 
+Deshalb sollen die Pfadfinder gemeinsam im Trupp (Gruppe):
+
+- sich gegenseitig Rückhalt und Vertrauen geben
+- Wagnisse eingehen und eigene Grenzen erfahren
+- zunehmend Verantwortung für die eigene Entwicklung übernehmen
+
+Das sind bei uns zum Beispiel ein Stammeshike, gemeinsames Grillen und Kochen,
+Krimidinner, Casinoabende oder ein nächtliches Geländespiel.
+
 **Leitung:** Die Leiter/innen machen Mut. Sie leiten als Team „mitten im Trupp“,
 also mitten in der Gruppe. Sie zeigen den Jugendlichen mögliche Ziele auf und
 animieren zu eigenen Fragen, eigenen Standpunkten. Ihr eigenes Handeln gibt
 Beispiel.
+
+Komm einfach bei einer [Gruppenstunde](/gruppenstunden/) vorbei oder
+[nimm Kontakt auf](/kontakt/).

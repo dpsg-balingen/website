@@ -14,6 +14,19 @@ hier den nötigen Rückhalt für eindrucksvolles Handeln und beispielhafte
 Projekte. Sie haben nun die nötige Handlungskompetenz, auch stärker in der
 Öffentlichkeit zu agieren und längerfristige Projekte zu planen.
 
+Deshalb sollen die Rover gemeinsam in der Runde (Gruppe):
+
+- den eigenen Lebensweg selbstbestimmt in die Hand nehmen
+- offen sein für andere Menschen und neue Situationen
+- wissen, wann es Zeit zum Handeln ist – und es einfach tun
+
+Konkret heißt das: Hikes und Hüttenwochenenden, Erste-Hilfe-Kurse, aber auch
+eigene Ausflüge und Aktionen selbstständig – natürlich mit Unterstützung –
+planen und durchführen.
+
 **Leitung:** Den Leitern kommt hier eine spannende Aufgabe zu, sie müssen den
 Spagat zwischen Leiten und nicht bevormunden vollbringen. Sie unterstützen das
 selbst organisierte Handeln der Gruppe. Hier bedarf es erwachsenen Leitern.
+
+Komm einfach bei einer [Gruppenstunde](/gruppenstunden/) vorbei oder
+[nimm Kontakt auf](/kontakt/).
