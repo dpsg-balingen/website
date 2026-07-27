@@ -1,11 +1,7 @@
 ---
-created_at: 2026-07-27 12:01:49
-modified_at: 2026-07-27 12:02:28
 layout: layouts/base.njk
 title: Kontakt
 ---
-
-# kontakt
 
 Wenn ihr Interesse an den Pfadfindern habt oder einfach mal vorbeischauen wollt,
 könnt ihr euch gerne bei uns melden.
