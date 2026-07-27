@@ -424,7 +424,7 @@ p {
 }
 
 /* ===== Buttons ===== */
-.btn {
+a.btn {
   display: inline-block;
   background: var(--brand);
   color: #fff;
