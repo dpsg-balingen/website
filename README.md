@@ -87,21 +87,6 @@ eigentliche Inhalt steht darunter und lässt sich wie normaler Text bearbeiten
 
 ---
 
-## 🖼️ Bilder / Galerie
-
-Fotos in den Ordner `src/assets/img/` legen. In der Galerie (`src/bilder.md`)
-die Platzhalter ersetzen, z. B.:
-
-```html
-<div class="gallery">
-  <a href="/assets/img/lager1.jpg"
-    ><img src="/assets/img/lager1.jpg" alt="Stammeslager"
-  /></a>
-</div>
-```
-
----
-
 ## 🌐 Veröffentlichen (Deployment)
 
 Bei jedem `git push` auf den Branch `main` baut GitHub Actions die Seite und

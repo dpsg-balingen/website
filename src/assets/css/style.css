@@ -706,33 +706,6 @@ tbody tr:nth-child(even) {
   margin: 0.1em 0 0.5em;
 }
 
-/* ===== Gallery ===== */
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 14px;
-  margin: 1.4em 0;
-}
-.gallery .ph {
-  aspect-ratio: 4/3;
-  background: repeating-linear-gradient(
-    45deg,
-    var(--sand-bg),
-    var(--sand-bg) 14px,
-    #efe7d4 14px,
-    #efe7d4 28px
-  );
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--muted);
-  font-weight: 600;
-  text-align: center;
-  padding: 12px;
-  border: 1px dashed var(--sand);
-}
-
 /* ===== 404 ===== */
 .notfound {
   text-align: center;
