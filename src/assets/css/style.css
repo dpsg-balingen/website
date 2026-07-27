@@ -37,6 +37,7 @@
   --sand: #c3a878;
   --sand-bg: #f5efe2;
   --sand-line: #e6dcc6;
+  --sand-dark: #8a6c38;
   --red: #c62128;
   --red-dark: #a71a20;
   --ink: #22262f;
@@ -373,14 +374,11 @@ p {
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: 22px 22px;
-  border-top: 5px solid var(--brand);
+  border-top: 5px solid var(--sand);
 }
 .card h2 {
   font-size: 1.25rem;
   margin-bottom: 0.7em;
-}
-.contact-card {
-  border-top-color: var(--sand);
 }
 .gs-entry + .gs-entry {
   margin-top: 16px;
@@ -410,7 +408,7 @@ p {
 }
 .me-date {
   font-size: 0.82rem;
-  color: var(--brand-dark);
+  color: var(--sand-dark);
   font-weight: 700;
   letter-spacing: 0.3px;
 }
