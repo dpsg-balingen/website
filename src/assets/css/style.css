@@ -789,13 +789,9 @@ tbody tr:nth-child(even) {
 }
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 32px;
   padding: 46px 22px 34px;
-}
-.footer-brand img {
-  height: 56px;
-  margin-bottom: 12px;
 }
 .site-footer h3 {
   color: #fff;
