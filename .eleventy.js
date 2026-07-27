@@ -1,5 +1,23 @@
 const yaml = require("js-yaml");
 
+function parseYmd(s) {
+  if (!s || typeof s !== "string") return null;
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(s.trim());
+  if (!m) return null;
+  const y = Number(m[1]);
+  const mo = Number(m[2]);
+  const da = Number(m[3]);
+  if (mo < 1 || mo > 12 || da < 1 || da > 31) return null;
+  return new Date(y, mo - 1, da);
+}
+
+function isGueltig(gueltigBis, heute = new Date()) {
+  const g = parseYmd(gueltigBis);
+  if (!g) return false;
+  const h = new Date(heute.getFullYear(), heute.getMonth(), heute.getDate());
+  return g >= h;
+}
+
 module.exports = function (eleventyConfig) {
   // Statische Dateien kopieren
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
@@ -21,6 +39,7 @@ module.exports = function (eleventyConfig) {
   );
   eleventyConfig.addFilter("limit", (arr, n) => (arr || []).slice(0, n));
   eleventyConfig.addFilter("whereStufe", (arr, stufe) => (arr || []).filter((g) => g.stufe === stufe));
+  eleventyConfig.addFilter("istGueltig", (d) => isGueltig(d));
 
   // Termin-Zeitraum menschenlesbar formatieren
   eleventyConfig.addFilter("eventWhen", (ev) => {
@@ -82,3 +101,5 @@ module.exports = function (eleventyConfig) {
     pathPrefix: "/",
   };
 };
+
+module.exports.isGueltig = isGueltig;

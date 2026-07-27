@@ -4,3 +4,4 @@ _site/
 *.log
 .claude/settings.local.json
 .superpowers/
+docs/

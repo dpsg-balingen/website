@@ -21,6 +21,12 @@
 <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
+{% if banner.nachricht and (banner.gueltig_bis | istGueltig) %}
+<div class="ankuendigung">
+  <span>{{ banner.nachricht }}</span>
+  {% if banner.link %}<a class="ankuendigung-link" href="{{ banner.link }}">{{ banner.link_text }} →</a>{% endif %}
+</div>
+{% endif %}
 {% include "partials/header.njk" %}
 
 {% if heroTitle %}

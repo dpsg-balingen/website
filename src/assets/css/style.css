@@ -111,6 +111,27 @@ p {
   color: var(--muted);
 }
 
+/* ===== Ankündigungs-Banner ===== */
+.ankuendigung {
+  background: var(--sand-bg);
+  color: var(--sand-dark);
+  border-bottom: 1px solid var(--sand-line);
+  padding: 10px 22px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.ankuendigung-link {
+  color: var(--brand-dark);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
 /* ===== Header / Nav ===== */
 .site-header {
   background: var(--brand);

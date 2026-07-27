@@ -1,0 +1,8 @@
+# Ankündigungs-Banner – erscheint oben auf jeder Seite, solange "gueltig_bis"
+# nicht in der Vergangenheit liegt.
+# Zum Ausblenden: nachricht leer lassen ("") oder gueltig_bis in die
+# Vergangenheit setzen.
+nachricht: ""
+gueltig_bis: "" # Format: JJJJ-MM-TT, z. B. 2026-08-01
+link: "" # optional, z. B. /kontakt/
+link_text: "" # optional, nur genutzt wenn link gesetzt ist

@@ -64,6 +64,26 @@ Termin anlegen – über Nacht (oder beim nächsten `git push`) erscheint er
 automatisch auf **Kalender** und **Startseite**. Der Kalender-Link steht in
 `src/_data/site.json` (`icalUrl`).
 
+### Ankündigungs-Banner → `src/_data/banner.yaml`
+
+Ein Banner, das oben auf **jeder Seite** erscheint, solange es aktuell ist –
+z. B. für "Anmeldung fürs Sommerlager ist ab jetzt möglich!".
+
+```yaml
+nachricht: "Anmeldung fürs Sommerlager ist ab jetzt möglich!"
+gueltig_bis: "2026-08-01"
+link: "/kontakt/"
+link_text: "Kontakt aufnehmen"
+```
+
+- **Anzeigen:** `nachricht` und `gueltig_bis` (Format `JJJJ-MM-TT`) ausfüllen.
+  Das Banner verschwindet automatisch einen Tag nach `gueltig_bis` – ganz ohne
+  weiteres Zutun, beim nächsten nächtlichen Build oder `git push`.
+- **Vorzeitig ausblenden:** `nachricht` leeren (`""`) oder `gueltig_bis` auf
+  ein vergangenes Datum setzen.
+- **Link ist optional:** `link` und `link_text` leer lassen, wenn das Banner
+  nur Text zeigen soll.
+
 ### Texte der Seiten → `src/**/*.md`
 
 Jede Seite ist eine **Markdown**-Datei in `src/`, z. B.:
