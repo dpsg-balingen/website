@@ -3,7 +3,8 @@ layout: layouts/base.njk
 title: Bilder
 ---
 
-Eindrücke aus Gruppenstunden, Lagern und Fahrten. *(Die Galerie kann jederzeit mit eigenen Fotos gefüllt werden – siehe README.)*
+Eindrücke aus Gruppenstunden, Lagern und Fahrten. _(Die Galerie kann jederzeit
+mit eigenen Fotos gefüllt werden – siehe README.)_
 
 <div class="gallery">
 <div class="ph">Stammeslager</div>

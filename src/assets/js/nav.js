@@ -9,12 +9,14 @@
     });
   }
   // Untermenüs: auf Mobile per Klick aufklappen
-  document.querySelectorAll(".nav-item.has-children > .nav-parent").forEach(function (btn) {
-    btn.addEventListener("click", function (e) {
-      if (window.matchMedia("(max-width: 900px)").matches) {
-        e.preventDefault();
-        btn.parentElement.classList.toggle("open");
-      }
+  document
+    .querySelectorAll(".nav-item.has-children > .nav-parent")
+    .forEach(function (btn) {
+      btn.addEventListener("click", function (e) {
+        if (window.matchMedia("(max-width: 900px)").matches) {
+          e.preventDefault();
+          btn.parentElement.classList.toggle("open");
+        }
+      });
     });
-  });
 })();

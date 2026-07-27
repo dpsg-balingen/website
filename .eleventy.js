@@ -9,13 +9,16 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addDataExtension("yaml", (contents) => yaml.load(contents));
 
   const pad = (n) => String(n).padStart(2, "0");
-  const d2 = (d) => `${pad(d.getDate())}.${pad(d.getMonth() + 1)}.${d.getFullYear()}`;
+  const d2 = (d) =>
+    `${pad(d.getDate())}.${pad(d.getMonth() + 1)}.${d.getFullYear()}`;
   const hm = (d) => `${pad(d.getHours())}:${pad(d.getMinutes())}`;
   const WEEKDAYS = ["So.", "Mo.", "Di.", "Mi.", "Do.", "Fr.", "Sa."];
 
   eleventyConfig.addFilter("d2", (d) => (d ? d2(new Date(d)) : ""));
   eleventyConfig.addFilter("hm", (d) => (d ? hm(new Date(d)) : ""));
-  eleventyConfig.addFilter("weekday", (d) => (d ? WEEKDAYS[new Date(d).getDay()] : ""));
+  eleventyConfig.addFilter("weekday", (d) =>
+    d ? WEEKDAYS[new Date(d).getDay()] : "",
+  );
   eleventyConfig.addFilter("limit", (arr, n) => (arr || []).slice(0, n));
 
   // Termin-Zeitraum menschenlesbar formatieren
@@ -35,20 +38,44 @@ module.exports = function (eleventyConfig) {
   // Termine nach Monat gruppieren (für Kalenderseite)
   eleventyConfig.addFilter("byMonth", (events) => {
     const groups = {};
-    const MONTHS = ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
+    const MONTHS = [
+      "Januar",
+      "Februar",
+      "März",
+      "April",
+      "Mai",
+      "Juni",
+      "Juli",
+      "August",
+      "September",
+      "Oktober",
+      "November",
+      "Dezember",
+    ];
     for (const ev of events || []) {
       const d = new Date(ev.start);
       const key = `${d.getFullYear()}-${pad(d.getMonth() + 1)}`;
-      if (!groups[key]) groups[key] = { label: `${MONTHS[d.getMonth()]} ${d.getFullYear()}`, events: [] };
+      if (!groups[key])
+        groups[key] = {
+          label: `${MONTHS[d.getMonth()]} ${d.getFullYear()}`,
+          events: [],
+        };
       groups[key].events.push(ev);
     }
-    return Object.keys(groups).sort().map((k) => groups[k]);
+    return Object.keys(groups)
+      .sort()
+      .map((k) => groups[k]);
   });
 
   eleventyConfig.addShortcode("year", () => new Date().getFullYear());
 
   return {
-    dir: { input: "src", output: "_site", includes: "_includes", data: "_data" },
+    dir: {
+      input: "src",
+      output: "_site",
+      includes: "_includes",
+      data: "_data",
+    },
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",
     pathPrefix: "/",

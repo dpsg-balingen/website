@@ -10,32 +10,101 @@
     "facebook": "https://www.facebook.com/DPSG.Balingen/"
   },
   "nav": [
-    { "title": "Startseite", "url": "/" },
-    { "title": "Gruppen", "children": [
-      { "title": "Wölflinge", "url": "/gruppen/woelflinge/" },
-      { "title": "Jungpfadfinder", "url": "/gruppen/jungpfadfinder/" },
-      { "title": "Pfadfinder", "url": "/gruppen/pfadfinder/" },
-      { "title": "Rover", "url": "/gruppen/rover/" },
-      { "title": "Leiter", "url": "/gruppen/leiter/" },
-      { "title": "Altrover", "url": "/gruppen/altrover/" }
-    ]},
-    { "title": "Pfadfinder", "children": [
-      { "title": "DPSG", "url": "/pfadfinder/dpsg/" },
-      { "title": "WOSM", "url": "/pfadfinder/wosm/" },
-      { "title": "Leitlinien", "url": "/pfadfinder/leitlinien/" },
-      { "title": "Gründer", "url": "/pfadfinder/gruender/" }
-    ]},
-    { "title": "Termine", "children": [
-      { "title": "Gruppenstunden", "url": "/gruppenstunden/" },
-      { "title": "Kalender", "url": "/kalender/" }
-    ]},
-    { "title": "Bilder", "url": "/bilder/" },
-    { "title": "Sonstiges", "children": [
-      { "title": "Kontakt", "url": "/kontakt/" },
-      { "title": "Impressum", "url": "/impressum/" },
-      { "title": "Spenden", "url": "/spenden/" },
-      { "title": "Schutzkonzept", "url": "/schutzkonzept/" },
-      { "title": "Links", "url": "/links/" }
-    ]}
+    {
+      "title": "Startseite",
+      "url": "/"
+    },
+    {
+      "title": "Stufen",
+      "children": [
+        {
+          "title": "Wölflinge",
+          "url": "/gruppen/woelflinge/"
+        },
+        {
+          "title": "Jungpfadfinder",
+          "url": "/gruppen/jungpfadfinder/"
+        },
+        {
+          "title": "Pfadfinder",
+          "url": "/gruppen/pfadfinder/"
+        },
+        {
+          "title": "Rover",
+          "url": "/gruppen/rover/"
+        },
+        {
+          "title": "Leiter",
+          "url": "/gruppen/leiter/"
+        },
+        {
+          "title": "Altrover",
+          "url": "/gruppen/altrover/"
+        }
+      ]
+    },
+    {
+      "title": "Pfadfinder",
+      "children": [
+        {
+          "title": "DPSG",
+          "url": "/pfadfinder/dpsg/"
+        },
+        {
+          "title": "WOSM",
+          "url": "/pfadfinder/wosm/"
+        },
+        {
+          "title": "Leitlinien",
+          "url": "/pfadfinder/leitlinien/"
+        },
+        {
+          "title": "Gründer",
+          "url": "/pfadfinder/gruender/"
+        }
+      ]
+    },
+    {
+      "title": "Termine",
+      "children": [
+        {
+          "title": "Gruppenstunden",
+          "url": "/gruppenstunden/"
+        },
+        {
+          "title": "Kalender",
+          "url": "/kalender/"
+        }
+      ]
+    },
+    {
+      "title": "Bilder",
+      "url": "/bilder/"
+    },
+    {
+      "title": "Sonstiges",
+      "children": [
+        {
+          "title": "Kontakt",
+          "url": "/kontakt/"
+        },
+        {
+          "title": "Impressum",
+          "url": "/impressum/"
+        },
+        {
+          "title": "Spenden",
+          "url": "/spenden/"
+        },
+        {
+          "title": "Schutzkonzept",
+          "url": "/schutzkonzept/"
+        },
+        {
+          "title": "Links",
+          "url": "/links/"
+        }
+      ]
+    }
   ]
 }

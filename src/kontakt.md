@@ -1,12 +1,18 @@
 ---
+created_at: 2026-07-27 12:01:49
+modified_at: 2026-07-27 12:02:28
 layout: layouts/base.njk
 title: Kontakt
 ---
 
-Wenn ihr Interesse an den Pfadfindern habt oder einfach mal vorbeischauen wollt, könnt ihr euch gerne bei uns melden.
+# kontakt
 
-**Anschrift:** {{ kontakt.anschrift.verein }}, {{ kontakt.anschrift.strasse }}, {{ kontakt.anschrift.ort }}
-**Allgemeine E-Mail:** [{{ kontakt.email }}](mailto:{{ kontakt.email }})
+Wenn ihr Interesse an den Pfadfindern habt oder einfach mal vorbeischauen wollt,
+könnt ihr euch gerne bei uns melden.
+
+**Anschrift:** {{ kontakt.anschrift.verein }}, {{ kontakt.anschrift.strasse }},
+{{ kontakt.anschrift.ort }}<br> **Allgemeine E-Mail:** [{{ kontakt.email
+}}](mailto:{{ kontakt.email }})
 
 <div class="contact-grid">
 {% for p in kontakt.personen %}
@@ -20,4 +26,7 @@ Wenn ihr Interesse an den Pfadfindern habt oder einfach mal vorbeischauen wollt,
 
 ### Mailverteiler
 
-Wenn ihr Infos der DPSG Balingen ab sofort auch per Mail erhalten wollt, könnt ihr unserem Mailverteiler beitreten. Schreibt dazu einfach eine E-Mail an [{{ kontakt.email }}](mailto:{{ kontakt.email }}?subject=Mailverteiler%20Beitreten) mit dem Betreff „Mailverteiler Beitreten“.
+Wenn ihr Infos der DPSG Balingen ab sofort auch per Mail erhalten wollt, könnt
+ihr unserem Mailverteiler beitreten. Schreibt dazu einfach eine E-Mail an [{{
+kontakt.email }}](mailto:{{ kontakt.email }}?subject=Mailverteiler%20Beitreten)
+mit dem Betreff „Mailverteiler Beitreten“.

@@ -4,7 +4,9 @@ title: Startseite
 sidebar: false
 heroTitle: Pfadfinder in Balingen
 heroSubtitle: Stamm Heilig Geist
-description: DPSG Balingen – Stamm Heilig Geist. Pfadfinder in Balingen seit 1996 mit über 100 Mitgliedern.
+description:
+  DPSG Balingen – Stamm Heilig Geist. Pfadfinder in Balingen seit 1996 mit über
+  100 Mitgliedern.
 ---
 
 <div class="content prose">
