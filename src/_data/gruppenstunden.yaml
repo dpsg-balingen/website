@@ -3,7 +3,7 @@
 #  Nach dem Speichern und Hochladen (git push) aktualisiert sich
 #  die Seite automatisch. Reihenfolge = Reihenfolge auf der Seite.
 # ────────────────────────────────────────────────────────────────
-saison: "2024/2025"
+saison: "2025/2026"
 
 gruppen:
   - name: "Wichtel & Wölflinge"

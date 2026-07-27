@@ -206,8 +206,8 @@ html[data-stufe="woelflinge"]{--stufe:#f39200}
 html[data-stufe="jungpfadfinder"]{--stufe:#0f6fb5}
 html[data-stufe="pfadfinder"]{--stufe:#2f8a3e}
 html[data-stufe="rover"]{--stufe:#d42e1e}
-html[data-stufe="leiter"]{--stufe:#7d6b4a}
-html[data-stufe="altrover"]{--stufe:#9a7b45}
+html[data-stufe="leiter"]{--stufe:#969696}
+html[data-stufe="altrover"]{--stufe:#000000}
 html[data-stufe] .page-title{border-bottom-color:var(--stufe)}
 html[data-stufe] .eyebrow{color:var(--stufe)}
 html[data-stufe] .prose h2,html[data-stufe] .prose h3{color:var(--stufe)}
