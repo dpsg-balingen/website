@@ -20,6 +20,7 @@ module.exports = function (eleventyConfig) {
     d ? WEEKDAYS[new Date(d).getDay()] : "",
   );
   eleventyConfig.addFilter("limit", (arr, n) => (arr || []).slice(0, n));
+  eleventyConfig.addFilter("whereStufe", (arr, stufe) => (arr || []).filter((g) => g.stufe === stufe));
 
   // Termin-Zeitraum menschenlesbar formatieren
   eleventyConfig.addFilter("eventWhen", (ev) => {

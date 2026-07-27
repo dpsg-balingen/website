@@ -352,6 +352,17 @@ p {
 .contact-card {
   border-top-color: var(--sand);
 }
+.gs-entry + .gs-entry {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+.gs-name {
+  font-family: var(--head);
+  font-weight: 700;
+  color: var(--navy-dark);
+  margin-bottom: 0.3em;
+}
 .mini-events {
   list-style: none;
   margin: 0 0 16px;
@@ -903,6 +914,9 @@ html[data-stufe] .sidebar .card {
 }
 html[data-stufe] .mini-events li {
   border-left-color: var(--stufe);
+}
+html[data-stufe] .gs-name {
+  color: var(--stufe);
 }
 html[data-stufe] .btn {
   background: var(--stufe);
