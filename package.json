@@ -12,6 +12,7 @@
     "@11ty/eleventy": "^3.0.0"
   },
   "dependencies": {
+    "js-yaml": "^4.3.0",
     "node-ical": "^0.20.1"
   }
 }

@@ -1,4 +1,15 @@
 <aside class="sidebar">
+  {% if stufe %}
+    {% for g in gruppenstunden.gruppen %}
+      {% if g.stufe == stufe %}
+      <div class="card gruppenstunde-card">
+        <h2>Gruppenstunde</h2>
+        <div class="gs-when">{{ g.tag }} · {{ g.zeit }}</div>
+        <div class="gs-leiter"><strong>Leiter</strong>{{ g.leiter | join(", ") }}</div>
+      </div>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
   <div class="card termine-card">
     <h2>Aktuelle Termine</h2>
     {% if events and events.length %}

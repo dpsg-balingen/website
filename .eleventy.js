@@ -1,7 +1,12 @@
+const yaml = require("js-yaml");
+
 module.exports = function (eleventyConfig) {
   // Statische Dateien kopieren
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
   eleventyConfig.addPassthroughCopy({ "src/CNAME": "CNAME" });
+
+  // .yaml-Dateien in _data als Daten einlesen (von Eleventy nicht nativ unterstützt)
+  eleventyConfig.addDataExtension("yaml", (contents) => yaml.load(contents));
 
   const pad = (n) => String(n).padStart(2, "0");
   const d2 = (d) => `${pad(d.getDate())}.${pad(d.getMonth() + 1)}.${d.getFullYear()}`;
