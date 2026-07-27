@@ -558,15 +558,37 @@ tbody tr:nth-child(even) {
   padding: 0;
   margin: 1.2em 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 12px;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 28px;
+  border-top: 1px solid var(--sand-line);
 }
 .highlights li {
-  background: var(--sand-bg);
-  border-radius: 10px;
-  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--sand-line);
   font-weight: 600;
-  border-left: 4px solid var(--sand);
+}
+.highlights .icon-badge {
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background: var(--navy);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.highlights .icon-badge svg {
+  width: 17px;
+  height: 17px;
+}
+@media (max-width: 640px) {
+  .highlights {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ===== Kalender full list ===== */

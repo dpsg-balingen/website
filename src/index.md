@@ -14,13 +14,13 @@ description:
 <p class="lead">Seit 1996 gibt es unseren Stamm in Balingen. Wir sind inzwischen mehr als 100 Mitglieder. Neben den wöchentlichen Gruppentreffen, die wir für alle Stufen anbieten, bilden diese Veranstaltungen die Highlights unseres Jahresprogramms:</p>
 
 <ul class="highlights">
-<li>10-tägiges Stammeslager in den Sommerferien</li>
-<li>Hike – Mehrtageswanderung mit Übernachtung</li>
-<li>Pfadi-Weihnacht</li>
-<li>Stammesversammlung</li>
-<li>Jugendprogramm beim Gemeindefest</li>
-<li>Jugendgottesdienst</li>
-<li>Cafélounge</li>
+<li><span class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20L12 5l9 15M8 20l4-7.5 4 7.5"/></svg></span><span>10-tägiges Stammeslager in den Sommerferien</span></li>
+<li><span class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18l5-9 4 5.5 3-3.5 6 7"/><circle cx="17" cy="6" r="2"/></svg></span><span>Hike – Mehrtageswanderung mit Übernachtung</span></li>
+<li><span class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.5 5.6 6.1.6-4.6 4.1 1.3 6-5.3-3.2-5.3 3.2 1.3-6-4.6-4.1 6.1-.6z"/></svg></span><span>Pfadi-Weihnacht</span></li>
+<li><span class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3.5 20c0-4 2.5-6.2 5.5-6.2S14.5 16 14.5 20"/><circle cx="17" cy="9.2" r="2.3"/><path d="M14.8 20c.3-2.9 1.9-4.8 4.2-4.8"/></svg></span><span>Stammesversammlung</span></li>
+<li><span class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4m0 0h13l-3 4 3 4H5"/></svg></span><span>Jugendprogramm beim Gemeindefest</span></li>
+<li><span class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M7 8.5h10"/></svg></span><span>Jugendgottesdienst</span></li>
+<li><span class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h13v5a5 5 0 01-5 5H9a5 5 0 01-5-5V8z"/><path d="M17 9.5h1.2a2.3 2.3 0 010 4.6H17"/></svg></span><span>Cafélounge</span></li>
 </ul>
 
 <p>Außerdem sind wir aktives Mitglied im DPSG-Bezirk Schwarzwald Donau und nehmen an dessen Veranstaltungen teil. Wir verstehen uns als eine lebendige Zelle der Heilig-Geist-Gemeinde. Wir haben unsere eigenen Räume direkt neben dem Edith-Stein-Zentrum – den Gruppenraum mit Küche, die Leiterstube, den Lagerraum sowie -garage und unsere Grillstelle mit direktem Anschluss zum Garten des Kindergartens.</p>
