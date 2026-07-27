@@ -105,6 +105,7 @@ p {
   color: #fff;
 }
 .brand:hover {
+  color: #fff;
   text-decoration: none;
 }
 .brand img {
@@ -161,6 +162,7 @@ p {
   opacity: 0.85;
 }
 .submenu {
+  list-style: none;
   position: absolute;
   top: 100%;
   left: 0;
