@@ -784,6 +784,9 @@ tbody tr:nth-child(even) {
     grid-template-columns: 1fr 1fr;
     gap: 26px;
   }
+  .termine-card {
+    display: none;
+  }
 }
 @media (max-width: 520px) {
   .brand-text small {
@@ -897,6 +900,9 @@ html[data-stufe] .prose h3 {
 }
 html[data-stufe] .sidebar .card {
   border-top-color: var(--stufe);
+}
+html[data-stufe] .mini-events li {
+  border-left-color: var(--stufe);
 }
 html[data-stufe] .btn {
   background: var(--stufe);
