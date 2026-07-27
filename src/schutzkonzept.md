@@ -10,7 +10,7 @@ Prävention von (sexualisierter) Gewalt in unserer Pfadfinderarbeit darstellen.
 
 Hier findet ihr unser gesamtes ISK zum Download:
 
-<p><a class="btn" href="/assets/docs/ISK-DPSG-Balingen.pdf">ISK DPSG Balingen herunterladen</a></p>
+<p><a class="btn" href="/assets/docs/ISK-DPSG-Balingen.pdf">ISK anzeigen</a></p>
 
 Bei Fragen zum Schutzkonzept oder in einem konkreten Anliegen wendet euch bitte
 vertraulich an unsere [Ansprechpartner](/kontakt/).
