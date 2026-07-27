@@ -2,7 +2,7 @@
 # nicht in der Vergangenheit liegt.
 # Zum Ausblenden: nachricht leer lassen ("") oder gueltig_bis in die
 # Vergangenheit setzen.
-nachricht: ""
-gueltig_bis: "" # Format: JJJJ-MM-TT, z. B. 2026-08-01
-link: "" # optional, z. B. /kontakt/
-link_text: "" # optional, nur genutzt wenn link gesetzt ist
+nachricht: "Willkommen auf unserer neuen Webseite"
+gueltig_bis: "2026-07-28" # Format: JJJJ-MM-TT, z. B. 2026-08-01
+link: "mailto:m.julian.faigle@gmail.com" # optional, z. B. /kontakt/
+link_text: "Rückmeldung geben" # optional, nur genutzt wenn link gesetzt ist
