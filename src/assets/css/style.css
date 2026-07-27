@@ -521,9 +521,19 @@ tbody tr:nth-child(even) {
 /* ===== Group cards (Startseite) ===== */
 .group-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   margin: 1.4em 0;
+}
+@media (max-width: 900px) {
+  .group-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 520px) {
+  .group-grid {
+    grid-template-columns: 1fr;
+  }
 }
 .group-tile {
   display: block;
