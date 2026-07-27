@@ -159,7 +159,7 @@ p {
   text-decoration: none;
 }
 .brand img {
-  height: 52px;
+  height: 44px;
   width: auto;
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.25));
 }
@@ -794,7 +794,7 @@ tbody tr:nth-child(even) {
   padding: 46px 22px 34px;
 }
 .footer-brand img {
-  height: 74px;
+  height: 56px;
   margin-bottom: 12px;
 }
 .site-footer h3 {
