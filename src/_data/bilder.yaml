@@ -20,9 +20,9 @@
 #  Der Schlüssel ist die "stufe" aus dem Kopf der jeweiligen Seite
 #  (src/gruppen/*.md). Alter und Motto kommen automatisch dazu.
 stufen:
-  woelflinge: kistenklettern-gruppenstunde
-  jungpfadfinder: kletterwand-niederseilgarten
-  pfadfinder: niederseilgarten-pfadfinderstufe
+  woelflinge: kletterwand-niederseilgarten
+  jungpfadfinder: kistenklettern-gruppenstunde
+  pfadfinder: felsklettern
   rover: bergsee-rast
   leiter: kartenarbeit-routenplanung
   altrover: stammesplatz-glockenturm
