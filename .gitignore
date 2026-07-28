@@ -5,3 +5,6 @@ _site/
 .claude/settings.local.json
 .superpowers/
 docs/
+
+# Foto-Originale (unverkleinert, gehören nicht ins Repo)
+_originale/

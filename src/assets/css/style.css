@@ -43,6 +43,12 @@
   --ink: #22262f;
   --muted: #66697a;
   --line: #e3e2ec;
+  --stufe-woelflinge: #f39200;
+  --stufe-jungpfadfinder: #0f6fb5;
+  --stufe-pfadfinder: #2f8a3e;
+  --stufe-rover: #d42e1e;
+  --stufe-leiter: #969696;
+  --stufe-altrover: #000000;
   --paper: #ffffff;
   --bg: #f4f3ef;
   --radius: 12px;
@@ -318,6 +324,101 @@ p {
   font-weight: 600;
 }
 
+/* ===== Seitenheader (Kopfbild mit Überschrift) =====
+   Sitzt oben in der Inhaltskarte, dort wo sonst die Überschrift steht.
+   Die negativen Ränder heben die Polsterung von .content auf, damit das
+   Bild bis an die Kartenkanten reicht. Bild, Schleier und Text liegen
+   übereinander. */
+.seitenheader {
+  position: relative;
+  overflow: hidden;
+  background: var(--navy-dark);
+  display: flex;
+  align-items: flex-end;
+  min-height: 260px;
+  margin: -38px -44px 30px;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+.seitenheader picture,
+.seitenheader img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 42%;
+}
+.seitenheader img {
+  transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+.seitenheader:hover img {
+  transform: scale(1.04);
+}
+/* Zwei Verläufe übereinander: ein kräftiger Keil von unten links, wo der
+   Text steht, und darunter ein sanfter Grundverlauf von unten nach oben.
+   Oben rechts bleibt das Foto dadurch nahezu unangetastet. */
+.sh-schleier {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      125% 105% at 0% 100%,
+      rgba(19, 29, 63, 0.9) 0%,
+      rgba(19, 29, 63, 0.62) 32%,
+      rgba(19, 29, 63, 0.15) 62%,
+      rgba(19, 29, 63, 0) 80%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(19, 29, 63, 0.55) 0%,
+      rgba(19, 29, 63, 0.22) 52%,
+      rgba(19, 29, 63, 0) 88%
+    );
+}
+.sh-text {
+  position: relative;
+  width: 100%;
+  padding: 0 30px 24px;
+  color: #fff;
+  /* Sicherheitsnetz für sehr helle Fotos */
+  text-shadow: 0 1px 10px rgba(19, 29, 63, 0.45);
+}
+.sh-motto {
+  font-family: var(--head);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  font-size: 0.82rem;
+  color: var(--sand);
+  margin: 0 0 4px;
+}
+.seitenheader h1 {
+  color: #fff;
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.05;
+  margin: 0;
+  text-wrap: balance;
+}
+.sh-alter {
+  margin: 5px 0 0;
+  color: #c6cdea;
+  font-size: 1rem;
+}
+@media (max-width: 900px) {
+  /* Polsterung von .content ist hier 26px/20px, Ränder entsprechend. */
+  .seitenheader {
+    min-height: 200px;
+    margin: -26px -20px 24px;
+  }
+  .sh-text {
+    padding: 0 20px 18px;
+  }
+  /* Auf schmalen Bildschirmen fällt zuerst das Motto weg. */
+  .sh-motto {
+    display: none;
+  }
+}
+
 /* ===== Layout ===== */
 .site-main {
   padding: 44px 0 10px;
@@ -529,50 +630,119 @@ tbody tr:nth-child(even) {
   background: var(--sand-bg);
 }
 
-/* ===== Gruppenstunden cards ===== */
-.gs-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: 18px;
-  margin: 1.5em 0;
-}
-.gs-card {
-  background: #fff;
+/* ===== Gruppenstunden: kompakte Zeilenliste ===== */
+.gs-list {
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  padding: 20px;
-  border-top: 5px solid var(--brand);
+  overflow: hidden;
+  margin: 1.5em 0;
 }
-.gs-card h3 {
-  margin: 0 0 0.1em;
-  color: var(--navy-dark);
+.gs-row {
+  display: grid;
+  grid-template-columns: minmax(150px, 1.1fr) minmax(130px, 0.9fr) minmax(180px, 1.6fr);
+  align-items: start;
+  gap: 10px 18px;
+  padding: 16px 20px;
+  background: #fff;
+  border-left: 4px solid var(--stufe, var(--brand));
+}
+.gs-row:nth-child(even) {
+  background: var(--sand-bg);
+}
+.gs-row + .gs-row {
+  border-top: 1px solid var(--line);
+}
+.gs-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.gs-row h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: normal;
+  color: var(--stufe, var(--navy-dark));
 }
 .gs-age {
   color: var(--muted);
-  font-size: 0.9rem;
-  margin-bottom: 0.7em;
+  font-size: 0.85rem;
 }
 .gs-when {
-  display: inline-block;
-  background: var(--sand-bg);
-  color: var(--brand-darker);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 0.92rem;
+}
+.gs-day {
   font-weight: 700;
-  padding: 5px 12px;
-  border-radius: 999px;
-  font-size: 0.9rem;
-  margin-bottom: 0.8em;
+  color: var(--brand-darker);
+}
+.gs-time {
+  color: var(--brand-darker);
 }
 .gs-leiter {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 .gs-leiter strong {
   display: block;
   color: var(--muted);
   font-weight: 600;
-  font-size: 0.82rem;
+  font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 1px;
-  margin-bottom: 2px;
+  margin-bottom: 1px;
+}
+.gs-details {
+  display: contents;
+}
+@media (max-width: 640px) {
+  .gs-row {
+    grid-template-columns: 1fr;
+    gap: 3px;
+    padding: 12px 16px;
+  }
+  .gs-group {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .gs-details {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 6px;
+    row-gap: 2px;
+    font-size: 0.88rem;
+  }
+  .gs-when {
+    flex-direction: row;
+    gap: 5px;
+  }
+  .gs-day::after {
+    content: "·";
+    margin-left: 5px;
+    color: var(--muted);
+    font-weight: 400;
+  }
+  .gs-leiter {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+  .gs-leiter::before {
+    content: "·";
+    color: var(--muted);
+  }
+  .gs-leiter strong {
+    display: inline;
+    margin-bottom: 0;
+  }
+  .gs-leiter strong::after {
+    content: ":";
+  }
 }
 
 /* ===== Group cards (Startseite) ===== */
@@ -619,42 +789,176 @@ tbody tr:nth-child(even) {
   font-size: 0.9rem;
 }
 
-/* ===== Feature list on home ===== */
-.highlights {
-  list-style: none;
-  padding: 0;
-  margin: 1.2em 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 28px;
-  border-top: 1px solid var(--sand-line);
-}
-.highlights li {
+/* ===== Bilderband zum Jahresprogramm (Startseite) =====
+   Alle Bilder stehen schmal nebeneinander. Das angesteuerte wächst,
+   sein Titel wechselt von hochkant auf quer.
+
+   Wichtig gegen Flackern: .pb-quer hat eine FESTE Breite. Sonst
+   würde der Text bei jeder Zwischenbreite neu umbrechen, während
+   die Kachel aufgeht. */
+.programm-band {
   display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 13px 0;
-  border-bottom: 1px solid var(--sand-line);
-  font-weight: 600;
+  gap: 4px;
+  height: 330px;
+  margin: 1.6em 0 0.4em;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
 }
-.highlights .icon-badge {
-  flex: none;
-  width: 36px;
-  height: 36px;
-  border-radius: 999px;
-  background: var(--navy);
+.pb-item {
+  position: relative;
+  flex: 1 1 0%;
+  min-width: 0;
+  overflow: hidden;
+  transition: flex-grow 0.55s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+.pb-item picture,
+.pb-item img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* Sobald ein Bild angesteuert wird, schrumpfen die anderen. */
+.programm-band:hover .pb-item,
+.programm-band:focus-within .pb-item {
+  flex-grow: 0.55;
+}
+.programm-band .pb-item:hover,
+.programm-band .pb-item:focus-within {
+  flex-grow: 4;
+}
+.pb-schleier {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      125% 105% at 0% 100%,
+      rgba(19, 29, 63, 0.9) 0%,
+      rgba(19, 29, 63, 0.62) 32%,
+      rgba(19, 29, 63, 0.15) 62%,
+      rgba(19, 29, 63, 0) 80%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(19, 29, 63, 0.55) 0%,
+      rgba(19, 29, 63, 0.22) 52%,
+      rgba(19, 29, 63, 0) 88%
+    );
+}
+/* Titel hochkant, solange das Bild schmal ist.
+   Wichtig: Die Drehung sitzt auf dem INNEREN span. Läge sie auf dem
+   äußeren, würde sie den Innenabstand mitdrehen - padding-bottom
+   landete optisch oben und die Schrift klebte am unteren Rand. */
+.pb-hoch {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 0 0 26px 12px;
+  pointer-events: none;
+  transition: opacity 0.28s ease;
+}
+.pb-hoch > span {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
   color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  font-family: var(--head);
+  font-weight: 700;
+  font-size: 1.12rem;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  text-shadow: 0 1px 10px rgba(19, 29, 63, 0.55);
 }
-.highlights .icon-badge svg {
-  width: 17px;
-  height: 17px;
+/* Titel quer, sobald das Bild breit ist. Feste Breite = fester Umbruch. */
+.pb-quer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 340px;
+  padding: 0 24px 30px;
+  color: #fff;
+  opacity: 0;
+  text-shadow: 0 1px 10px rgba(19, 29, 63, 0.5);
+  transition: opacity 0.38s ease 0.12s;
 }
-@media (max-width: 640px) {
-  .highlights {
-    grid-template-columns: 1fr;
+.pb-quer b {
+  display: block;
+  font-family: var(--head);
+  font-weight: 700;
+  font-size: 1.55rem;
+  line-height: 1.08;
+}
+.pb-quer span {
+  display: block;
+  font-size: 0.92rem;
+  color: #cfd6ef;
+  margin-top: 2px;
+}
+.pb-item:hover .pb-hoch,
+.pb-item:focus-within .pb-hoch {
+  opacity: 0;
+}
+.pb-item:hover .pb-quer,
+.pb-item:focus-within .pb-quer {
+  opacity: 1;
+}
+.pb-item::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: var(--sand);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+.pb-item:hover::after,
+.pb-item:focus-within::after {
+  transform: scaleX(1);
+}
+
+/* Ohne Maus (Handy, Tablet) gibt es kein Hover: aus dem Band wird
+   ein Streifen zum Wischen, bei dem jedes Bild einrastet. */
+@media (hover: none), (max-width: 700px) {
+  .programm-band {
+    height: auto;
+    gap: 10px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    border-radius: 0;
+    box-shadow: none;
+    padding-bottom: 4px;
+  }
+  .programm-band::-webkit-scrollbar {
+    display: none;
+  }
+  .pb-item {
+    flex: 0 0 84%;
+    height: 230px;
+    border-radius: var(--radius);
+    scroll-snap-align: center;
+    box-shadow: var(--shadow);
+  }
+  .pb-hoch {
+    display: none;
+  }
+  .pb-quer {
+    opacity: 1;
+    width: 100%;
+    padding: 0 20px 22px;
+  }
+  .pb-quer b {
+    font-size: 1.4rem;
+  }
+  .pb-item::after {
+    display: none;
   }
 }
 
@@ -994,22 +1298,34 @@ html[data-stufen="on"] .group-tile:nth-child(6) h3 {
 
 /* ===== TWEAKS: Stufenfarbe auf den zugehörigen Gruppenseiten ===== */
 html[data-stufe="woelflinge"] {
-  --stufe: #f39200;
+  --stufe: var(--stufe-woelflinge);
 }
 html[data-stufe="jungpfadfinder"] {
-  --stufe: #0f6fb5;
+  --stufe: var(--stufe-jungpfadfinder);
 }
 html[data-stufe="pfadfinder"] {
-  --stufe: #2f8a3e;
+  --stufe: var(--stufe-pfadfinder);
 }
 html[data-stufe="rover"] {
-  --stufe: #d42e1e;
+  --stufe: var(--stufe-rover);
 }
 html[data-stufe="leiter"] {
-  --stufe: #969696;
+  --stufe: var(--stufe-leiter);
 }
 html[data-stufe="altrover"] {
-  --stufe: #000000;
+  --stufe: var(--stufe-altrover);
+}
+.gs-row[data-stufe="woelflinge"] {
+  --stufe: var(--stufe-woelflinge);
+}
+.gs-row[data-stufe="jungpfadfinder"] {
+  --stufe: var(--stufe-jungpfadfinder);
+}
+.gs-row[data-stufe="pfadfinder"] {
+  --stufe: var(--stufe-pfadfinder);
+}
+.gs-row[data-stufe="rover"] {
+  --stufe: var(--stufe-rover);
 }
 html[data-stufe] .page-title {
   border-bottom-color: var(--stufe);
@@ -1045,7 +1361,7 @@ html[data-form="stamp"] {
   --shadow-lg: 0 8px 0 rgba(30, 40, 70, 0.1), 0 0 0 1.5px var(--sand-line);
 }
 html[data-form="stamp"] .card,
-html[data-form="stamp"] .gs-card,
+html[data-form="stamp"] .gs-list,
 html[data-form="stamp"] .person {
   border-radius: 3px;
 }
@@ -1063,13 +1379,10 @@ html[data-form="stamp"] .content {
 html[data-form="stamp"] table {
   border-radius: 3px;
 }
-html[data-form="stamp"] .btn,
-html[data-form="stamp"] .gs-when,
-html[data-form="stamp"] .highlights li {
+html[data-form="stamp"] .btn {
   border-radius: 3px;
 }
 html[data-form="stamp"] .group-tile h3,
-html[data-form="stamp"] .gs-card h3,
 html[data-form="stamp"] .card h2 {
   text-transform: uppercase;
   letter-spacing: 1.2px;
@@ -1077,4 +1390,28 @@ html[data-form="stamp"] .card h2 {
 html[data-form="stamp"] .btn {
   letter-spacing: 1.5px;
   text-transform: uppercase;
+}
+
+/* ===== Bewegung reduzieren =====
+   Wer im Betriebssystem "weniger Animationen" eingestellt hat,
+   bekommt Zoom und Verschiebungen nicht zu sehen. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .seitenheader:hover img {
+    transform: none;
+  }
+  /* Das Aufgehen im Programm-Band bleibt, nur ohne Übergang -
+     sonst wäre der Titel nicht mehr lesbar. */
+  .pb-item {
+    transition: none;
+  }
 }

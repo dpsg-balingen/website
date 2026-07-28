@@ -1,0 +1,25 @@
+{# ---------------------------------------------------------------
+   Bilderband zum Jahresprogramm auf der Startseite.
+   Inhalt und Reihenfolge stehen in src/_data/bilder.yaml
+   unter "programm".
+
+   Alle Bilder stehen schmal nebeneinander. Das angesteuerte geht
+   auf, sein Titel dreht sich von hochkant auf quer. Auf Geräten
+   ohne Maus wird daraus ein Streifen zum Wischen (siehe CSS).
+   Bewusst ohne Verlinkung: das Band ist ein Schaufenster.
+   --------------------------------------------------------------- #}
+{% if bilder.programm and bilder.programm.length %}
+<div class="programm-band">
+  {% for k in bilder.programm %}
+  <div class="pb-item">
+    {% foto k.bild, "(max-width: 700px) 84vw, 500px" %}
+    <span class="pb-schleier"></span>
+    <span class="pb-hoch"><span>{{ k.titel }}</span></span>
+    <span class="pb-quer">
+      <b>{{ k.titel }}</b>
+      {% if k.untertitel %}<span>{{ k.untertitel }}</span>{% endif %}
+    </span>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}

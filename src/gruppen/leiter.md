@@ -1,7 +1,8 @@
 ---
 layout: layouts/base.njk
-title: Leiter (ab 18 Jahren)
+title: Leiter
 stufe: leiter
+alter: "ab 18 Jahren"
 ---
 
 Volljährige Mitglieder oder interessierte Erwachsene können Leiterinnen und

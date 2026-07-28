@@ -1,10 +1,9 @@
 ---
 layout: layouts/base.njk
-title: Wölflinge (9–11 Jahre)
+title: Wölflinge
 stufe: woelflinge
+motto: Entdecken
 ---
-
-<p class="eyebrow">Entdecken</p>
 
 Wölflinge sind neugierig, wissensdurstig und stecken voller Fantasie. Sie eignen
 sich die Welt im Spiel an, sie forschen und finden, decken auf und lassen sich

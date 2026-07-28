@@ -51,6 +51,19 @@ abgerufen. Dieser Abruf erfolgt serverseitig beim Bauen der Seite, nicht durch
 Ihren Browser – bei Ihrem Besuch der Website findet also keine Verbindung zu
 Google statt und es werden keine Daten von Ihnen an Google übermittelt.
 
+### Fotos auf dieser Website
+
+Auf dieser Website veröffentlichen wir Fotos aus Gruppenstunden, von Lagern und
+Fahrten. Von allen abgebildeten Personen – bei Minderjährigen von den
+Erziehungsberechtigten – liegt uns eine Einwilligung in die Veröffentlichung vor
+(Art. 6 Abs. 1 lit. a DSGVO).
+
+Diese Einwilligung ist freiwillig und kann **jederzeit und ohne Angabe von
+Gründen mit Wirkung für die Zukunft widerrufen** werden. Eine formlose Nachricht
+an [{{ kontakt.email }}](mailto:{{ kontakt.email }}) genügt – wir entfernen das
+betreffende Foto dann zeitnah von der Website. Die Rechtmäßigkeit der bis zum
+Widerruf erfolgten Veröffentlichung bleibt davon unberührt.
+
 ### Kontaktaufnahme
 
 Alle E-Mail-Adressen auf dieser Website sind als einfache `mailto:`-Links

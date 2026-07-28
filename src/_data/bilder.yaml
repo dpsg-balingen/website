@@ -1,0 +1,65 @@
+# ────────────────────────────────────────────────────────────────
+#  BILDER  –  welches Foto erscheint wo?
+#
+#  Hier steht nur der Dateiname OHNE Endung. Die Fotos selbst
+#  liegen in  src/assets/img/eindruecke/
+#
+#  FOTO AUSTAUSCHEN – zwei Wege:
+#   a) Neues Foto in den Ordner legen und hier den Namen ändern.
+#   b) Oder die vorhandene Datei überschreiben, dann bleibt hier
+#      alles wie es ist.
+#
+#  FOTO WEGLASSEN: Zeile leer lassen ("") oder mit # auskommentieren.
+#  Dann sieht die Seite aus wie vorher – ohne Bild, nur Überschrift.
+#
+#  Querformat verwenden. Das Wichtigste nicht ganz unten ins Bild
+#  legen – dort liegen Motto, Name und Alter.
+# ────────────────────────────────────────────────────────────────
+
+# ── Kopfbild der Stufen-Seiten ──────────────────────────────────
+#  Der Schlüssel ist die "stufe" aus dem Kopf der jeweiligen Seite
+#  (src/gruppen/*.md). Alter und Motto kommen automatisch dazu.
+stufen:
+  woelflinge: kistenklettern-gruppenstunde
+  jungpfadfinder: kletterwand-niederseilgarten
+  pfadfinder: niederseilgarten-pfadfinderstufe
+  rover: bergsee-rast
+  leiter: kartenarbeit-routenplanung
+  altrover: stammesplatz-glockenturm
+
+# ── Kopfbild der Info-Seiten ────────────────────────────────────
+#  Der Schlüssel ist der Dateiname der Seite ohne .md
+#  (z. B. src/pfadfinder/gesetz.md  ->  gesetz)
+seiten:
+  gesetz: sternenhimmel-milchstrasse
+  wosm: bergwanderung-alpen
+  leitlinien: sonnenuntergang-am-see
+  dpsg: jubilaeum-luftaufnahme
+  # gruender:  – bewusst ohne Bild, Baden-Powell-Seite bleibt schlicht
+
+# ── Bilderband beim Jahresprogramm (Startseite) ─────────────────
+#  Steht oben auf der Startseite unter der Programmliste.
+#  Alle Bilder stehen schmal nebeneinander; das angesteuerte geht
+#  auf. Auf dem Handy wird daraus ein Streifen zum Wischen.
+#
+#  Reihenfolge = Reihenfolge auf der Seite. Fünf sind gut, mehr
+#  werden die einzelnen Streifen sehr schmal.
+#
+#  "untertitel" ist optional – die hier sind ein Vorschlag,
+#  schreibt sie ruhig in euren eigenen Worten.
+programm:
+  - titel: "72h Aktion"
+    untertitel: "Anpacken für einen guten Zweck"
+    bild: bauaktion-feuerstelle
+  - titel: "Hike"
+    untertitel: "Mehrtageswanderung mit Übernachtung"
+    bild: bergsee-rast
+  - titel: "Zeltlager"
+    untertitel: "10 Tage in den Sommerferien"
+    bild: lagerfeuer-nacht
+  - titel: "Sommerfest"
+    untertitel: "Der ganze Stamm versammelt"
+    bild: jubilaeum-luftaufnahme
+  - titel: "Pfadi-Weihnacht"
+    untertitel: "Fackeln im Schnee"
+    bild: fackelwanderung-winter

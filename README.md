@@ -84,6 +84,48 @@ link_text: "Kontakt aufnehmen"
 - **Link ist optional:** `link` und `link_text` leer lassen, wenn das Banner
   nur Text zeigen soll.
 
+### Fotos → `src/_data/bilder.yaml`
+
+Die Fotos liegen alle in **`src/assets/img/eindruecke/`**. Wo welches Foto
+erscheint, steht gesammelt in `src/_data/bilder.yaml` – dort nur der Dateiname
+**ohne** `.jpg`:
+
+```yaml
+stufen:
+  woelflinge: kistenklettern-gruppenstunde # Kopfbild der Wölflinge-Seite
+
+seiten:
+  gesetz: sternenhimmel-milchstrasse # Kopfbild von /pfadfinder/gesetz/
+
+stammesleben: # die fünf Kacheln auf der Startseite
+  - titel: "72h Aktion"
+    bild: bauaktion-feuerstelle
+```
+
+**Ein Foto austauschen – zwei Wege:**
+
+1. Neues Foto in den Ordner legen und in `bilder.yaml` den Namen ändern.
+2. Oder die vorhandene Datei einfach überschreiben – dann bleibt die
+   `bilder.yaml` unverändert.
+
+**Kein Foto:** Zeile leer lassen oder mit `#` auskommentieren. Die Seite sieht
+dann aus wie vorher – nur Überschrift, kein Bild. (So ist es z. B. bei
+`/pfadfinder/gruender/`.)
+
+**Worauf beim Fotografieren achten:**
+
+- **Querformat.** Hochformat wird stark beschnitten.
+- Das Wichtigste **nicht ganz unten** ins Bild legen – dort liegen Motto, Name
+  und Alter.
+- Nur Fotos verwenden, für die eine **Einwilligung** der abgebildeten Personen
+  vorliegt (bei Kindern der Eltern). Siehe Abschnitt „Fotos auf dieser Website"
+  in der Datenschutzerklärung.
+
+**Größe:** Die Bilder im Ordner sollten höchstens ca. 2000 Pixel breit sein
+(unter 1 MB). Beim Bauen der Seite werden daraus automatisch die passenden
+Größen fürs Handy und für große Bildschirme erzeugt. Fotos direkt aus der Kamera
+(10–20 MB) bitte vorher verkleinern – sonst wird das Repository unnötig groß.
+
 ### Texte der Seiten → `src/**/*.md`
 
 Jede Seite ist eine **Markdown**-Datei in `src/`, z. B.:
@@ -130,10 +172,16 @@ Deploy“ → Run workflow**.
 
 ```
 src/
-  _data/        Daten (gruppenstunden, kontakt, links, site, events)
-  _includes/    Layout & Bausteine (Kopf, Fuß, Seitenleiste)
-  assets/       CSS, JS, Bilder (Logo)
+  _data/        Daten (gruppenstunden, kontakt, bilder, links, site, events)
+  _includes/    Layout & Bausteine (Kopf, Fuß, Seitenleiste, Seitenheader)
+  assets/
+    img/eindruecke/   die Fotos – hier neue ablegen
+    css, js, fonts, docs
   *.md          die einzelnen Seiten als Markdown
 .eleventy.js    Konfiguration des Generators
 .github/        automatischer Build & Deploy
+_originale/     unverkleinerte Foto-Originale (nicht im Repository)
 ```
+
+> Beim Bauen entsteht zusätzlich `_site/assets/img/gen/` mit den automatisch
+> erzeugten Bildgrößen. Dieser Ordner wird nicht von Hand gepflegt.

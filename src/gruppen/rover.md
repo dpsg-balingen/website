@@ -1,10 +1,9 @@
 ---
 layout: layouts/base.njk
-title: Rover (16–20 Jahre)
+title: Rover
 stufe: rover
+motto: Unterwegs sein
 ---
-
-<p class="eyebrow">Unterwegs sein</p>
 
 Rover sind junge Erwachsene, deren eigene Lebensentwürfe sich langsam
 abzeichnen. Hierbei sind Lebenskultur, Stil und Genuss wichtige Eckpfeiler.

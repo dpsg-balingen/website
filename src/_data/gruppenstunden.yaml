@@ -8,21 +8,21 @@ saison: "2025/2026"
 gruppen:
   - name: "Wichtel & Wölflinge"
     stufe: woelflinge
-    alter: "ca. 9–11 Jahre"
+    alter: "9–11 Jahre"
     tag: "Donnerstag"
     zeit: "18:00–19:30 Uhr"
     leiter: [Laura, Ella, Sina, Kathi, Lara, Emilia]
 
-  - name: "Jupfis (Jungpfadfinder)"
+  - name: "Jungpfadfinder"
     stufe: jungpfadfinder
-    alter: "ca. 11–13 Jahre"
+    alter: "11–13 Jahre"
     tag: "Dienstag"
     zeit: "19:00–20:30 Uhr"
     leiter: [Sabrina, Jessica, Josi, Leonie, Hannah]
 
-  - name: "Pfadis (Pfadfinder)"
+  - name: "Pfadfinder"
     stufe: pfadfinder
-    alter: "ca. 13–15 Jahre"
+    alter: "13–15 Jahre"
     tag: "Mittwoch"
     zeit: "19:30–21:00 Uhr"
     leiter: [Maya, Katharina, Leonard, Felix, Jona]

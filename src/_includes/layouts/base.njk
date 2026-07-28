@@ -29,6 +29,21 @@
 {% endif %}
 {% include "partials/header.njk" %}
 
+{#- Kopfbild: Stufen-Seiten über "stufe", alle anderen über den Dateinamen.
+    Steht in bilder.yaml nichts, bleibt headerBild leer und die Seite
+    zeigt wie bisher nur die Überschrift. -#}
+{%- set headerBild = "" -%}
+{%- if not heroTitle -%}
+  {%- if stufe -%}
+    {%- set headerBild = bilder.stufen[stufe] -%}
+  {%- else -%}
+    {%- set headerBild = bilder.seiten[page.fileSlug] -%}
+  {%- endif -%}
+{%- endif -%}
+{#- Alter kommt aus gruppenstunden.yaml. Nur wo es dort keinen Eintrag
+    gibt (Leiter, Altrover), zählt ein "alter:" im Seitenkopf. -#}
+{%- set alter = (gruppenstunden.gruppen | alterFuerStufe(stufe)) or alter -%}
+
 {% if heroTitle %}
 <section class="hero">
   <div class="hero-inner">
@@ -46,7 +61,8 @@
     {% if sidebar != false %}
     <div class="layout">
       <article class="content prose">
-        {% if not heroTitle %}<h1 class="page-title">{{ title }}</h1>{% endif %}
+        {% if headerBild %}{% include "partials/seitenheader.njk" %}
+        {% elif not heroTitle %}<h1 class="page-title">{{ title }}</h1>{% endif %}
         {{ content | safe }}
       </article>
       {% include "partials/sidebar.njk" %}

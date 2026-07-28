@@ -1,0 +1,19 @@
+{# ---------------------------------------------------------------
+   Kopfbild einer Seite. Steht oben in der Inhaltskarte, an der
+   Stelle, an der sonst die Überschrift steht. Wird von
+   layouts/base.njk eingebunden, sobald in src/_data/bilder.yaml
+   ein Foto für diese Seite hinterlegt ist.
+
+   headerBild  = Dateiname aus bilder.yaml (setzt base.njk)
+   motto       = optionale Zeile über dem Titel (Seitenkopf)
+   alter       = Altersangabe, kommt aus gruppenstunden.yaml
+   --------------------------------------------------------------- #}
+<header class="seitenheader">
+  {% foto headerBild, "(min-width: 901px) 760px, 100vw", true %}
+  <div class="sh-schleier"></div>
+  <div class="sh-text">
+    {% if motto %}<p class="sh-motto">{{ motto }}</p>{% endif %}
+    <h1>{{ title }}</h1>
+    {% if alter %}<p class="sh-alter">{{ alter }}</p>{% endif %}
+  </div>
+</header>

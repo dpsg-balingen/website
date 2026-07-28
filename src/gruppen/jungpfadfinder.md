@@ -1,10 +1,9 @@
 ---
 layout: layouts/base.njk
-title: Jungpfadfinder (11–13 Jahre)
+title: Jungpfadfinder
 stufe: jungpfadfinder
+motto: Abenteuer leben
 ---
-
-<p class="eyebrow">Abenteuer leben</p>
 
 Jungpfadfinder sind im Umbruch zwischen Kindheit und Jugendalter. Das Leben ist
 ein Abenteuer. Die Lust auf Erkundung und die Suche nach Abenteuern drängt nach

@@ -1,10 +1,9 @@
 ---
 layout: layouts/base.njk
-title: Pfadfinder (14–16 Jahre)
+title: Pfadfinder
 stufe: pfadfinder
+motto: Wagt es
 ---
-
-<p class="eyebrow">Wagt es</p>
 
 Pfadfinder sind Jugendliche, die gegen vorhandene Normen und Werte rebellieren,
 sie provozieren Grenzerfahrungen bei sich und bei den anderen. Ihr Drang nach

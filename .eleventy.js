@@ -1,4 +1,9 @@
 const yaml = require("js-yaml");
+const fs = require("fs");
+const path = require("path");
+const Image = require("@11ty/eleventy-img");
+
+const FOTO_DIR = "src/assets/img/eindruecke";
 
 function parseYmd(s) {
   if (!s || typeof s !== "string") return null;
@@ -19,8 +24,15 @@ function isGueltig(gueltigBis, heute = new Date()) {
 }
 
 module.exports = function (eleventyConfig) {
-  // Statische Dateien kopieren
-  eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
+  // Statische Dateien kopieren.
+  // src/assets/img/eindruecke/ ist bewusst NICHT dabei: aus diesen Fotos
+  // erzeugt der "foto"-Shortcode die passenden Größen nach assets/img/gen/.
+  // Die großen Ausgangsdateien müssen nicht mit ausgeliefert werden.
+  eleventyConfig.addPassthroughCopy({ "src/assets/css": "assets/css" });
+  eleventyConfig.addPassthroughCopy({ "src/assets/js": "assets/js" });
+  eleventyConfig.addPassthroughCopy({ "src/assets/fonts": "assets/fonts" });
+  eleventyConfig.addPassthroughCopy({ "src/assets/docs": "assets/docs" });
+  eleventyConfig.addPassthroughCopy({ "src/assets/img/*.png": "assets/img" });
   eleventyConfig.addPassthroughCopy({ "src/CNAME": "CNAME" });
 
   // .yaml-Dateien in _data als Daten einlesen (von Eleventy nicht nativ unterstützt)
@@ -88,6 +100,55 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addShortcode("year", () => new Date().getFullYear());
+
+  // Alter einer Stufe aus gruppenstunden.yaml holen (eine Quelle für alle Seiten)
+  eleventyConfig.addFilter("alterFuerStufe", (gruppen, stufe) => {
+    const g = (gruppen || []).find((x) => x.stufe === stufe);
+    return g ? g.alter : "";
+  });
+
+  // Foto aus src/assets/img/eindruecke/ in mehreren Größen ausgeben.
+  // Erwartet den Dateinamen ohne Endung, so wie er in bilder.yaml steht.
+  //
+  // Bewusst synchron: ein async-Shortcode liefert innerhalb von
+  // {% include %} in einem Layout keine Ausgabe. statsSync rechnet die
+  // Dateinamen sofort aus, das eigentliche Verkleinern läuft daneben und
+  // wird unten bei "eleventy.after" abgewartet.
+  const IMG_OPTS = {
+    widths: [480, 960, 1600],
+    formats: ["webp", "jpeg"],
+    outputDir: "_site/assets/img/gen/",
+    urlPath: "/assets/img/gen/",
+    filenameFormat: (id, s, width, format) =>
+      `${path.basename(s, path.extname(s))}-${width}.${format}`,
+  };
+  const offeneBilder = [];
+
+  eleventyConfig.addShortcode("foto", function (name, sizes, eager) {
+    if (!name) return "";
+    const src = path.join(FOTO_DIR, `${name}.jpg`);
+    if (!fs.existsSync(src)) {
+      console.warn(
+        `[bilder] "${name}" steht in bilder.yaml, aber ${src} gibt es nicht.`,
+      );
+      return "";
+    }
+    offeneBilder.push(Image(src, IMG_OPTS));
+    const metadata = Image.statsSync(src, IMG_OPTS);
+    return Image.generateHTML(metadata, {
+      // Die Bilder liegen hinter Text, der dasselbe aussagt -> dekorativ.
+      alt: "",
+      sizes: sizes || "100vw",
+      loading: eager ? "eager" : "lazy",
+      decoding: "async",
+    });
+  });
+
+  // Build erst beenden, wenn alle Bilder wirklich geschrieben sind.
+  eleventyConfig.on("eleventy.after", async () => {
+    await Promise.all(offeneBilder);
+    offeneBilder.length = 0;
+  });
 
   return {
     dir: {

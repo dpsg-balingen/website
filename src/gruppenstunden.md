@@ -12,13 +12,20 @@ steht.
 Wir nehmen neue Gruppenkinder frühestens ab dem Besuch der 4. Klasse auf
 (entsprechend einem Alter von 9/10 Jahren).
 
-<div class="gs-grid">
+<div class="gs-list">
 {% for g in gruppenstunden.gruppen %}
-<div class="gs-card">
-  <h3>{{ g.name }}</h3>
-  <div class="gs-age">{{ g.alter }}</div>
-  <div class="gs-when">{{ g.tag }} · {{ g.zeit }}</div>
-  <div class="gs-leiter"><strong>Leiter</strong>{{ g.leiter | join(", ") }}</div>
+<div class="gs-row" data-stufe="{{ g.stufe }}">
+  <div class="gs-group">
+    <h3>{{ g.name }}</h3>
+    <span class="gs-age">{{ g.alter }}</span>
+  </div>
+  <div class="gs-details">
+    <div class="gs-when">
+      <span class="gs-day">{{ g.tag }}</span>
+      <span class="gs-time">{{ g.zeit }}</span>
+    </div>
+    <div class="gs-leiter"><strong>Leiter</strong>{{ g.leiter | join(", ") }}</div>
+  </div>
 </div>
 {% endfor %}
 </div>

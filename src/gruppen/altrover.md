@@ -2,9 +2,8 @@
 layout: layouts/base.njk
 title: Altrover
 stufe: altrover
+motto: Pfadfinder bleibt man ein Leben lang
 ---
-
-<p class="eyebrow">Pfadfinder bleibt man ein Leben lang</p>
 
 Wir – die Altrover – sind Ehemalige, Freunde und Förderer des Pfadfinderstamms
 DPSG Balingen Heilig Geist. Ein Leben ohne Pfadfinder können wir uns nicht mehr
