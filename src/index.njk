@@ -22,14 +22,7 @@ description:
 <p>Ihr findet uns natürlich auch auf <a href="{{ site.social.instagram }}" target="_blank" rel="noopener">Instagram</a> und <a href="{{ site.social.facebook }}" target="_blank" rel="noopener">Facebook</a>.</p>
 
 <h2>Unsere Stufen</h2>
-<div class="group-grid">
-<a class="group-tile" href="/gruppen/woelflinge/"><h3>Wölflinge</h3><span>{{ gruppenstunden.gruppen | alterFuerStufe("woelflinge") }}</span></a>
-<a class="group-tile" href="/gruppen/jungpfadfinder/"><h3>Jungpfadfinder</h3><span>{{ gruppenstunden.gruppen | alterFuerStufe("jungpfadfinder") }}</span></a>
-<a class="group-tile" href="/gruppen/pfadfinder/"><h3>Pfadfinder</h3><span>{{ gruppenstunden.gruppen | alterFuerStufe("pfadfinder") }}</span></a>
-<a class="group-tile" href="/gruppen/rover/"><h3>Rover</h3><span>{{ gruppenstunden.gruppen | alterFuerStufe("rover") }}</span></a>
-<a class="group-tile" href="/gruppen/leiter/"><h3>Leiter</h3><span>ab 18 Jahren</span></a>
-<a class="group-tile" href="/gruppen/altrover/"><h3>Altrover</h3><span>Ehemalige</span></a>
-</div>
+{% include "partials/stufenwaehler.njk" %}
 
 <h2>Aktuelle Termine</h2>
 {% if events and events.length %}

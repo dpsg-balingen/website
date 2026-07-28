@@ -3,6 +3,10 @@ layout: layouts/base.njk
 title: Pfadfinder
 stufe: pfadfinder
 motto: Wagt es
+teaser: >-
+  Wagnisse eingehen und die eigenen Grenzen kennenlernen, mit dem Rückhalt der
+  Gruppe im Rücken. Bei uns heißt das Stammeshike, Geländespiel bei Nacht,
+  Krimidinner oder zusammen kochen und grillen.
 ---
 
 Pfadfinder sind Jugendliche, die gegen vorhandene Normen und Werte rebellieren,

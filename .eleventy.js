@@ -107,6 +107,18 @@ module.exports = function (eleventyConfig) {
     return g ? g.alter : "";
   });
 
+  // Die sechs Stufen-Seiten aus src/gruppen/. Der Stufenwähler auf der
+  // Startseite holt sich daraus Titel, Motto und Teaser – so steht der Text
+  // nur einmal im Repo, nämlich im Kopf der jeweiligen Seite.
+  eleventyConfig.addCollection("stufen", (api) =>
+    api.getFilteredByGlob("src/gruppen/*.md"),
+  );
+
+  // Eine einzelne Stufen-Seite über ihren "stufe"-Schlüssel finden.
+  eleventyConfig.addFilter("stufeSeite", (stufen, stufe) =>
+    (stufen || []).find((s) => s.data.stufe === stufe),
+  );
+
   // Foto aus src/assets/img/eindruecke/ in mehreren Größen ausgeben.
   // Erwartet den Dateinamen ohne Endung, so wie er in bilder.yaml steht.
   //

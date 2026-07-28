@@ -3,6 +3,10 @@ layout: layouts/base.njk
 title: Rover
 stufe: rover
 motto: Unterwegs sein
+teaser: >-
+  Junge Erwachsene, die ihr Leben selbst in die Hand nehmen. Die Runde plant
+  Hikes und Hüttenwochenenden in eigener Regie – mit Unterstützung, aber nicht
+  an der Hand.
 ---
 
 Rover sind junge Erwachsene, deren eigene Lebensentwürfe sich langsam

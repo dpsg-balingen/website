@@ -4,6 +4,10 @@ title: Leiter
 stufe: leiter
 alter: "ab 18 Jahren"
 motto: Gelerntes weitergeben
+teaser: >-
+  Volljährige, die Kinder und Jugendliche ein Stück ihres Weges begleiten. Die
+  DPSG bildet sie dafür in mehreren Modulen und im Woodbadge-Kurs aus, geleitet
+  wird immer im gemischten Team.
 ---
 
 Volljährige Mitglieder oder interessierte Erwachsene können Leiterinnen und

@@ -1,4 +1,20 @@
-/* ===== DPSG Balingen – Stylesheet ============================== */
+/* ===== DPSG Balingen – Stylesheet ==============================
+
+   UMBRUCHPUNKTE – es gibt genau zwei, überall dieselben:
+
+     900px   Desktop -> Mobil
+             Navigation wird zum Klappmenü, das zweispaltige Layout
+             wird einspaltig (Seitenleiste rutscht unter den Text),
+             Hero und Seitenheader stapeln, Stufenwähler wird Liste.
+
+     640px   schmales Handy
+             Gruppenstunden-Tabelle stapelt, Programmband wird
+             Wischstreifen, Fußzeile einspaltig, Markenzusatz weg.
+
+   Neue Regeln bitte an eine dieser beiden Stufen hängen. Passt etwas
+   nur dazwischen, ist meist eine fließende Angabe (clamp) die
+   bessere Antwort als eine dritte Stufe – siehe Stufenwähler.
+   ================================================================ */
 @font-face {
   font-family: "Barlow Semi Condensed";
   font-style: normal;
@@ -49,6 +65,13 @@
   --stufe-rover: #d42e1e;
   --stufe-leiter: #969696;
   --stufe-altrover: #000000;
+  /* Vertiefte Fassungen – nur für Schrift auf Weiß. Orange, Grün und
+     Grau sind in der Originalfassung als Text zu hell (2,4 / 4,3 / 2,9
+     statt der nötigen 4,5). Flächen, Bänder und Kanten behalten überall
+     die kräftigen Farben von oben. */
+  --stufe-woelflinge-tief: #8f5600;
+  --stufe-pfadfinder-tief: #26702f;
+  --stufe-leiter-tief: #6b6b6b;
   --paper: #ffffff;
   --bg: #f4f3ef;
   --radius: 12px;
@@ -63,6 +86,11 @@
 }
 html {
   scroll-behavior: smooth;
+  /* Die Seite lässt sich nie seitlich schieben. Bewusst "clip" und
+     nicht "hidden": hidden würde hier einen Scroll-Container aufmachen
+     und damit die klebende Kopfzeile und die klebende Seitenleiste
+     lahmlegen. */
+  overflow-x: clip;
 }
 body {
   margin: 0;
@@ -115,6 +143,16 @@ p {
 }
 .muted {
   color: var(--muted);
+}
+/* Text, der nur für Screenreader da ist – sichtbar ist er nirgends,
+   vorgelesen wird er trotzdem. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 /* ===== Ankündigungs-Banner ===== */
@@ -230,6 +268,14 @@ p {
   display: none;
   flex-direction: column;
   gap: 2px;
+}
+/* Das letzte Menü steht am rechten Rand des Fensters. Ein Untermenü,
+   das von dort aus nach rechts aufgeht, ragt aus dem Fenster heraus –
+   es wird abgeschnitten und schiebt die Seite seitlich. Deshalb klappt
+   es nach links auf, seine rechte Kante bündig mit dem Elternpunkt. */
+.site-nav > ul > li:last-child > .submenu {
+  left: auto;
+  right: 0;
 }
 .submenu li {
   width: 100%;
@@ -425,13 +471,20 @@ p {
 }
 .layout {
   display: grid;
-  grid-template-columns: 1fr 320px;
+  /* minmax(0, 1fr) statt 1fr: ein 1fr-Track schrumpft nicht unter
+     seinen Mindestinhalt. Breite Inhalte wie die Gruppenstunden-Tabelle
+     lassen ihn dann über seinen Anteil hinauswachsen und schieben die
+     Seitenleiste aus dem Fenster. Mit 0 als Untergrenze bleibt die
+     Spalte in ihrem Anteil und der Inhalt bricht um. */
+  grid-template-columns: minmax(0, 1fr) 320px;
   gap: 40px;
   align-items: start;
 }
 .content {
   background: var(--paper);
-  padding: 38px 44px;
+  /* Seitliche Polsterung wächst mit: knapp über 900px steht neben der
+     Seitenleiste sonst zu wenig Platz für den Textbereich. */
+  padding: 38px clamp(24px, 3.4vw, 44px);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
 }
@@ -639,7 +692,11 @@ tbody tr:nth-child(even) {
 }
 .gs-row {
   display: grid;
-  grid-template-columns: minmax(150px, 1.1fr) minmax(130px, 0.9fr) minmax(180px, 1.6fr);
+  /* Die Untergrenzen sind bewusst knapp: zusammen mit Abständen und
+     Polsterung bestimmen sie, ab welcher Breite die Zeile aus ihrer
+     Karte läuft. Mit 150/130/180 passte sie neben der Seitenleiste
+     unterhalb von etwa 960px nicht mehr und wurde abgeschnitten. */
+  grid-template-columns: minmax(120px, 1.1fr) minmax(100px, 0.9fr) minmax(110px, 1.6fr);
   align-items: start;
   gap: 10px 18px;
   padding: 16px 20px;
@@ -745,48 +802,340 @@ tbody tr:nth-child(even) {
   }
 }
 
-/* ===== Group cards (Startseite) ===== */
-.group-grid {
+/* ===== Stufenwähler (Startseite) ==============================
+   Sechs Reiter nebeneinander, darunter ein Panel mit den Angaben
+   zur gewählten Stufe. Unter 900px wird daraus eine Liste, bei der
+   das Panel direkt unter der angetippten Zeile aufgeht.
+
+   Der Wähler ist eine Radiogruppe, kein Skript. Reihenfolge im
+   HTML ist immer: input -> label -> panel. Genau darauf baut
+   ".sw-radio:checked + .sw-reiter + .sw-panel" auf – wird zwischen
+   den dreien etwas eingefügt, klappt nichts mehr auf.
+
+   Die Stufenfarbe erscheint nur als Form, nie als Hintergrund von
+   Text. Schrift steht immer dunkel auf Weiß.
+
+   NICHTS DARF BEIM WECHSELN SPRINGEN. Dafür sorgen zwei Kniffe,
+   siehe unten bei --sw-hub und bei .sw-panel: der gewählte Reiter
+   wächst aus der Zeile heraus statt sie höher zu machen, und alle
+   sechs Panels liegen im selben Feld übereinander, sodass dessen
+   Höhe vom längsten bestimmt wird. */
+.stufenwaehler {
+  /* Wie weit der gewählte Reiter nach oben wächst. Der Platz dafür
+     steckt oben im Rand, damit die Zeile darüber ruhig bleibt. */
+  --sw-hub: 19px;
+  border: 0;
+  padding: 0;
+  margin: calc(1.4em + var(--sw-hub)) 0 1.4em;
+  min-width: 0; /* sonst weigert sich das fieldset zu schrumpfen */
+}
+.stufenwaehler > .sw-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin: 1.4em 0;
+  grid-template-columns: repeat(4, 1fr) repeat(2, 0.86fr);
+  /* Fließend statt gestuft: sechs Reiter müssen von 901px bis zur
+     vollen Breite nebeneinander passen. Ein eigener Umbruchpunkt
+     dafür würde die Seite um eine dritte Stufe reicher machen. */
+  column-gap: clamp(5px, 0.55vw, 7px);
+  row-gap: 0; /* Reiter und Panel müssen sich berühren */
+  align-items: end;
 }
-@media (max-width: 900px) {
-  .group-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+
+/* Das Radio selbst ist unsichtbar, aber bedienbar: Fokus und
+   Pfeiltasten kommen von ihm. Absolut positioniert, damit es im
+   Grid keine eigene Spalte belegt. */
+.sw-radio {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
 }
-@media (max-width: 520px) {
-  .group-grid {
-    grid-template-columns: 1fr;
-  }
-}
-.group-tile {
+
+.sw-reiter {
+  grid-row: 1;
+  position: relative;
   display: block;
-  background: #fff;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 22px;
-  border-left: 5px solid var(--brand);
+  padding: 15px clamp(9px, 0.9vw, 13px) 12px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-bottom: none;
+  border-radius: 5px 5px 0 0;
+  cursor: pointer;
+  /* Polsterung und Rand laufen gemeinsam und heben sich exakt auf –
+     deshalb dieselbe Dauer und Kurve für beide. */
+  transition: padding 0.15s, margin 0.15s;
+}
+/* Die Lücke trennt die Stufen mit wöchentlicher Gruppenstunde von
+   denen ohne. Sie steht vor "Leiter". */
+.sw-trenner {
+  margin-left: clamp(14px, 1.7vw, 22px);
+}
+.sw-name {
+  display: block;
+  font-family: var(--head);
+  font-weight: 700;
+  font-size: clamp(0.94rem, 0.72rem + 0.42vw, 1.02rem);
+  line-height: 1.15;
   color: var(--ink);
-  transition: 0.15s;
 }
-.group-tile:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-lg);
-  text-decoration: none;
-}
-.prose a.group-tile,
-.prose a.group-tile:hover {
-  text-decoration: none;
-}
-.group-tile h3 {
-  margin: 0 0 0.1em;
-}
-.group-tile span {
+.sw-alter {
+  display: block;
+  font-size: 0.79rem;
   color: var(--muted);
-  font-size: 0.9rem;
+  margin-top: 2px;
+}
+
+/* Halstuch, gefaltet: schmales blasses Band über dem Reiter.
+
+   Die blassen Töne stehen fest und werden NICHT über Deckkraft aus
+   der Stufenfarbe gerechnet. Bei einer Palette von Orange bis
+   Schwarz ergibt ein und dieselbe Deckkraft völlig verschiedene
+   Helligkeiten: Leiter wäre so hell, dass Band und Sandrahmen zu
+   einer breiigen Doppelkante verschmelzen, Altrover so dunkel, dass
+   das Band als schwere Schiene liest und die Karte daran zu hängen
+   scheint. Die Werte unten liegen alle bei etwa gleicher
+   Helligkeit. */
+.sw-reiter::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 4px;
+  border-radius: 4px 4px 0 0;
+  background: var(--stufe-blass);
+}
+/* Beim Überfahren wächst das Band, statt nachzudunkeln. Nachdunkeln
+   hätte dasselbe Problem wie oben: bei Altrover wäre es fast
+   schwarz, bei Wölflinge blassorange. Die Höhe wirkt bei allen
+   sechs gleich. */
+.sw-reiter:hover::before {
+  height: 7px;
+}
+
+/* Halstuch, offen: das Band wird kräftig, die Spitze fällt in den
+   Reiter, und der Reiter wächst nach oben ins Panel hinein.
+   Die Auswahl hängt damit nicht an der Farbe allein. */
+.sw-radio:checked + .sw-reiter {
+  padding-top: calc(15px + var(--sw-hub));
+  /* Die untere Polsterung bleibt wie bei den anderen: jeder Millimeter
+     mehr würde die Zeile beim Wechseln wachsen lassen. */
+  /* Der negative Rand nimmt exakt zurück, was die Polsterung oben
+     dazugibt: der Reiter wächst sichtbar nach oben, sein Platzbedarf
+     in der Zeile bleibt aber gleich. Sonst würde die Zeile während
+     des Wechsels kurz einsacken und die ganze Seite mitziehen. */
+  margin-top: calc(-1 * var(--sw-hub));
+  /* liegt über der oberen Kante des Panels, sonst trennt sie beide */
+  z-index: 1;
+  box-shadow: 0 -3px 12px rgba(30, 40, 70, 0.07);
+}
+.sw-radio:checked + .sw-reiter::before {
+  background: var(--stufe);
+  opacity: 1;
+  height: 28px;
+  clip-path: polygon(0 0, 100% 0, 100% 10px, 60% 10px, 50% 28px, 40% 10px, 0 10px);
+}
+.sw-radio:checked + .sw-reiter .sw-name {
+  color: var(--stufe-text, var(--stufe));
+}
+.sw-radio:focus-visible + .sw-reiter {
+  outline: 3px solid var(--brand);
+  outline-offset: 2px;
+}
+
+/* Alle sechs Panels liegen im selben Feld übereinander. Damit ist
+   die Höhe des Felds die des längsten Teasers und ändert sich beim
+   Wechseln nicht – sonst würde alles darunter auf- und abhüpfen.
+   "visibility: hidden" statt "display: none": die verdeckten Panels
+   belegen weiter Platz, sind aber weder sichtbar noch anklickbar
+   noch für Screenreader vorhanden. */
+.sw-panel {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  /* Das Feld ist so hoch wie das längste Panel. Ohne diese Zeile
+     würde das Panel dem "align-items: end" des Containers folgen,
+     unten im Feld kleben und den Rest als Lücke zwischen Reiter und
+     Karte stehen lassen – am deutlichsten bei Leiter und Altrover,
+     die ohne Fakten-Zeile die kürzesten sind. */
+  align-self: stretch;
+  visibility: hidden;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 0 5px 5px 5px;
+  padding: 20px 22px 18px;
+  margin-top: -1px;
+}
+.sw-radio:checked + .sw-reiter + .sw-panel {
+  visibility: visible;
+}
+.sw-motto {
+  font-family: var(--head);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+  color: var(--stufe-text, var(--stufe));
+}
+.sw-teaser {
+  margin: 0 0 13px;
+  line-height: 1.55;
+  max-width: 62ch;
+}
+.sw-fakten {
+  font-family: var(--head);
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 0 0 14px;
+}
+.sw-punkt {
+  color: var(--muted);
+  padding: 0 6px;
+}
+.prose a.sw-mehr {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--stufe-text, var(--stufe));
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 1px;
+}
+
+/* Altrover: schwarzes Halstuch mit schmalem rotem Rand, wie auf der
+   Altrover-Seite. Das rote Dreieck liegt etwas größer darunter. */
+.sw-radio:checked + .sw-reiter[data-stufe="altrover"]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 32px;
+  z-index: 0;
+  background: var(--red);
+  border-radius: 5px 5px 0 0;
+  clip-path: polygon(0 0, 100% 0, 100% 12px, 62% 12px, 50% 32px, 38% 12px, 0 12px);
+}
+.sw-radio:checked + .sw-reiter[data-stufe="altrover"]::before {
+  z-index: 1;
+}
+.sw-reiter[data-stufe="altrover"] > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Stufenfarben. --stufe ist die kräftige Farbe für Bänder und
+   Kanten, --stufe-text die auf Weiß lesbare Fassung für Schrift. */
+.sw-reiter[data-stufe="woelflinge"],
+.sw-panel[data-stufe="woelflinge"] {
+  --stufe: var(--stufe-woelflinge);
+  --stufe-blass: #fbdaa8;
+  --stufe-text: var(--stufe-woelflinge-tief);
+}
+.sw-reiter[data-stufe="jungpfadfinder"],
+.sw-panel[data-stufe="jungpfadfinder"] {
+  --stufe: var(--stufe-jungpfadfinder);
+  --stufe-blass: #adcee6;
+}
+.sw-reiter[data-stufe="pfadfinder"],
+.sw-panel[data-stufe="pfadfinder"] {
+  --stufe: var(--stufe-pfadfinder);
+  --stufe-blass: #b8d7bd;
+  --stufe-text: var(--stufe-pfadfinder-tief);
+}
+.sw-reiter[data-stufe="rover"],
+.sw-panel[data-stufe="rover"] {
+  --stufe: var(--stufe-rover);
+  --stufe-blass: #f0b8b2;
+}
+.sw-reiter[data-stufe="leiter"],
+.sw-panel[data-stufe="leiter"] {
+  --stufe: var(--stufe-leiter);
+  --stufe-blass: #cccccc;
+  --stufe-text: var(--stufe-leiter-tief);
+}
+.sw-reiter[data-stufe="altrover"],
+.sw-panel[data-stufe="altrover"] {
+  --stufe: var(--stufe-altrover);
+  /* Warmer Stich aus dem roten Halstuchrand: hebt Altrover von
+     Leiters Neutralgrau ab und nimmt dem Band die Schwere. */
+  --stufe-blass: #c6bebe;
+}
+
+/* Schmale Fenster: aus den Reitern wird eine Liste, das Panel geht
+   direkt unter der angetippten Zeile auf. Das Halstuch kippt um 90
+   Grad - gefaltet an der linken Kante, offen mit Spitze in die Zeile.
+
+   Der Umbruch liegt hoeher als die uebrigen 900px der Seite: darunter
+   bricht "ab 18 Jahren" im Leiter-Reiter um und zieht ihn schief. */
+@media (max-width: 900px) {
+  /* Kein Hub nach oben: hier wächst der gewählte Reiter nicht, das
+     Panel geht ja direkt unter ihm auf. */
+  .stufenwaehler {
+    --sw-hub: 0px;
+    margin: 1.4em 0;
+  }
+  .stufenwaehler > .sw-grid {
+    grid-template-columns: 1fr;
+    row-gap: 7px;
+    align-items: stretch;
+  }
+  .sw-reiter {
+    grid-row: auto;
+    padding: 12px 14px 12px 23px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  /* In der Liste stehen die Panels wieder untereinander statt
+     übereinander – die Höhe darf hier mitwachsen, so gehört sich
+     das für eine Liste, die aufklappt. */
+  .sw-panel {
+    display: none;
+    visibility: visible;
+    grid-column: auto;
+    grid-row: auto;
+  }
+  /* Die Gruppierung trennt hier derselbe Weißraum wie auf dem Desktop.
+     Ein Strich säße als Rahmen in der Karte und ließe sie defekt
+     aussehen. */
+  .sw-trenner {
+    margin-left: 0;
+    margin-top: 20px;
+  }
+  .sw-reiter::before {
+    right: auto;
+    bottom: 0;
+    width: 5px;
+    height: auto;
+    border-radius: 0;
+  }
+  .sw-radio:checked + .sw-reiter {
+    padding: 13px 14px 15px 35px;
+    border-radius: 5px 5px 0 0;
+    border-bottom: none;
+    box-shadow: none;
+  }
+  .sw-radio:checked + .sw-reiter::before {
+    height: auto;
+    width: 26px;
+    clip-path: polygon(0 0, 11px 0, 11px 42%, 26px 50%, 11px 58%, 11px 100%, 0 100%);
+  }
+  .sw-radio:checked + .sw-reiter[data-stufe="altrover"]::after {
+    right: auto;
+    bottom: 0;
+    height: auto;
+    width: 29px;
+    border-radius: 0;
+    clip-path: polygon(0 0, 13px 0, 13px 40%, 29px 50%, 13px 60%, 13px 100%, 0 100%);
+  }
+  .sw-radio:checked + .sw-reiter + .sw-panel {
+    display: block;
+    /* hebt die Zeilenlücke auf, damit das Panel an seiner Zeile klebt */
+    margin-top: -7px;
+    border-radius: 0 0 5px 5px;
+    padding: 16px 16px 15px;
+  }
 }
 
 /* ===== Bilderband zum Jahresprogramm (Startseite) =====
@@ -924,7 +1273,7 @@ tbody tr:nth-child(even) {
 
 /* Ohne Maus (Handy, Tablet) gibt es kein Hover: aus dem Band wird
    ein Streifen zum Wischen, bei dem jedes Bild einrastet. */
-@media (hover: none), (max-width: 700px) {
+@media (hover: none), (max-width: 640px) {
   .programm-band {
     height: auto;
     gap: 10px;
@@ -1215,7 +1564,7 @@ tbody tr:nth-child(even) {
     display: none;
   }
 }
-@media (max-width: 520px) {
+@media (max-width: 640px) {
   .brand-text small {
     display: none;
   }
@@ -1253,47 +1602,6 @@ html[data-mood="sand"] .hero::after {
     rgba(195, 168, 120, 0.45),
     transparent 50%
   );
-}
-
-/* ===== TWEAKS: Stufen-Farben für die Gruppen-Kacheln ===== */
-html[data-stufen="on"] .group-tile {
-  border-left-width: 6px;
-}
-html[data-stufen="on"] .group-tile:nth-child(1) {
-  border-left-color: #f39200;
-}
-html[data-stufen="on"] .group-tile:nth-child(1) h3 {
-  color: #c9760a;
-}
-html[data-stufen="on"] .group-tile:nth-child(2) {
-  border-left-color: #0f6fb5;
-}
-html[data-stufen="on"] .group-tile:nth-child(2) h3 {
-  color: #0f6fb5;
-}
-html[data-stufen="on"] .group-tile:nth-child(3) {
-  border-left-color: #2f8a3e;
-}
-html[data-stufen="on"] .group-tile:nth-child(3) h3 {
-  color: #2f8a3e;
-}
-html[data-stufen="on"] .group-tile:nth-child(4) {
-  border-left-color: #d42e1e;
-}
-html[data-stufen="on"] .group-tile:nth-child(4) h3 {
-  color: #d42e1e;
-}
-html[data-stufen="on"] .group-tile:nth-child(5) {
-  border-left-color: #969696;
-}
-html[data-stufen="on"] .group-tile:nth-child(5) h3 {
-  color: #969696;
-}
-html[data-stufen="on"] .group-tile:nth-child(6) {
-  border-left-color: #000000;
-}
-html[data-stufen="on"] .group-tile:nth-child(6) h3 {
-  color: #000000;
 }
 
 /* ===== TWEAKS: Stufenfarbe auf den zugehörigen Gruppenseiten ===== */
@@ -1406,9 +1714,6 @@ html[data-stufe="altrover"] .sidebar .card {
 html[data-stufe="altrover"] .mini-events li {
   background: linear-gradient(var(--red), var(--red)) left / 1px 100% no-repeat padding-box;
 }
-html[data-stufen="on"] .group-tile:nth-child(6) {
-  background: linear-gradient(var(--red), var(--red)) left / 2px 100% no-repeat padding-box, #fff;
-}
 
 /* ===== TWEAKS: Formsprache = Stempel (kantig, Badge-Charme) ===== */
 html[data-form="stamp"] {
@@ -1421,12 +1726,24 @@ html[data-form="stamp"] .gs-list,
 html[data-form="stamp"] .person {
   border-radius: 3px;
 }
-html[data-form="stamp"] .group-tile,
 html[data-form="stamp"] .cal-item {
   border-radius: 3px;
   border: 1px solid var(--sand-line);
   border-left-width: 6px;
   border-left-style: solid;
+}
+html[data-form="stamp"] .sw-reiter,
+html[data-form="stamp"] .sw-panel {
+  border-color: var(--sand-line);
+}
+html[data-form="stamp"] .sw-reiter {
+  border-radius: 3px 3px 0 0;
+}
+html[data-form="stamp"] .sw-panel {
+  border-radius: 0 3px 3px 3px;
+}
+html[data-form="stamp"] .sw-reiter::before {
+  border-radius: 3px 3px 0 0;
 }
 html[data-form="stamp"] .content {
   border-radius: 3px;
@@ -1438,7 +1755,6 @@ html[data-form="stamp"] table {
 html[data-form="stamp"] .btn {
   border-radius: 3px;
 }
-html[data-form="stamp"] .group-tile h3,
 html[data-form="stamp"] .card h2 {
   text-transform: uppercase;
   letter-spacing: 1.2px;

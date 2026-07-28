@@ -2,7 +2,12 @@
 layout: layouts/base.njk
 title: Altrover
 stufe: altrover
+alter: "Ehemalige"
 motto: Pfadfinder bleibt man ein Leben lang
+teaser: >-
+  Ehemalige, Freunde und Förderer des Stamms. Eine Runde, die in Kontakt bleibt,
+  alte Geschichten teilt und die aktive Leiterrunde ideell und finanziell
+  unterstützt.
 ---
 
 Wir – die Altrover – sind Ehemalige, Freunde und Förderer des Pfadfinderstamms

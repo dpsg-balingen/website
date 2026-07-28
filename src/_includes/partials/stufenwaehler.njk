@@ -1,0 +1,54 @@
+{# ---------------------------------------------------------------
+   Stufenwähler auf der Startseite.
+
+   Eine Reihe aus sechs Reitern, darunter ein Panel mit den Angaben
+   zur gewählten Stufe. Auf dem Handy wird daraus eine Liste, bei
+   der sich das Panel direkt unter der angetippten Zeile öffnet.
+
+   Ganz ohne JavaScript: die Reiter sind eine Radiogruppe, das
+   offene Panel hängt in der CSS an ":checked". Deshalb müssen
+   Radio, Label und Panel unmittelbar aufeinander folgende
+   Geschwister bleiben – dazwischen darf nichts eingefügt werden.
+
+   WO KOMMT WAS HER?
+     Name, Motto, Teaser   Kopf der Seite in src/gruppen/
+     Tag, Zeit, Alter      src/_data/gruppenstunden.yaml
+     Alter bei Leiter
+     und Altrover          Kopf der Seite in src/gruppen/
+
+   REIHENFOLGE: erst die vier Stufen mit Gruppenstunde, in der
+   Reihenfolge aus gruppenstunden.yaml, danach Leiter und Altrover.
+   Die Lücke dazwischen ist keine Deko – sie trennt die Stufen mit
+   wöchentlicher Gruppenstunde von denen ohne.
+   --------------------------------------------------------------- #}
+
+{% macro reiter(seite, stufe, alter, tag, zeit, erste, trenner) %}
+  <input type="radio" name="stufe" id="sw-{{ stufe }}" class="sw-radio"
+         {% if erste %}checked{% endif %}>
+  <label class="sw-reiter{% if trenner %} sw-trenner{% endif %}"
+         for="sw-{{ stufe }}" data-stufe="{{ stufe }}">
+    <b class="sw-name">{{ seite.data.title }}</b>
+    {% if alter %}<span class="sw-alter">{{ alter }}</span>{% endif %}
+  </label>
+  <div class="sw-panel" data-stufe="{{ stufe }}">
+    {% if seite.data.motto %}<p class="sw-motto">{{ seite.data.motto }}</p>{% endif %}
+    <p class="sw-teaser">{{ seite.data.teaser }}</p>
+    {% if tag and zeit %}
+    <p class="sw-fakten">{{ tag }}<span class="sw-punkt">·</span>{{ zeit }}</p>
+    {% endif %}
+    <a class="sw-mehr" href="{{ seite.url }}">Mehr über die {{ seite.data.title }} →</a>
+  </div>
+{% endmacro %}
+
+<fieldset class="stufenwaehler">
+  <legend class="visually-hidden">Stufe auswählen</legend>
+  <div class="sw-grid">
+    {%- for g in gruppenstunden.gruppen %}
+    {{ reiter(collections.stufen | stufeSeite(g.stufe), g.stufe, g.alter, g.tag, g.zeit, loop.first, false) }}
+    {%- endfor %}
+    {%- for stufe in ["leiter", "altrover"] %}
+    {% set seite = collections.stufen | stufeSeite(stufe) %}
+    {{ reiter(seite, stufe, seite.data.alter, null, null, false, loop.first) }}
+    {%- endfor %}
+  </div>
+</fieldset>

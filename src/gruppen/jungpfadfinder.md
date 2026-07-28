@@ -3,6 +3,9 @@ layout: layouts/base.njk
 title: Jungpfadfinder
 stufe: jungpfadfinder
 motto: Abenteuer leben
+teaser: >-
+  Das Leben ist ein Abenteuer, und im Trupp wird es ausprobiert. Klettern, eine
+  Jurte aufbauen, am Trangia kochen oder mit dem Kanu die Donau hinunter.
 ---
 
 Jungpfadfinder sind im Umbruch zwischen Kindheit und Jugendalter. Das Leben ist

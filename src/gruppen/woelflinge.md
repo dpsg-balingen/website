@@ -3,6 +3,10 @@ layout: layouts/base.njk
 title: Wölflinge
 stufe: woelflinge
 motto: Entdecken
+teaser: >-
+  Neugierig, wissensdurstig und voller Fantasie. Wölflinge eignen sich die Welt
+  im Spiel an – sie bauen und basteln, gehen auf Schatzsuche und zelten im
+  Sommer zum ersten Mal.
 ---
 
 Wölflinge sind neugierig, wissensdurstig und stecken voller Fantasie. Sie eignen
