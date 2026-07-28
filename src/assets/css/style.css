@@ -1354,6 +1354,40 @@ html[data-stufe] .btn:hover {
   filter: brightness(0.9);
 }
 
+/* ===== TWEAKS: Stufenfarbe im Seitenkopf =====
+   Der Schleier über dem Kopfbild ist sonst durchgehend navy. Auf den
+   Stufenseiten bekommt der Keil unten links – dort, wo Motto, Name und
+   Alter stehen – die Stufenfarbe beigemischt. Der flache Grundverlauf
+   bleibt navy, damit die obere Bildhälfte unangetastet bleibt.
+
+   Die Regel steht bewusst NACH der Grundregel von .sh-schleier: Browser
+   ohne color-mix() verwerfen sie und behalten den navyfarbenen Schleier.
+   Der Text bleibt damit in jedem Fall lesbar.
+
+   Geometrie und Deckkraft sind dieselben wie im Grundschleier, der Keil
+   sitzt also auf schmalen Bildschirmen genauso richtig – dort ist nur
+   das Motto ausgeblendet, die Farbe wirkt weiter. */
+html[data-stufe] .sh-schleier {
+  background:
+    radial-gradient(
+      125% 105% at 0% 100%,
+      color-mix(in srgb, var(--stufe) 62%, rgba(19, 29, 63, 0.92)) 0%,
+      color-mix(in srgb, var(--stufe) 40%, rgba(19, 29, 63, 0.66)) 32%,
+      rgba(19, 29, 63, 0.15) 62%,
+      rgba(19, 29, 63, 0) 80%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(19, 29, 63, 0.55) 0%,
+      rgba(19, 29, 63, 0.22) 52%,
+      rgba(19, 29, 63, 0) 88%
+    );
+}
+/* Sand auf getöntem Grund wird matschig – das Motto geht auf Weiß. */
+html[data-stufe] .sh-motto {
+  color: #fff;
+}
+
 /* ===== TWEAKS: Altrover-Halstuch (schwarz, dünner roter Streifen) =====
    Das Altrover-Halstuch ist schwarz mit schmalem rotem Rand. Der
    Rahmen/Balken bleibt darum in voller Breite schwarz (Stufenfarbe),
