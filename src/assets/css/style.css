@@ -1354,6 +1354,28 @@ html[data-stufe] .btn:hover {
   filter: brightness(0.9);
 }
 
+/* ===== TWEAKS: Altrover-Halstuch (schwarz, dünner roter Streifen) =====
+   Das Altrover-Halstuch ist schwarz mit schmalem rotem Rand. Der
+   Rahmen/Balken bleibt darum in voller Breite schwarz (Stufenfarbe),
+   direkt daneben liegt ein dünner roter Streifen.
+
+   Der Streifen ist ein Hintergrund-Verlauf mit `padding-box`: er
+   beginnt exakt an der Innenkante des Rahmens, egal wie breit der
+   gerade ist. Kein Spalt, keine doppelte Breitenangabe. */
+html[data-stufe="altrover"] .page-title {
+  background: linear-gradient(var(--red), var(--red)) bottom / 100% 2px no-repeat padding-box;
+}
+html[data-stufe="altrover"] .sidebar .card {
+  background: linear-gradient(var(--red), var(--red)) top / 100% 2px no-repeat padding-box,
+    var(--paper);
+}
+html[data-stufe="altrover"] .mini-events li {
+  background: linear-gradient(var(--red), var(--red)) left / 1px 100% no-repeat padding-box;
+}
+html[data-stufen="on"] .group-tile:nth-child(6) {
+  background: linear-gradient(var(--red), var(--red)) left / 2px 100% no-repeat padding-box, #fff;
+}
+
 /* ===== TWEAKS: Formsprache = Stempel (kantig, Badge-Charme) ===== */
 html[data-form="stamp"] {
   --radius: 3px;

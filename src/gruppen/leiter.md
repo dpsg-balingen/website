@@ -3,6 +3,7 @@ layout: layouts/base.njk
 title: Leiter
 stufe: leiter
 alter: "ab 18 Jahren"
+motto: Gelerntes weitergeben
 ---
 
 Volljährige Mitglieder oder interessierte Erwachsene können Leiterinnen und
