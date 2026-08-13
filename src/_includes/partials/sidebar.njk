@@ -6,7 +6,9 @@
       {% for g in termine %}
         <div class="gs-entry">
           {% if termine.length > 1 %}<div class="gs-name">{{ g.name }}</div>{% endif %}
-          <div class="gs-when">{{ g.tag }} · {{ g.zeit }}</div>
+          {# Alter nur bei mehreren Gruppen: sonst steht es schon im Kopfbild
+             der Seite und stünde hier ein zweites Mal. #}
+          <div class="gs-when">{{ g.tag }} · {{ g.zeit }}{% if termine.length > 1 and g.alter %} · {{ g.alter }}{% endif %}</div>
           <div class="gs-leiter"><strong>Leiter</strong>{{ g.leiter | join(", ") }}</div>
         </div>
       {% endfor %}

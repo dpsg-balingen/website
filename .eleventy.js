@@ -101,10 +101,24 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addShortcode("year", () => new Date().getFullYear());
 
-  // Alter einer Stufe aus gruppenstunden.yaml holen (eine Quelle für alle Seiten)
+  // Alter einer Stufe aus gruppenstunden.yaml holen (eine Quelle für alle
+  // Seiten). Hat eine Stufe mehrere Gruppen, spannt sich die Angabe über
+  // alle: aus "11–12 Jahre" und "12–13 Jahre" wird "11–13 Jahre". So bleibt
+  // das Alter eine gepflegte Zahl je Gruppe und muss für die Stufe nicht
+  // noch einmal von Hand irgendwo daneben stehen.
+  //
+  // Lässt sich die Spanne nicht ablesen – etwa weil eine Gruppe "ab 16
+  // Jahren" schreibt –, bleibt die Angabe leer, und der Seitenkopf in
+  // src/gruppen/ übernimmt (dort steht sie für Leiter und Altrover ohnehin).
+  const ALTERSSPANNE = /^\s*(\d+)\s*[–-]\s*(\d+)\s*Jahren?\s*$/;
   eleventyConfig.addFilter("alterFuerStufe", (gruppen, stufe) => {
-    const g = (gruppen || []).find((x) => x.stufe === stufe);
-    return g ? g.alter : "";
+    const treffer = (gruppen || []).filter((x) => x.stufe === stufe);
+    if (!treffer.length) return "";
+    if (treffer.length === 1) return treffer[0].alter || "";
+    const spannen = treffer.map((g) => ALTERSSPANNE.exec(g.alter || ""));
+    if (spannen.some((s) => !s)) return "";
+    const zahlen = spannen.flatMap((s) => [Number(s[1]), Number(s[2])]);
+    return `${Math.min(...zahlen)}–${Math.max(...zahlen)} Jahre`;
   });
 
   // Die sechs Stufen-Seiten aus src/gruppen/. Der Stufenwähler auf der
@@ -113,6 +127,14 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addCollection("stufen", (api) =>
     api.getFilteredByGlob("src/gruppen/*.md"),
   );
+
+  // Die Stufen in der Reihenfolge, in der ihre Gruppen in
+  // gruppenstunden.yaml stehen – jede Stufe nur einmal, auch wenn sie
+  // mehrere Gruppen hat. Der Stufenwähler auf der Startseite baut daraus
+  // seine Reiter: einen je Stufe, nicht einen je Gruppe.
+  eleventyConfig.addFilter("stufenMitGruppe", (gruppen) => [
+    ...new Set((gruppen || []).map((g) => g.stufe)),
+  ]);
 
   // Eine einzelne Stufen-Seite über ihren "stufe"-Schlüssel finden.
   eleventyConfig.addFilter("stufeSeite", (stufen, stufe) =>

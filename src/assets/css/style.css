@@ -807,10 +807,15 @@ tbody tr:nth-child(even) {
    zur gewählten Stufe. Unter 900px wird daraus eine Liste, bei der
    das Panel direkt unter der angetippten Zeile aufgeht.
 
-   Der Wähler ist eine Radiogruppe, kein Skript. Reihenfolge im
-   HTML ist immer: input -> label -> panel. Genau darauf baut
-   ".sw-radio:checked + .sw-reiter + .sw-panel" auf – wird zwischen
-   den dreien etwas eingefügt, klappt nichts mehr auf.
+   Der Wähler ist eine Radiogruppe, kein Skript. Reihenfolge im HTML
+   ist immer: label (mit dem Radio darin) -> panel. Genau darauf baut
+   ".sw-reiter:has(.sw-schalter:checked) + .sw-panel" auf – wird
+   zwischen die beiden etwas eingefügt, klappt nichts mehr auf.
+
+   DAS RADIO STEHT IM LABEL. Außerhalb landete es in der Ecke des
+   Rasters, und der Browser scrollte beim Antippen einer der unteren
+   Stufen dorthin zurück, weil er das fokussierte Feld ins Bild holt –
+   daher sprang der Wähler. Siehe unten bei .sw-schalter.
 
    Die Stufenfarbe erscheint nur als Form, nie als Hintergrund von
    Text. Schrift steht immer dunkel auf Weiß.
@@ -841,10 +846,17 @@ tbody tr:nth-child(even) {
 }
 
 /* Das Radio selbst ist unsichtbar, aber bedienbar: Fokus und
-   Pfeiltasten kommen von ihm. Absolut positioniert, damit es im
-   Grid keine eigene Spalte belegt. */
-.sw-radio {
+   Pfeiltasten kommen von ihm, sichtbar wird das am Reiter drumherum.
+
+   Es sitzt IM Reiter und ist an dessen Ecke geheftet (".sw-reiter" ist
+   dafür "position: relative"). Läge es außerhalb, säße es in der Ecke
+   des ganzen Rasters – und der Browser scrollte beim Antippen einer
+   weiter unten stehenden Stufe dorthin zurück, weil er das fokussierte
+   Feld ins Bild holt. Genau das ließ den Wähler springen. */
+.sw-schalter {
   position: absolute;
+  top: 0;
+  left: 0;
   width: 1px;
   height: 1px;
   opacity: 0;
@@ -916,7 +928,7 @@ tbody tr:nth-child(even) {
 /* Halstuch, offen: das Band wird kräftig, die Spitze fällt in den
    Reiter, und der Reiter wächst nach oben ins Panel hinein.
    Die Auswahl hängt damit nicht an der Farbe allein. */
-.sw-radio:checked + .sw-reiter {
+.sw-reiter:has(.sw-schalter:checked) {
   padding-top: calc(15px + var(--sw-hub));
   /* Die untere Polsterung bleibt wie bei den anderen: jeder Millimeter
      mehr würde die Zeile beim Wechseln wachsen lassen. */
@@ -929,16 +941,16 @@ tbody tr:nth-child(even) {
   z-index: 1;
   box-shadow: 0 -3px 12px rgba(30, 40, 70, 0.07);
 }
-.sw-radio:checked + .sw-reiter::before {
+.sw-reiter:has(.sw-schalter:checked)::before {
   background: var(--stufe);
   opacity: 1;
   height: 28px;
   clip-path: polygon(0 0, 100% 0, 100% 10px, 60% 10px, 50% 28px, 40% 10px, 0 10px);
 }
-.sw-radio:checked + .sw-reiter .sw-name {
+.sw-reiter:has(.sw-schalter:checked) .sw-name {
   color: var(--stufe-text, var(--stufe));
 }
-.sw-radio:focus-visible + .sw-reiter {
+.sw-reiter:has(.sw-schalter:focus-visible) {
   outline: 3px solid var(--brand);
   outline-offset: 2px;
 }
@@ -965,8 +977,21 @@ tbody tr:nth-child(even) {
   padding: 20px 22px 18px;
   margin-top: -1px;
 }
-.sw-radio:checked + .sw-reiter + .sw-panel {
+.sw-reiter:has(.sw-schalter:checked) + .sw-panel {
   visibility: visible;
+  /* Ein Aufgehen als Übergang gibt es nicht: das Panel wechselt zwischen
+     "display: none" und "block", dazwischen lässt sich nichts rechnen.
+     Eine Animation läuft dagegen los, sobald das Panel da ist – sie
+     blendet es kurz ein, statt es hart erscheinen zu lassen. Wer
+     reduzierte Bewegung eingestellt hat, sieht sie nicht (siehe ganz
+     unten bei prefers-reduced-motion). */
+  animation: sw-aufgehen 0.18s ease-out;
+}
+@keyframes sw-aufgehen {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
 }
 .sw-motto {
   font-family: var(--head);
@@ -982,15 +1007,35 @@ tbody tr:nth-child(even) {
   line-height: 1.55;
   max-width: 62ch;
 }
+/* Eine Zeile je Gruppe. Die meisten Stufen haben genau eine, manche
+   mehrere – dann stehen sie als enger Block untereinander. */
 .sw-fakten {
   font-family: var(--head);
   font-weight: 600;
   font-size: 1rem;
   margin: 0 0 14px;
 }
+.sw-fakten + .sw-fakten {
+  margin-top: -10px;
+}
 .sw-punkt {
   color: var(--muted);
   padding: 0 6px;
+}
+/* Gruppenname und Alter stehen nur da, wo eine Stufe mehrere Gruppen hat.
+   Beide sind Beiwerk zur Zeit und treten deshalb zurück. */
+.sw-gruppe {
+  display: inline-block;
+  min-width: 11em;
+  padding-right: 10px;
+  font-weight: 700;
+  color: var(--stufe-text, var(--stufe));
+}
+.sw-gruppe-alter {
+  font-weight: 600;
+  font-size: 0.86rem;
+  color: var(--muted);
+  padding-left: 10px;
 }
 .prose a.sw-mehr {
   display: inline-block;
@@ -1004,7 +1049,7 @@ tbody tr:nth-child(even) {
 
 /* Altrover: schwarzes Halstuch mit schmalem rotem Rand, wie auf der
    Altrover-Seite. Das rote Dreieck liegt etwas größer darunter. */
-.sw-radio:checked + .sw-reiter[data-stufe="altrover"]::after {
+.sw-reiter:has(.sw-schalter:checked)[data-stufe="altrover"]::after {
   content: "";
   position: absolute;
   left: 0;
@@ -1016,10 +1061,13 @@ tbody tr:nth-child(even) {
   border-radius: 5px 5px 0 0;
   clip-path: polygon(0 0, 100% 0, 100% 12px, 62% 12px, 50% 32px, 38% 12px, 0 12px);
 }
-.sw-radio:checked + .sw-reiter[data-stufe="altrover"]::before {
+.sw-reiter:has(.sw-schalter:checked)[data-stufe="altrover"]::before {
   z-index: 1;
 }
-.sw-reiter[data-stufe="altrover"] > * {
+/* Name und Alter liegen über dem roten Dreieck. Der Schalter ist
+   ausgenommen: er muss absolut positioniert bleiben, sonst steht sein
+   1px im Textfluss und macht die Zeile eine Zeilenhöhe höher. */
+.sw-reiter[data-stufe="altrover"] > :not(.sw-schalter) {
   position: relative;
   z-index: 2;
 }
@@ -1087,6 +1135,29 @@ tbody tr:nth-child(even) {
     border-radius: 5px;
     overflow: hidden;
   }
+  /* Das Halstuch liegt hier hochkant an der linken Kante. Beim Überfahren
+     wächst es deshalb in die Breite – die Regel für breite Fenster lässt
+     es in die Höhe wachsen und würde den Strich hier auf 7px
+     zusammenschrumpfen lassen, also fast wegblenden. */
+  .sw-reiter:hover::before {
+    height: auto;
+    width: 8px;
+  }
+  /* Der Abstand vor "Leiter" darf nicht verschwinden, sobald Leiter
+     gewählt ist. Die Regel für den gewählten Reiter setzt weiter oben
+     margin-top auf -(--sw-hub), das ist hier 0 – und hebt damit die
+     Gruppierung auf. Derselbe Wert wie bei .sw-trenner. */
+  .sw-trenner:has(.sw-schalter:checked) {
+    margin-top: 20px;
+  }
+  /* Mehrere Gruppen: der Name steht auf dem Handy über der Zeit, nicht
+     davor – nebeneinander bliebe für die Uhrzeit zu wenig Platz. */
+  .sw-gruppe {
+    display: block;
+    min-width: 0;
+    padding-right: 0;
+    font-size: 0.92rem;
+  }
   /* In der Liste stehen die Panels wieder untereinander statt
      übereinander – die Höhe darf hier mitwachsen, so gehört sich
      das für eine Liste, die aufklappt. */
@@ -1110,18 +1181,18 @@ tbody tr:nth-child(even) {
     height: auto;
     border-radius: 0;
   }
-  .sw-radio:checked + .sw-reiter {
+  .sw-reiter:has(.sw-schalter:checked) {
     padding: 13px 14px 15px 35px;
     border-radius: 5px 5px 0 0;
     border-bottom: none;
     box-shadow: none;
   }
-  .sw-radio:checked + .sw-reiter::before {
+  .sw-reiter:has(.sw-schalter:checked)::before {
     height: auto;
     width: 26px;
     clip-path: polygon(0 0, 11px 0, 11px 42%, 26px 50%, 11px 58%, 11px 100%, 0 100%);
   }
-  .sw-radio:checked + .sw-reiter[data-stufe="altrover"]::after {
+  .sw-reiter:has(.sw-schalter:checked)[data-stufe="altrover"]::after {
     right: auto;
     bottom: 0;
     height: auto;
@@ -1129,7 +1200,7 @@ tbody tr:nth-child(even) {
     border-radius: 0;
     clip-path: polygon(0 0, 13px 0, 13px 40%, 29px 50%, 13px 60%, 13px 100%, 0 100%);
   }
-  .sw-radio:checked + .sw-reiter + .sw-panel {
+  .sw-reiter:has(.sw-schalter:checked) + .sw-panel {
     display: block;
     /* hebt die Zeilenlücke auf, damit das Panel an seiner Zeile klebt */
     margin-top: -7px;

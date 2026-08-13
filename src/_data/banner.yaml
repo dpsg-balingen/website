@@ -2,7 +2,7 @@
 # nicht in der Vergangenheit liegt.
 # Zum Ausblenden: nachricht leer lassen ("") oder gueltig_bis in die
 # Vergangenheit setzen.
-nachricht: "Willkommen auf unserer neuen Webseite"
-gueltig_bis: "2026-07-28" # Format: JJJJ-MM-TT, z. B. 2026-08-01
-link: "mailto:m.julian.faigle@gmail.com" # optional, z. B. /kontakt/
-link_text: "Rückmeldung geben" # optional, nur genutzt wenn link gesetzt ist
+nachricht: "Gleicher Stamm, neuer Look. Feedback gerne an info@dpsg-balingen.de"
+gueltig_bis: "2026-7-31" # Format: JJJJ-MM-TT, z. B. 2026-08-01
+link: "https://old.dpsg-balingen.de" # optional, z. B. /kontakt/
+link_text: "Alte Webseite" # optional, nur genutzt wenn link gesetzt ist

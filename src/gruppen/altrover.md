@@ -23,10 +23,10 @@ Tätigkeit zu unterstützen.
 **Vorstand:**
 
 - Vorsitzender: Daniel Schneider
-- Stellv. Vorsitzende: Ines Willkommen
-- Schriftführer: Max Stegmann
-- Kassierer: Alexander Götz
-- Beisitzer: Jonas Rebholz
+- Stellv. Vorsitzender: Marvin Kipp
+- 1. Beisitzer (Schriftführer): Max Stegmann
+- 2. Beisitzer (Kassierer): Alexander Götz
+- 3. Beisitzer: Laura Dieringer
 
 Wer Interesse hat, sich als Altrover einzubringen, meldet sich einfach bei uns
 über die Seite [Kontakt](/kontakt/).
