@@ -39,15 +39,54 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addDataExtension("yaml", (contents) => yaml.load(contents));
 
   const pad = (n) => String(n).padStart(2, "0");
-  const d2 = (d) =>
-    `${pad(d.getDate())}.${pad(d.getMonth() + 1)}.${d.getFullYear()}`;
-  const hm = (d) => `${pad(d.getHours())}:${pad(d.getMinutes())}`;
-  const WEEKDAYS = ["So.", "Mo.", "Di.", "Mi.", "Do.", "Fr.", "Sa."];
+
+  // Termine immer in deutscher Zeit ausgeben – unabhängig davon, in welcher
+  // Zeitzone der Build läuft (z. B. UTC in der CI). Sonst erscheinen die
+  // Uhrzeiten um den Zeitzonen-Offset verschoben.
+  const TZ = "Europe/Berlin";
+  const berlin = (date) => {
+    const parts = new Intl.DateTimeFormat("en-GB", {
+      timeZone: TZ,
+      weekday: "short",
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hourCycle: "h23",
+    }).formatToParts(date);
+    const g = (t) => parts.find((p) => p.type === t)?.value || "";
+    return {
+      day: g("day"),
+      month: g("month"),
+      year: g("year"),
+      hour: g("hour"),
+      minute: g("minute"),
+      weekday: g("weekday"), // "Mon", "Tue", ...
+    };
+  };
+  const d2 = (d) => {
+    const b = berlin(d);
+    return `${b.day}.${b.month}.${b.year}`;
+  };
+  const hm = (d) => {
+    const b = berlin(d);
+    return `${b.hour}:${b.minute}`;
+  };
+  const WEEKDAYS = {
+    Mon: "Mo.",
+    Tue: "Di.",
+    Wed: "Mi.",
+    Thu: "Do.",
+    Fri: "Fr.",
+    Sat: "Sa.",
+    Sun: "So.",
+  };
 
   eleventyConfig.addFilter("d2", (d) => (d ? d2(new Date(d)) : ""));
   eleventyConfig.addFilter("hm", (d) => (d ? hm(new Date(d)) : ""));
   eleventyConfig.addFilter("weekday", (d) =>
-    d ? WEEKDAYS[new Date(d).getDay()] : "",
+    d ? WEEKDAYS[berlin(new Date(d)).weekday] || "" : "",
   );
   eleventyConfig.addFilter("limit", (arr, n) => (arr || []).slice(0, n));
   eleventyConfig.addFilter("whereStufe", (arr, stufe) => (arr || []).filter((g) => g.stufe === stufe));
@@ -85,11 +124,11 @@ module.exports = function (eleventyConfig) {
       "Dezember",
     ];
     for (const ev of events || []) {
-      const d = new Date(ev.start);
-      const key = `${d.getFullYear()}-${pad(d.getMonth() + 1)}`;
+      const b = berlin(new Date(ev.start));
+      const key = `${b.year}-${b.month}`;
       if (!groups[key])
         groups[key] = {
-          label: `${MONTHS[d.getMonth()]} ${d.getFullYear()}`,
+          label: `${MONTHS[Number(b.month) - 1]} ${b.year}`,
           events: [],
         };
       groups[key].events.push(ev);
