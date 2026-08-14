@@ -526,6 +526,37 @@ p {
   font-size: 1.22rem;
   color: var(--muted);
 }
+
+/* ===== Eingebettete Inhalte (Cloud, Karten, Videos) =====
+   Der Rahmen sitzt auf der <figure>, nicht auf dem iframe: nur so
+   greifen abgerundete Ecken auch am eingebetteten Inhalt. */
+.einbettung {
+  margin: 1.7em 0 1.4em;
+  border-top: 5px solid var(--sand);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: var(--sand-bg);
+}
+.einbettung iframe {
+  display: block;
+  width: 100%;
+  /* Die Cloud-Oberfläche braucht Höhe für Passwortfeld und Dateiliste,
+     soll aber auf kleinen Bildschirmen nicht die ganze Seite füllen. */
+  height: clamp(360px, 60vh, 560px);
+  border: 0;
+}
+.einbettung figcaption {
+  padding: 12px clamp(14px, 2vw, 18px);
+  border-top: 1px solid var(--sand-line);
+  background: var(--paper);
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+/* Rückfallebene für eingebettete Inhalte ohne <figure>-Rahmen. */
+.prose iframe {
+  max-width: 100%;
+}
 .eyebrow {
   font-family: var(--head);
   letter-spacing: 4px;
