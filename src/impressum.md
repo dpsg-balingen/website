@@ -7,7 +7,7 @@ Diese Seiten werden von der Deutschen Pfadfinderschaft St. Georg, Stamm Balingen
 Heilig Geist betreut.
 
 **Anschrift:** {{ kontakt.anschrift.verein }}, {{ kontakt.anschrift.strasse }},
-{{ kontakt.anschrift.ort }} **Allgemeine E-Mail:** [{{ kontakt.email
+{{ kontakt.anschrift.ort }}<br> **Allgemeine E-Mail:** [{{ kontakt.email
 }}](mailto:{{ kontakt.email }})
 
 <div class="contact-grid">
