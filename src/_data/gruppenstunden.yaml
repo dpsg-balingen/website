@@ -3,33 +3,40 @@
 #  Nach dem Speichern und Hochladen (git push) aktualisiert sich
 #  die Seite automatisch. Reihenfolge = Reihenfolge auf der Seite.
 # ────────────────────────────────────────────────────────────────
-saison: "2025/2026"
+saison: "2026/2027"
 
 gruppen:
-  - name: "Wichtel & Wölflinge"
+  - name: "Wichtel"
     stufe: woelflinge
-    alter: "9–11 Jahre"
-    tag: "Donnerstag"
-    zeit: "18:00–19:30 Uhr"
-    leiter: [Laura, Ella, Sina, Kathi, Lara, Emilia]
+    alter: "6–11 Jahre"
+    tag: "Montag"
+    zeit: "17:00–18:30 Uhr"
+    leiter: [Laura, Tobias, Jenny, Ella]
+
+ - name: "Wölflinge"
+    stufe: woelflinge
+    alter: "6–11 Jahre"
+    tag: "Mittwoch"
+    zeit: "18:30-20:00 Uhr"
+    leiter: [Emilia, Sina, Kathi, Lara]
 
   - name: "Jungpfadfinder"
     stufe: jungpfadfinder
     alter: "11–13 Jahre"
     tag: "Dienstag"
-    zeit: "19:00–20:30 Uhr"
-    leiter: [Sabrina, Jessica, Josi, Leonie, Hannah]
+    zeit: "19:30-21:00 Uhr"
+    leiter: [Jessica, Hannah, Eva]
 
   - name: "Pfadfinder"
     stufe: pfadfinder
     alter: "13–15 Jahre"
     tag: "Mittwoch"
-    zeit: "19:30–21:00 Uhr"
-    leiter: [Maya, Katharina, Leonard, Felix, Jona]
+    zeit: "20:00-21:30 Uhr"
+    leiter: [Leonard, Lale, Maya]
 
   - name: "Rover"
     stufe: rover
     alter: "ab 16 Jahren"
     tag: "Freitag"
-    zeit: "20:00–22:00 Uhr"
-    leiter: [Nick, Leon]
+    zeit: "20:00-21:30 Uhr"
+    leiter: [Leon, Marvin]
