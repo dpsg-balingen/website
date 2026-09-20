@@ -8,14 +8,14 @@ saison: "2026/2027"
 gruppen:
   - name: "Wichtel"
     stufe: woelflinge
-    alter: "6–11 Jahre"
+    alter: "6–9 Jahre"
     tag: "Montag"
     zeit: "17:00–18:30 Uhr"
     leiter: [Laura, Tobias, Jenny, Ella]
 
  - name: "Wölflinge"
     stufe: woelflinge
-    alter: "6–11 Jahre"
+    alter: "9–11 Jahre"
     tag: "Mittwoch"
     zeit: "18:30-20:00 Uhr"
     leiter: [Emilia, Sina, Kathi, Lara]
