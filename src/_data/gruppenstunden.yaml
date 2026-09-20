@@ -13,7 +13,7 @@ gruppen:
     zeit: "17:00–18:30 Uhr"
     leiter: [Laura, Tobias, Jenny, Ella]
 
- - name: "Wölflinge"
+  - name: "Wölflinge"
     stufe: woelflinge
     alter: "9–11 Jahre"
     tag: "Mittwoch"
