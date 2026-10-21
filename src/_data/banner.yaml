@@ -2,7 +2,7 @@
 # nicht in der Vergangenheit liegt.
 # Zum Ausblenden: nachricht leer lassen ("") oder gueltig_bis in die
 # Vergangenheit setzen.
-nachricht: "Gleicher Stamm, neuer Look. Feedback gerne an info@dpsg-balingen.de"
-gueltig_bis: "2026-7-31" # Format: JJJJ-MM-TT, z. B. 2026-08-01
-link: "https://old.dpsg-balingen.de" # optional, z. B. /kontakt/
-link_text: "Alte Webseite" # optional, nur genutzt wenn link gesetzt ist
+nachricht: "Die Cafélounge kommt am 28. und 29.11. zurück auf den Christkindlesmarkt in Balingen! Kommt gerne vorbei!"
+gueltig_bis: "2026-11-29" # Format: JJJJ-MM-TT, z. B. 2026-08-01
+link: "" # optional, z. B. /kontakt/
+link_text: "" # optional, nur genutzt wenn link gesetzt ist
