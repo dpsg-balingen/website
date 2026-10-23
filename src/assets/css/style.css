@@ -1612,6 +1612,12 @@ tbody tr:nth-child(even) {
   .nav-toggle {
     display: flex;
   }
+  /* Das zugeklappte Menü liegt rechts außerhalb des Bildschirms und
+     darf die Seite nicht breiter machen (sonst kann man es auf dem
+     Handy durch Herauszoomen sehen). */
+  .site-header {
+    overflow-x: clip;
+  }
   /* Das Klappmenü hängt direkt unter der (klebenden) Kopfzeile statt
      fest 74px unter dem Fensterrand – sonst schiebt es sich über die
      Kopfzeile, sobald darüber das Ankündigungs-Banner steht. */
@@ -1624,12 +1630,18 @@ tbody tr:nth-child(even) {
     width: min(320px, 86vw);
     background: var(--brand-dark);
     transform: translateX(100%);
-    transition: transform 0.25s;
+    /* Geschlossen zusätzlich unsichtbar – sonst taucht das Menü beim
+       Herauszoomen auf dem Handy rechts neben der Seite auf. Die
+       Sichtbarkeit schaltet erst nach dem Zuschieben um. */
+    visibility: hidden;
+    transition: transform 0.25s, visibility 0s linear 0.25s;
     overflow-y: auto;
     padding: 10px;
   }
   .site-nav.open {
     transform: translateX(0);
+    visibility: visible;
+    transition: transform 0.25s, visibility 0s;
     box-shadow: -6px 0 30px rgba(0, 0, 0, 0.3);
   }
   .site-nav > ul {
