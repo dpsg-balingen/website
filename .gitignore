@@ -4,7 +4,7 @@ _site/
 *.log
 .claude/settings.local.json
 .superpowers/
-docs/
+/docs/
 
 # Foto-Originale (unverkleinert, gehören nicht ins Repo)
 _originale/

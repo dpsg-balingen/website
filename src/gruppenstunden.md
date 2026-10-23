@@ -9,8 +9,7 @@ Unsere Gruppentreffen finden normalerweise im Pfadi-Haus (Edith-Stein-Zentrum,
 Hirschbergstraße 112/2) statt, sofern nichts anderes auf dem Gruppenprogramm
 steht.
 
-Wir nehmen neue Gruppenkinder frühestens ab dem Besuch der 4. Klasse auf
-(entsprechend einem Alter von 9/10 Jahren).
+Kinder können ab 6 Jahren bei uns mitmachen und starten bei den Wichteln.
 
 <div class="gs-list">
 {% for g in gruppenstunden.gruppen %}
@@ -36,9 +35,12 @@ Gruppenstunde reinschnuppern möchtet, könnt ihr gerne
 
 Wenn ihr noch mehr über die Pfadfinder wissen wollt, schaut doch mal in den
 [DPSG Eltern Bogen](/assets/docs/DPSG-Eltern-Bogen-03.23.pdf) oder unseren
-[Flyer DPSG Balingen](/assets/docs/Flyer-DPSG-Balingen-2023.pdf).
+[Flyer DPSG Balingen](/assets/docs/Flyer-DPSG-Balingen.pdf).
 
 ### Finanzielles
+
+Das Reinschnuppern in die Gruppenstunden ist kostenlos. Danach beträgt der
+Mitgliedsbeitrag 60 € im Jahr, für Geschwister 40 €.
 
 Bei vielen unserer Aktivitäten müssen wir Teilnehmerbeiträge erheben. Als
 Pfadfinderinnen und Pfadfinder sind wir eine große solidarische Gemeinschaft.
