@@ -44,18 +44,25 @@
   src: url("/assets/fonts/source-sans-3-italic.woff2") format("woff2");
 }
 :root {
-  /* Logofarben: Navy · Sand · Rot */
-  --brand: #2a3d7c;
-  --brand-dark: #1f2e60;
-  --brand-darker: #162148;
+  /* Hausfarben laut Corporate Identity (Repo "corporate-identity",
+     README Abschnitt 5): Navy trägt, Sand begleitet, Rot setzt Akzente. */
   --navy: #2a3d7c;
-  --navy-dark: #1e2c5f;
+  --stadt: #151f45;
+  --berg: #41579e;
   --sand: #c3a878;
-  --sand-bg: #f5efe2;
-  --sand-line: #e6dcc6;
   --sand-dark: #8a6c38;
-  --red: #c62128;
-  --red-dark: #a71a20;
+  --licht: #f2dfae;
+  --hellsand: #efe7d6;
+  --papier: #f4f3ef;
+  --red: #d0262d;
+  /* Abgeleitete Töne für Hover, Linien und Zwischenflächen */
+  --navy-dark: #1f2e60;
+  --brand: var(--navy);
+  --brand-dark: var(--navy-dark);
+  --brand-darker: var(--stadt);
+  --sand-bg: var(--hellsand);
+  --sand-line: #e3d8c0;
+  --red-dark: #ad1f25;
   --ink: #22262f;
   --muted: #66697a;
   --line: #e3e2ec;
@@ -73,13 +80,13 @@
   --stufe-pfadfinder-tief: #26702f;
   --stufe-leiter-tief: #6b6b6b;
   --paper: #ffffff;
-  --bg: #f4f3ef;
+  --bg: var(--papier);
   --radius: 12px;
   --shadow: 0 2px 8px rgba(30, 40, 70, 0.08);
   --shadow-lg: 0 10px 30px rgba(20, 30, 70, 0.14);
   --wrap: 1160px;
-  --sans: "Source Sans 3", system-ui, sans-serif;
-  --head: "Barlow Semi Condensed", "Source Sans 3", sans-serif;
+  --sans: "Source Sans 3", Arial, sans-serif;
+  --head: "Barlow Semi Condensed", "Arial Narrow", sans-serif;
 }
 * {
   box-sizing: border-box;
@@ -96,7 +103,9 @@ body {
   margin: 0;
   font-family: var(--sans);
   color: var(--ink);
-  background: var(--bg);
+  /* Dezentes Lilien-Muster aus der CI – liegt nur am Rand neben den
+     weißen Inhaltskarten. */
+  background: var(--bg) url("/assets/img/ci/web-muster-hell.svg") repeat;
   line-height: 1.65;
   font-size: 18px;
   -webkit-font-smoothing: antialiased;
@@ -204,8 +213,7 @@ p {
 }
 .brand img {
   height: 44px;
-  width: auto;
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.25));
+  width: 44px;
 }
 .brand-text {
   display: flex;
@@ -217,11 +225,15 @@ p {
   font-size: 1.28rem;
   letter-spacing: 0.4px;
 }
+/* Unterzeile wie im CI-Logo: Barlow SemiBold, Versalien, gesperrt, Sand */
 .brand-text small {
-  font-size: 0.8rem;
-  opacity: 0.9;
+  font-family: var(--head);
+  font-weight: 600;
+  font-size: 0.74rem;
+  color: var(--sand);
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
+  margin-top: 3px;
 }
 
 .site-nav > ul {
@@ -320,50 +332,39 @@ p {
 }
 
 /* ===== Hero ===== */
+/* Banner-Szene aus der CI (web-szene) rechts, Überschrift links. Die
+   Berge laufen zu den Rändern aus; die beiden Streifen verlängern Boden
+   (Stadt) und Bergsockel auf jede Bildschirmbreite. Ihre Höhen gehören
+   zur Szenenbreite: 32/37 px bei 1280 px, 22.5/26 px bei 900 px. */
 .hero {
-  background: linear-gradient(
-    160deg,
-    var(--navy) 0%,
-    var(--navy-dark) 60%,
-    #182450 100%
-  );
+  background:
+    url("/assets/img/ci/web-szene-dunkel.svg") calc(50% + 140px) bottom /
+      1280px auto no-repeat,
+    linear-gradient(var(--stadt), var(--stadt)) bottom / 100% 32px no-repeat,
+    linear-gradient(var(--berg), var(--berg)) bottom / 100% 37px no-repeat,
+    var(--navy);
   color: #fff;
   position: relative;
   overflow: hidden;
 }
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    circle at 82% 18%,
-    rgba(199, 177, 132, 0.28),
-    transparent 45%
-  );
-  pointer-events: none;
-}
 .hero-inner {
   max-width: var(--wrap);
   margin: 0 auto;
-  padding: 52px 22px;
+  padding: 84px 22px 52px;
+  min-height: 400px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 38px;
-}
-.hero-logo {
-  height: 150px;
-  width: auto;
-  flex: none;
-  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.35));
 }
 .hero h1 {
   color: #fff;
-  font-size: 2.9rem;
+  font-size: 3.6rem;
   margin-bottom: 0.15em;
 }
 .hero-sub {
+  font-family: var(--head);
   font-size: 1.15rem;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
   text-transform: uppercase;
   color: var(--sand);
   margin: 0;
@@ -509,6 +510,21 @@ p {
 }
 .prose li {
   margin: 0.3em 0;
+}
+/* Die CI-Flamme als Aufzählungszeichen – nur für einfache Listen aus
+   dem Fließtext, gestaltete Listen (mit Klasse) bleiben unberührt. */
+.prose ul:not([class]) > li {
+  list-style: none;
+  position: relative;
+}
+.prose ul:not([class]) > li::before {
+  content: "";
+  position: absolute;
+  left: -1.05em;
+  top: 0.42em;
+  width: 0.5em;
+  height: 0.65em;
+  background: url("/assets/img/ci/flamme-hell.svg") center / contain no-repeat;
 }
 .prose a {
   text-decoration: underline;
@@ -1537,8 +1553,15 @@ tbody tr:nth-child(even) {
 }
 
 /* ===== Footer ===== */
+/* Stadt-Grund mit der Balinger Silhouette am unteren Rand (CI). Das
+   Band läuft links und rechts auf einen 18 px hohen Sockel aus; der
+   Streifen darunter verlängert ihn auf breiten Bildschirmen. */
 .site-footer {
-  background: var(--brand-darker);
+  background:
+    url("/assets/img/ci/web-silhouette-band-dunkel.svg") center bottom / 1600px
+      auto no-repeat,
+    linear-gradient(#1d2a5c, #1d2a5c) bottom / 100% 18px no-repeat,
+    var(--stadt);
   color: #e7e6ef;
   margin-top: 56px;
 }
@@ -1546,7 +1569,7 @@ tbody tr:nth-child(even) {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 32px;
-  padding: 46px 22px 34px;
+  padding: 46px 22px 90px;
 }
 .site-footer h3 {
   color: #fff;
@@ -1569,7 +1592,7 @@ tbody tr:nth-child(even) {
   gap: 7px;
 }
 .footer-bottom {
-  background: rgba(0, 0, 0, 0.22);
+  background: transparent;
   font-size: 0.88rem;
   padding: 14px 0;
   color: #b6bcd2;
@@ -1586,15 +1609,18 @@ tbody tr:nth-child(even) {
   h1 {
     font-size: 2rem;
   }
-  .hero h1 {
-    font-size: 2.1rem;
-  }
   .nav-toggle {
     display: flex;
   }
+  /* Das Klappmenü hängt direkt unter der (klebenden) Kopfzeile statt
+     fest 74px unter dem Fensterrand – sonst schiebt es sich über die
+     Kopfzeile, sobald darüber das Ankündigungs-Banner steht. */
   .site-nav {
-    position: fixed;
-    inset: 74px 0 0 auto;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    height: calc(100vh - 74px);
+    height: calc(100dvh - 74px);
     width: min(320px, 86vw);
     background: var(--brand-dark);
     transform: translateX(100%);
@@ -1645,14 +1671,26 @@ tbody tr:nth-child(even) {
   .content {
     padding: 26px 20px;
   }
+  /* Kompakter Kopf: Überschrift oben, die Szene klein als Band darunter
+     (560px breit = Maßstab 0,35; Streifen 14/16px). So ist der Inhalt
+     schon im ersten Bildschirm zu sehen. */
+  .hero {
+    background-position: calc(50% - 133px) bottom, bottom, bottom, 0 0;
+    background-size: 560px auto, 100% 14px, 100% 16px, auto;
+  }
   .hero-inner {
     flex-direction: column;
+    align-items: center;
     text-align: center;
     gap: 22px;
-    padding: 38px 22px;
+    min-height: 230px;
+    padding: 22px 22px 0;
   }
-  .hero-logo {
-    height: 120px;
+  .hero h1 {
+    font-size: 1.9rem;
+  }
+  .hero-sub {
+    font-size: 0.95rem;
   }
   .cal-item {
     grid-template-columns: 1fr;
@@ -1680,8 +1718,8 @@ html {
   transition: none;
 }
 html[data-mood="rot"] {
-  --brand: #c62128;
-  --brand-dark: #a71a20;
+  --brand: #d0262d;
+  --brand-dark: #ad1f25;
   --brand-darker: #7d1519;
   --bg: #f7efe4;
 }
@@ -1694,7 +1732,7 @@ html[data-mood="sand"] {
 html[data-mood="rot"] .hero::after {
   background: radial-gradient(
     circle at 80% 15%,
-    rgba(198, 33, 40, 0.4),
+    rgba(208, 38, 45, 0.4),
     transparent 52%
   );
 }

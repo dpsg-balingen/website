@@ -12,12 +12,15 @@
 <meta property="og:title" content="{{ title }} · {{ site.name }}">
 <meta property="og:description" content="{{ description or site.description }}">
 <meta property="og:url" content="{{ site.url }}{{ page.url }}">
-<meta property="og:image" content="{{ site.url }}/assets/img/logo.png">
+<meta property="og:image" content="{{ site.url }}/assets/img/ci/favicon-512-dunkel.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="{{ title }} · {{ site.name }}">
 <meta name="twitter:description" content="{{ description or site.description }}">
-<meta name="twitter:image" content="{{ site.url }}/assets/img/logo.png">
-<link rel="icon" href="/assets/img/lilie-sand.png">
+<meta name="twitter:image" content="{{ site.url }}/assets/img/ci/favicon-512-dunkel.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/ci/favicon-32-dunkel.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/img/ci/favicon-192-dunkel.png">
+<link rel="apple-touch-icon" href="/assets/img/ci/favicon-192-dunkel.png">
+<meta name="theme-color" content="#2a3d7c">
 <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
@@ -47,7 +50,6 @@
 {% if heroTitle %}
 <section class="hero">
   <div class="hero-inner">
-    <img class="hero-logo" src="/assets/img/logo.png" alt="Wappen DPSG Balingen – Stamm Heilig Geist">
     <div class="hero-text">
       <h1>{{ heroTitle }}</h1>
       {% if heroSubtitle %}<p class="hero-sub">{{ heroSubtitle }}</p>{% endif %}

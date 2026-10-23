@@ -33,6 +33,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/assets/fonts": "assets/fonts" });
   eleventyConfig.addPassthroughCopy({ "src/assets/docs": "assets/docs" });
   eleventyConfig.addPassthroughCopy({ "src/assets/img/*.png": "assets/img" });
+  eleventyConfig.addPassthroughCopy({ "src/assets/img/ci": "assets/img/ci" });
   eleventyConfig.addPassthroughCopy({ "src/CNAME": "CNAME" });
 
   // .yaml-Dateien in _data als Daten einlesen (von Eleventy nicht nativ unterstützt)
