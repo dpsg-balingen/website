@@ -67,6 +67,7 @@
         {% if headerBild %}{% include "partials/seitenheader.njk" %}
         {% elif not heroTitle %}<h1 class="page-title">{{ title }}</h1>{% endif %}
         {{ content | safe }}
+        {% if page.url.startsWith("/aktionen/") %}{% include "partials/aktionen-weiter.njk" %}{% endif %}
       </article>
       {% include "partials/sidebar.njk" %}
     </div>

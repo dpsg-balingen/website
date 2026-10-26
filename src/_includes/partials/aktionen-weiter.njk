@@ -1,0 +1,40 @@
+{# ---------------------------------------------------------------
+   Ende einer Aktionsseite (src/aktionen/). Wird von layouts/base.njk
+   unter den Text gesetzt.
+
+   Oben der nächste Termin dieser Aktion. Er wird im Google-Kalender
+   über "kalender:" aus bilder.yaml gesucht. Ohne Treffer steht dort
+   nur der Weg zum Kalender.
+
+   Darunter die übrigen Aktionen als kleine Kacheln, in derselben
+   Reihenfolge wie im Programmband. Auf dem Handy wird daraus ein
+   Streifen zum Wischen, wie beim Band.
+   --------------------------------------------------------------- #}
+{% set kachel = bilder.programm | programmKachel(page.fileSlug) %}
+{% set termin = events | naechsterTermin(kachel.kalender) %}
+<aside class="aktion-termin">
+  {% if termin %}
+    <span class="at-label">Nächster Termin</span>
+    <span class="at-wann">{{ termin | eventWhen }}{% if termin | istGeplant %} <small>(geplant)</small>{% endif %}</span>
+    <a href="/kalender/">Alle Termine im Kalender →</a>
+  {% else %}
+    <span class="at-label">Termin</span>
+    <span>Sobald der nächste Termin feststeht, findest du ihn im Kalender.</span>
+    <a href="/kalender/">Zum Kalender →</a>
+  {% endif %}
+</aside>
+
+<section class="aktionen-weiter" aria-labelledby="aw-ueberschrift">
+  <h2 id="aw-ueberschrift">Weitere Aktionen</h2>
+  <div class="aw-liste">
+    {% for k in bilder.programm %}
+      {% if k.seite != page.fileSlug %}
+      <a class="aw-item" href="/aktionen/{{ k.seite }}/">
+        {% foto k.bild, "(max-width: 640px) 42vw, 160px" %}
+        <span class="pb-schleier"></span>
+        <span class="aw-titel">{{ k.titel }}</span>
+      </a>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>

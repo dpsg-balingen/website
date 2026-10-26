@@ -52,28 +52,41 @@ seiten:
 #
 #  "untertitel" ist optional – die hier sind ein Vorschlag,
 #  schreibt sie ruhig in euren eigenen Worten.
+#
+#  "kalender" ist optional: so heißt die Aktion im Google-Kalender.
+#  Die Aktionsseite zeigt dann ihren nächsten Termin. Der Titel im
+#  Kalender muss GENAU passen – nur Zusätze in Klammern wie
+#  "(geplant)" und Jahreszahlen werden übersehen. "Zeltlager packen"
+#  ist also kein Zeltlager. Heißt die Aktion im Kalender mal so, mal
+#  so, schreibt die Namen als Liste: [Name eins, Name zwei].
 programm:
   - titel: "72h Aktion"
     untertitel: "Anpacken für einen guten Zweck"
     bild: bauaktion-feuerstelle
     seite: 72-stunden-aktion
+    kalender: ["72h Aktion", "72 Stunden Aktion"]
   - titel: "Hike"
     untertitel: "Mehrtageswanderung mit Übernachtung"
     bild: bergsee-rast
     seite: hike
+    kalender: Stammeshike
   - titel: "Zeltlager"
     untertitel: "10 Tage in den Sommerferien"
     bild: lagerfeuer-nacht
     seite: zeltlager
+    kalender: Zeltlager
   - titel: "Pfadifest"
     untertitel: "Der ganze Stamm versammelt"
     bild: jubilaeum-luftaufnahme
     seite: pfadifest
+    kalender: Pfadifest
   - titel: "Cafélounge"
     untertitel: "Auszeit auf dem Christkindlesmarkt"
-    bild: cafelounge # Platzhalter – Datei einfach überschreiben
+    bild: cafelounge
     seite: cafelounge
+    kalender: Cafélounge
   - titel: "Pfadi-Weihnacht"
     untertitel: "Fackeln im Schnee"
     bild: fackelwanderung-winter
     seite: pfadi-weihnacht
+    kalender: Pfadiweihnacht

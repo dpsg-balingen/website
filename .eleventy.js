@@ -70,6 +70,12 @@ module.exports = function (eleventyConfig) {
     const b = berlin(d);
     return `${b.day}.${b.month}.${b.year}`;
   };
+  // Zum Vergleichen: "JJJJMMTT" sortiert richtig, "TT.MM.JJJJ" nicht
+  // ("08.08." wäre sonst früher als "30.07.").
+  const ymd = (d) => {
+    const b = berlin(d);
+    return `${b.year}${b.month}${b.day}`;
+  };
   const hm = (d) => {
     const b = berlin(d);
     return `${b.hour}:${b.minute}`;
@@ -92,11 +98,59 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("limit", (arr, n) => (arr || []).slice(0, n));
   eleventyConfig.addFilter("whereStufe", (arr, stufe) => (arr || []).filter((g) => g.stufe === stufe));
   eleventyConfig.addFilter("istGueltig", (d) => isGueltig(d));
-  // Aktionsseiten (src/aktionen/) zeigen im Kopf das Bild ihrer Kachel im
-  // Programmband. Gesucht wird über "seite" (= Dateiname der Seite).
+  // Aktionsseiten (src/aktionen/) gehören zu einer Kachel im Programmband.
+  // Gesucht wird über "seite" (= Dateiname der Seite).
+  const programmKachel = (programm, seite) =>
+    (programm || []).find((k) => k.seite === seite);
+  eleventyConfig.addFilter("programmKachel", programmKachel);
+  // Das Kopfbild einer Aktionsseite ist das Bild ihrer Kachel.
   eleventyConfig.addFilter("programmBild", (programm, seite) => {
-    const kachel = (programm || []).find((k) => k.seite === seite);
+    const kachel = programmKachel(programm, seite);
     return (kachel && kachel.bild) || "";
+  });
+
+  // Nächster Termin einer Aktion. "namen" kommt aus "kalender:" in
+  // bilder.yaml (ein Name oder eine Liste). Verglichen wird der GANZE
+  // Titel, damit "Zeltlager packen" oder "PG Pfadifest" nicht als
+  // Zeltlager bzw. Pfadifest gelten. Klammerzusätze wie "(geplant)" und
+  // Jahreszahlen zählen nicht mit, Groß-/Kleinschreibung auch nicht.
+  // Ein Doppeltermin wie "Pfadifest / Jubiläumsfest" zählt ebenfalls.
+  const normTitel = (t) =>
+    String(t || "")
+      .replace(/\([^)]*\)/g, " ")
+      .replace(/\b(19|20)\d{2}\b/g, " ")
+      .replace(/\s+/g, " ")
+      .trim()
+      .toLowerCase();
+  eleventyConfig.addFilter("naechsterTermin", (events, namen) => {
+    const liste = [].concat(namen || []).map(normTitel).filter(Boolean);
+    if (!liste.length) return null;
+    return (
+      (events || []).find((ev) => {
+        const t = normTitel(ev.title);
+        return liste.some(
+          (n) => t === n || t.startsWith(`${n} /`) || t.startsWith(`${n} +`),
+        );
+      }) || null
+    );
+  });
+  eleventyConfig.addFilter("istGeplant", (ev) =>
+    /\(\s*geplant\s*\)/i.test((ev && ev.title) || ""),
+  );
+
+  // Jede Kachel im Programmband braucht ihre Seite in src/aktionen/.
+  // Fehlt sie, bricht der Build ab, statt still einen toten Link (in
+  // Band, Menü und "Weitere Aktionen") zu erzeugen.
+  eleventyConfig.on("eleventy.before", () => {
+    const bilder = yaml.load(fs.readFileSync("src/_data/bilder.yaml", "utf8"));
+    const fehlend = ((bilder && bilder.programm) || [])
+      .map((k) => k.seite)
+      .filter((s) => !s || !fs.existsSync(path.join("src/aktionen", `${s}.md`)));
+    if (fehlend.length) {
+      throw new Error(
+        `[bilder] Zu diesen Kacheln im Programmband fehlt die Seite in src/aktionen/: ${fehlend.map((s) => s || "(ohne seite)").join(", ")}`,
+      );
+    }
   });
 
   // Termin-Zeitraum menschenlesbar formatieren
@@ -106,7 +160,7 @@ module.exports = function (eleventyConfig) {
     const e = new Date(ev.end || ev.start);
     if (ev.allDay) {
       const endDisp = new Date(e.getTime() - 86400000); // DTEND ist exklusiv
-      if (d2(endDisp) <= d2(s)) return d2(s);
+      if (ymd(endDisp) <= ymd(s)) return d2(s);
       return `${d2(s)} – ${d2(endDisp)}`;
     }
     if (d2(s) === d2(e)) return `${d2(s)}, ${hm(s)} – ${hm(e)} Uhr`;
