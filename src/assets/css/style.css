@@ -395,6 +395,13 @@ p {
   object-fit: cover;
   object-position: center 42%;
 }
+/* bildlage: unten im Seitenkopf – unterer Bildrand bleibt sichtbar,
+   abgeschnitten wird oben. Das Heranzoomen beim Hover wächst ebenfalls
+   von unten, damit der Rand nicht wegrutscht. */
+.seitenheader[data-lage="unten"] img {
+  object-position: center bottom;
+  transform-origin: center bottom;
+}
 .seitenheader img {
   transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.3, 1);
 }
@@ -1272,8 +1279,14 @@ tbody tr:nth-child(even) {
   overflow: hidden;
   box-shadow: var(--shadow);
 }
+.prose a.pb-item,
+.prose a.pb-item:hover {
+  color: inherit;
+  text-decoration: none;
+}
 .pb-item {
   position: relative;
+  display: block;
   flex: 1 1 0%;
   min-width: 0;
   overflow: hidden;

@@ -92,6 +92,12 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("limit", (arr, n) => (arr || []).slice(0, n));
   eleventyConfig.addFilter("whereStufe", (arr, stufe) => (arr || []).filter((g) => g.stufe === stufe));
   eleventyConfig.addFilter("istGueltig", (d) => isGueltig(d));
+  // Aktionsseiten (src/aktionen/) zeigen im Kopf das Bild ihrer Kachel im
+  // Programmband. Gesucht wird über "seite" (= Dateiname der Seite).
+  eleventyConfig.addFilter("programmBild", (programm, seite) => {
+    const kachel = (programm || []).find((k) => k.seite === seite);
+    return (kachel && kachel.bild) || "";
+  });
 
   // Termin-Zeitraum menschenlesbar formatieren
   eleventyConfig.addFilter("eventWhen", (ev) => {

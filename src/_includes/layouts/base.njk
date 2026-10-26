@@ -33,14 +33,15 @@
 {% include "partials/header.njk" %}
 
 {#- Kopfbild: Stufen-Seiten über "stufe", alle anderen über den Dateinamen.
-    Steht in bilder.yaml nichts, bleibt headerBild leer und die Seite
-    zeigt wie bisher nur die Überschrift. -#}
+    Aktionsseiten (src/aktionen/) nehmen das Bild ihrer Kachel im
+    Programmband. Steht in bilder.yaml nichts, bleibt headerBild leer und
+    die Seite zeigt wie bisher nur die Überschrift. -#}
 {%- set headerBild = "" -%}
 {%- if not heroTitle -%}
   {%- if stufe -%}
     {%- set headerBild = bilder.stufen[stufe] -%}
   {%- else -%}
-    {%- set headerBild = bilder.seiten[page.fileSlug] -%}
+    {%- set headerBild = bilder.seiten[page.fileSlug] or (bilder.programm | programmBild(page.fileSlug)) -%}
   {%- endif -%}
 {%- endif -%}
 {#- Alter kommt aus gruppenstunden.yaml. Nur wo es dort keinen Eintrag

@@ -42,8 +42,13 @@ seiten:
 #  Alle Bilder stehen schmal nebeneinander; das angesteuerte geht
 #  auf. Auf dem Handy wird daraus ein Streifen zum Wischen.
 #
-#  Reihenfolge = Reihenfolge auf der Seite. Fünf sind gut, mehr
-#  werden die einzelnen Streifen sehr schmal.
+#  Reihenfolge = Reihenfolge auf der Seite. Fünf bis sechs sind gut,
+#  mehr werden die einzelnen Streifen sehr schmal.
+#
+#  JEDE KACHEL FÜHRT ZU EINER SEITE: "seite" ist der Dateiname der
+#  Seite in src/aktionen/ ohne .md. Neue Kachel = neuer Eintrag hier
+#  + neue Datei src/aktionen/<seite>.md. Das Kopfbild dieser Seite ist
+#  automatisch das Bild der Kachel – ein Foto, an einer Stelle.
 #
 #  "untertitel" ist optional – die hier sind ein Vorschlag,
 #  schreibt sie ruhig in euren eigenen Worten.
@@ -51,15 +56,24 @@ programm:
   - titel: "72h Aktion"
     untertitel: "Anpacken für einen guten Zweck"
     bild: bauaktion-feuerstelle
+    seite: 72-stunden-aktion
   - titel: "Hike"
     untertitel: "Mehrtageswanderung mit Übernachtung"
     bild: bergsee-rast
+    seite: hike
   - titel: "Zeltlager"
     untertitel: "10 Tage in den Sommerferien"
     bild: lagerfeuer-nacht
+    seite: zeltlager
   - titel: "Pfadifest"
     untertitel: "Der ganze Stamm versammelt"
     bild: jubilaeum-luftaufnahme
+    seite: pfadifest
+  - titel: "Cafélounge"
+    untertitel: "Auszeit auf dem Christkindlesmarkt"
+    bild: cafelounge # Platzhalter – Datei einfach überschreiben
+    seite: cafelounge
   - titel: "Pfadi-Weihnacht"
     untertitel: "Fackeln im Schnee"
     bild: fackelwanderung-winter
+    seite: pfadi-weihnacht

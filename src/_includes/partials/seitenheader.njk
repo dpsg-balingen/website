@@ -7,8 +7,10 @@
    headerBild  = Dateiname aus bilder.yaml (setzt base.njk)
    motto       = optionale Zeile über dem Titel (Seitenkopf)
    alter       = Altersangabe, kommt aus gruppenstunden.yaml
+   bildlage    = optional im Seitenkopf: "unten" richtet das Foto am
+                 unteren Rand aus, abgeschnitten wird dann oben
    --------------------------------------------------------------- #}
-<header class="seitenheader">
+<header class="seitenheader"{% if bildlage %} data-lage="{{ bildlage }}"{% endif %}>
   {% foto headerBild, "(min-width: 901px) 760px, 100vw", true %}
   <div class="sh-schleier"></div>
   <div class="sh-text">
