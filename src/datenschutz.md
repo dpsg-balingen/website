@@ -88,7 +88,7 @@ Leiterinnen und Leiter.
 
 **Wo die Daten liegen.** Cloud, Anmeldung, Office-Bearbeitung und
 Diagramm-Editor laufen auf einem von uns gemieteten Server der Contabo GmbH
-(Aschauer Straße 32a, 81549 München) in einem Rechenzentrum in der EU. Mit
+(Welfenstraße 22, 81541 München) in einem Rechenzentrum in der EU. Mit
 Contabo besteht ein Vertrag zur Auftragsverarbeitung (Art. 28 DSGVO). Dokumente
 werden mit Euro Office, Diagramme mit draw.io auf demselben Server bearbeitet;
 sie verlassen ihn dabei nicht.
