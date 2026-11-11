@@ -6,8 +6,8 @@ title: Datenschutzerklärung
 Wir freuen uns über Ihren Besuch auf unserer Internetseite und über Ihr
 Interesse an unserem Stamm. Nachfolgend informieren wir Sie gemäß der
 Datenschutz-Grundverordnung (DSGVO) über den Umgang mit personenbezogenen Daten
-bei der Nutzung dieser Website sowie unserer Cloud (cloud.dpsg-balingen.de) und
-der zugehörigen Anmeldung.
+bei der Nutzung dieser Website sowie unserer Cloud (cloud.dpsg-balingen.de), der
+zugehörigen Anmeldung und unserer Kurzlinks (links.dpsg-balingen.de).
 
 _Stand: {% year %}. Wir behalten uns vor, diese Erklärung bei Bedarf
 anzupassen._
@@ -79,14 +79,15 @@ Name, E-Mail-Adresse, Nachrichteninhalt) ausschließlich zur Bearbeitung Ihres
 Anliegens. Ein Kontaktformular mit serverseitiger Verarbeitung gibt es auf
 dieser Website nicht.
 
-<h3 id="cloud">Cloud und Anmeldung</h3>
+<h3 id="cloud">Cloud, Anmeldung und Kurzlinks</h3>
 
 Für die Arbeit im Stamm betreiben wir eine eigene Cloud zum Ablegen und
 Austauschen von Dateien (**cloud.dpsg-balingen.de**, Software OpenCloud) mit
-einer zentralen Anmeldung (Software authentik). Ein Konto erhalten nur unsere
+einer zentralen Anmeldung (Software authentik) und einen Dienst für Kurzlinks
+(**links.dpsg-balingen.de**, Software Kutt). Ein Konto erhalten nur unsere
 Leiterinnen und Leiter.
 
-**Wo die Daten liegen.** Cloud, Anmeldung, Office-Bearbeitung und
+**Wo die Daten liegen.** Cloud, Anmeldung, Kurzlinks, Office-Bearbeitung und
 Diagramm-Editor laufen auf einem von uns gemieteten Server der Contabo GmbH
 (Welfenstraße 22, 81541 München) in einem Rechenzentrum in der EU. Mit
 Contabo besteht ein Vertrag zur Auftragsverarbeitung (Art. 28 DSGVO). Dokumente
@@ -109,8 +110,18 @@ Lagerfilme – auch eingebettet auf dieser Website (Seite „Bilder“). Wer ein
 solchen Link öffnet, verbindet sich mit unserem Server; dabei fallen die
 genannten Protokolldaten an. Ein Konto ist dafür nicht nötig.
 
-**Cookies.** Cloud und Anmeldung setzen nur technisch notwendige Cookies, die
-Sie nach der Anmeldung angemeldet halten (§ 25 Abs. 2 Nr. 2 TDDDG). Es gibt
+**Kurzlinks.** Rufen Sie einen Kurzlink unter links.dpsg-balingen.de auf, leiten
+wir Sie zur eigentlichen Adresse weiter und zählen den Aufruf für eine
+Statistik. Gespeichert werden dabei nur zusammengefasste Zahlen je Stunde: Land
+(auf unserem Server aus Ihrer IP-Adresse ermittelt, ohne Drittanbieter),
+Browser, Betriebssystem und die Seite, von der Sie kamen. Ihre IP-Adresse selbst
+speichert der Kurzlink-Dienst nicht; für die Protokolldaten des Servers gilt die
+Speicherdauer unten. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO
+(berechtigtes Interesse, die Nutzung unserer Links einschätzen zu können).
+Kurzlinks anlegen können nur angemeldete Leiterinnen und Leiter.
+
+**Cookies.** Cloud, Anmeldung und Kurzlink-Verwaltung setzen nur technisch
+notwendige Cookies, die Sie nach der Anmeldung angemeldet halten (§ 25 Abs. 2 Nr. 2 TDDDG). Es gibt
 keine Analyse- oder Werbe-Cookies.
 
 **E-Mails.** Benachrichtigungen, Einladungen und Links zum Zurücksetzen des
