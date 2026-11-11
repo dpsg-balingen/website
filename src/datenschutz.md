@@ -4,9 +4,10 @@ title: Datenschutzerklärung
 ---
 
 Wir freuen uns über Ihren Besuch auf unserer Internetseite und über Ihr
-Interesse an unserem Stamm. Nachfolgend informieren wir Sie über den Umgang mit
-personenbezogenen Daten bei der Nutzung dieser Website gemäß der
-Datenschutz-Grundverordnung (DSGVO).
+Interesse an unserem Stamm. Nachfolgend informieren wir Sie gemäß der
+Datenschutz-Grundverordnung (DSGVO) über den Umgang mit personenbezogenen Daten
+bei der Nutzung dieser Website sowie unserer Cloud (cloud.dpsg-balingen.de) und
+der zugehörigen Anmeldung.
 
 _Stand: {% year %}. Wir behalten uns vor, diese Erklärung bei Bedarf
 anzupassen._
@@ -30,9 +31,14 @@ Datenquellen findet durch uns nicht statt. Näheres regelt die
 Datenschutzerklärung von GitHub unter
 [docs.github.com/site-policy](https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement).
 
-### Keine Cookies, kein Tracking
+Unsere E-Mails zur Anmeldung (z. B. zum Zurücksetzen des Passworts) laden Logo
+und Kopfbild von dieser Website. Öffnen Sie eine solche E-Mail und lädt Ihr
+Mailprogramm die Bilder, wird Ihre IP-Adresse dabei wie bei einem Seitenaufruf
+an GitHub übermittelt.
 
-Diese Website setzt **keine Cookies** und **keine Analyse- oder
+### Website: keine Cookies, kein Tracking
+
+Diese Website (dpsg-balingen.de) setzt **keine Cookies** und **keine Analyse- oder
 Tracking-Werkzeuge** (z. B. Google Analytics) ein. Es findet keine Erstellung
 von Nutzungsprofilen statt.
 
@@ -72,6 +78,48 @@ E-Mail kontaktieren, verarbeiten wir die von Ihnen mitgeteilten Daten (z. B.
 Name, E-Mail-Adresse, Nachrichteninhalt) ausschließlich zur Bearbeitung Ihres
 Anliegens. Ein Kontaktformular mit serverseitiger Verarbeitung gibt es auf
 dieser Website nicht.
+
+<h3 id="cloud">Cloud und Anmeldung</h3>
+
+Für die Arbeit im Stamm betreiben wir eine eigene Cloud zum Ablegen und
+Austauschen von Dateien (**cloud.dpsg-balingen.de**, Software OpenCloud) mit
+einer zentralen Anmeldung (Software authentik). Ein Konto erhalten nur unsere
+Leiterinnen und Leiter.
+
+**Wo die Daten liegen.** Cloud, Anmeldung, Office-Bearbeitung und
+Diagramm-Editor laufen auf einem von uns gemieteten Server der Contabo GmbH
+(Aschauer Straße 32a, 81549 München) in einem Rechenzentrum in der EU. Mit
+Contabo besteht ein Vertrag zur Auftragsverarbeitung (Art. 28 DSGVO). Dokumente
+werden mit Euro Office, Diagramme mit draw.io auf demselben Server bearbeitet;
+sie verlassen ihn dabei nicht.
+
+**Welche Daten wir verarbeiten.**
+
+- Kontodaten: Name, Benutzername, E-Mail-Adresse und Gruppenzugehörigkeit
+- Inhalte: die hochgeladenen Dateien sowie Freigaben und Kommentare
+- Protokolldaten: IP-Adresse, Zeitpunkt, Browser sowie An- und Abmeldungen, um
+  den Betrieb abzusichern und Missbrauch zu erkennen
+
+Für Leiterinnen und Leiter ist die Rechtsgrundlage Art. 6 Abs. 1 lit. b DSGVO
+(Nutzung im Rahmen der Leitertätigkeit im Verein), für die Protokolldaten
+Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einem sicheren Betrieb).
+
+**Freigabelinks.** Wir teilen einzelne Ordner auch über Links, etwa für
+Lagerfilme – auch eingebettet auf dieser Website (Seite „Bilder“). Wer einen
+solchen Link öffnet, verbindet sich mit unserem Server; dabei fallen die
+genannten Protokolldaten an. Ein Konto ist dafür nicht nötig.
+
+**Cookies.** Cloud und Anmeldung setzen nur technisch notwendige Cookies, die
+Sie nach der Anmeldung angemeldet halten (§ 25 Abs. 2 Nr. 2 TDDDG). Es gibt
+keine Analyse- oder Werbe-Cookies.
+
+**E-Mails.** Benachrichtigungen, Einladungen und Links zum Zurücksetzen des
+Passworts verschicken wir über die IONOS SE (Elgendorfer Straße 57,
+56410 Montabaur). Mit IONOS besteht ein Vertrag zur Auftragsverarbeitung.
+
+**Speicherdauer.** Protokolldaten löschen wir nach spätestens 30 Tagen.
+Verlässt jemand die Leiterrunde, löschen wir das Konto; Dateien, die der Stamm
+weiter braucht, übernehmen wir vorher in einen gemeinsamen Bereich.
 
 ### Externe Links
 
