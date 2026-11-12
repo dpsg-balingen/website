@@ -91,8 +91,8 @@ Leiterinnen und Leiter.
 Diagramm-Editor laufen auf einem von uns gemieteten Server der Contabo GmbH
 (Welfenstraße 22, 81541 München) in einem Rechenzentrum in der EU. Mit
 Contabo besteht ein Vertrag zur Auftragsverarbeitung (Art. 28 DSGVO). Dokumente
-werden mit Euro Office, Diagramme mit draw.io auf demselben Server bearbeitet;
-sie verlassen ihn dabei nicht.
+werden mit Euro Office, Diagramme mit draw.io auf demselben Server bearbeitet.
+Sie verlassen ihn dabei nicht.
 
 **Welche Daten wir verarbeiten.**
 
@@ -106,8 +106,8 @@ Für Leiterinnen und Leiter ist die Rechtsgrundlage Art. 6 Abs. 1 lit. b DSGVO
 Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einem sicheren Betrieb).
 
 **Freigabelinks.** Wir teilen einzelne Ordner auch über Links, etwa für
-Lagerfilme – auch eingebettet auf dieser Website (Seite „Bilder“). Wer einen
-solchen Link öffnet, verbindet sich mit unserem Server; dabei fallen die
+Lagerfilme, auch eingebettet auf dieser Website (Seite „Bilder“). Wer einen
+solchen Link öffnet, verbindet sich mit unserem Server. Dabei fallen die
 genannten Protokolldaten an. Ein Konto ist dafür nicht nötig.
 
 **Kurzlinks.** Rufen Sie einen Kurzlink unter links.dpsg-balingen.de auf, leiten
@@ -115,7 +115,7 @@ wir Sie zur eigentlichen Adresse weiter und zählen den Aufruf für eine
 Statistik. Gespeichert werden dabei nur zusammengefasste Zahlen je Stunde: Land
 (auf unserem Server aus Ihrer IP-Adresse ermittelt, ohne Drittanbieter),
 Browser, Betriebssystem und die Seite, von der Sie kamen. Ihre IP-Adresse selbst
-speichert der Kurzlink-Dienst nicht; für die Protokolldaten des Servers gilt die
+speichert der Kurzlink-Dienst nicht. Für die Protokolldaten des Servers gilt die
 Speicherdauer unten. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO
 (berechtigtes Interesse, die Nutzung unserer Links einschätzen zu können).
 Kurzlinks anlegen können nur angemeldete Leiterinnen und Leiter.
@@ -129,7 +129,7 @@ Passworts verschicken wir über die IONOS SE (Elgendorfer Straße 57,
 56410 Montabaur). Mit IONOS besteht ein Vertrag zur Auftragsverarbeitung.
 
 **Speicherdauer.** Protokolldaten löschen wir nach spätestens 30 Tagen.
-Verlässt jemand die Leiterrunde, löschen wir das Konto; Dateien, die der Stamm
+Verlässt jemand die Leiterrunde, löschen wir das Konto. Dateien, die der Stamm
 weiter braucht, übernehmen wir vorher in einen gemeinsamen Bereich.
 
 ### Externe Links
