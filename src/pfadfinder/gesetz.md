@@ -23,6 +23,6 @@ Lebensauffassung.
 ### Das Versprechen
 
 Mit dem Versprechen bekennt sich jedes Mitglied ganz persönlich zum
-Pfadfindergesetz – eine feste Formel gibt es dafür nicht, jede und jeder
+Pfadfindergesetz. Eine feste Formel gibt es dafür nicht, jede und jeder
 formuliert es individuell. Es ist nicht an den Wechsel in eine andere Stufe
 gebunden, sondern wird abgelegt, wenn man selbst dazu bereit ist.
