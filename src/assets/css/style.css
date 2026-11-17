@@ -393,16 +393,22 @@ html[data-form="stamp"] .farbschema-knopf {
 /* ===== Hero ===== */
 /* Banner-Szene aus der CI (web-szene) rechts, Überschrift links. Die
    Berge laufen zu den Rändern aus; die beiden Streifen verlängern Boden
-   (Stadt) und Bergsockel auf jede Bildschirmbreite. Ihre Höhen gehören
-   zur Szenenbreite: 32/37 px bei 1280 px, 22.5/26 px bei 900 px. */
+   und Bergsockel auf jede Bildschirmbreite. Ihre Höhen gehören zur
+   Szenenbreite: 32/37 px bei 1280 px, 22.5/26 px bei 900 px.
+
+   Hell steht hier die TAGSZENE (Himmel Hellsand, Berge Sand, Stadt
+   Navy), dunkel die Nachtszene – die tauscht dunkel.css nur über
+   background-image/-color aus, Lage und Größe gelten von hier. */
 .hero {
+  --szene-boden: var(--navy);
+  --szene-berg: #dccba5; /* Bergfarbe der Tagszene */
   background:
-    url("/assets/img/ci/web-szene-dunkel.svg") calc(50% + 140px) bottom /
+    url("/assets/img/ci/web-szene-hell.svg") calc(50% + 140px) bottom /
       1280px auto no-repeat,
-    linear-gradient(var(--stadt), var(--stadt)) bottom / 100% 32px no-repeat,
-    linear-gradient(var(--berg), var(--berg)) bottom / 100% 37px no-repeat,
-    var(--navy);
-  color: #fff;
+    linear-gradient(var(--szene-boden), var(--szene-boden)) bottom / 100% 32px no-repeat,
+    linear-gradient(var(--szene-berg), var(--szene-berg)) bottom / 100% 37px no-repeat,
+    var(--hellsand);
+  color: var(--navy);
   position: relative;
   overflow: hidden;
 }
@@ -416,7 +422,7 @@ html[data-form="stamp"] .farbschema-knopf {
   gap: 38px;
 }
 .hero h1 {
-  color: #fff;
+  color: var(--navy);
   font-size: 3.6rem;
   margin-bottom: 0.15em;
 }
@@ -425,7 +431,7 @@ html[data-form="stamp"] .farbschema-knopf {
   font-size: 1.15rem;
   letter-spacing: 4px;
   text-transform: uppercase;
-  color: var(--sand);
+  color: var(--sand-dark);
   margin: 0;
   font-weight: 600;
 }
