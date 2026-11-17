@@ -1,0 +1,279 @@
+/* ===== DPSG Balingen – Dunkelmodus ===============================
+
+   Wird NACH style.css geladen und gilt nur, wenn das Farbschema
+   dunkel ist. Wann das ist, entscheidet das media-Attribut des
+   <link> in layouts/base.njk:
+
+     (prefers-color-scheme: dark)   Gerät/Browser steht auf dunkel
+                                    (Standard, klappt auch ohne JS)
+     all                            Knopf auf "dunkel" gestellt
+     not all                        Knopf auf "hell" gestellt
+
+   Deshalb stehen hier KEINE Bedingungen in den Selektoren – die
+   Regeln greifen einfach, sobald die Datei aktiv ist. Wer hier etwas
+   überschreibt, braucht mindestens dieselbe Spezifität wie die Regel
+   in style.css (die Reihenfolge entscheidet dann für uns).
+
+   Idee: TAG UND NACHT. Hell zeigt der Kopf die Tagszene der CI,
+   dunkel die Nachtszene – und darunter wird es Nacht: Unter dem Kopf
+   läuft der Stadtboden als Nachthimmel in Anthrazit aus, die Lilien
+   im Grund sind nur noch zu ahnen, Überschriften und Links leuchten
+   in "Licht" wie die Fenster der Szene. Flächen sind durchscheinend
+   statt mit Sand gerahmt.
+
+   Farben laut Corporate Identity: Anthrazit wie in der Pfadicloud und
+   auf dem Cloud Status (Repo "corporate-identity", dienste.py,
+   rollen_dunkel), Licht #f2dfae aus der Szene. Kopfzeile und Fußzeile
+   bleiben wie hell. Knöpfe werden Sand, wie in den Mails im
+   Dunkelmodus.
+   ================================================================ */
+:root {
+  color-scheme: dark;
+
+  /* Flächen */
+  --bg: #12141a; /* Nachthimmel, etwas tiefer als CI-background */
+  --paper: #1f2228; /* Karten (CI: surfaceContainer) */
+  --sand-bg: #29271f; /* Infoboxen, Zebrastreifen: warmes Anthrazit */
+  --sand-line: #3a3630; /* Rahmen der Stempel-Form */
+  --line: #33373f; /* CI: outlineVariant */
+  --muster: url("/assets/img/ci/web-muster-nacht.svg"); /* durchsichtig */
+  --licht: #f2dfae; /* erleuchtete Fenster der Szene */
+  --nachtflaeche: rgba(31, 34, 40, 0.86);
+  --nachtlinie: rgba(255, 255, 255, 0.07);
+
+  /* Schrift */
+  --ink: #e8e6e1; /* CI: onSurface */
+  --muted: #b3b5bd; /* CI: onSurfaceVariant */
+  --titel: var(--licht);
+  --akzent: var(--licht);
+  --akzent-hover: #ffffff;
+  --schrift-stark: #dfe3f2;
+  --sand-dark: #d9c49a; /* CI: secondary dunkel – Kicker, Daten */
+
+  /* Stufenfarben als Schrift: die "tiefen" Fassungen sind für Weiß
+     gemacht. Auf Anthrazit braucht es hellere. */
+  --stufe-woelflinge-tief: #f5a43a;
+  --stufe-pfadfinder-tief: #6cc07a;
+  --stufe-leiter-tief: #b4b4b4;
+
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* ===== Knöpfe: Sand mit Stadt-Schrift ===== */
+a.btn,
+.btn-navy {
+  background: var(--sand);
+  color: var(--stadt);
+}
+.btn:hover,
+.btn-navy:hover {
+  background: var(--sand-dark);
+  color: var(--stadt);
+}
+a.btn.btn-red {
+  background: var(--red);
+  color: #fff;
+}
+a.btn.btn-red:hover {
+  background: var(--red-dark);
+  color: #fff;
+}
+a.btn.btn-outline {
+  background: transparent;
+  border-color: var(--sand);
+  color: var(--sand);
+}
+a.btn.btn-outline:hover {
+  background: var(--sand);
+  color: var(--stadt);
+}
+.sidebar .btn,
+.sidebar .btn:hover {
+  background: var(--sand);
+  color: var(--stadt);
+}
+/* Auf den Stufenseiten bleibt der Knopf in Stufenfarbe, mit weißer
+   Schrift wie im hellen Modus. */
+html[data-stufe] .btn,
+html[data-stufe] .btn:hover {
+  color: #fff;
+}
+
+/* ===== Linien, die hell in Navy stehen ===== */
+.notfound-compass {
+  color: var(--akzent);
+}
+.sw-reiter:has(.sw-schalter:focus-visible) {
+  outline-color: var(--akzent);
+}
+
+/* ===== Stufenfarben als Schrift =====
+   style.css nimmt für Überschriften auf Stufenseiten und in der
+   Gruppenstunden-Liste "--stufe-schrift", wenn es gesetzt ist. Das
+   gibt es nur hier: Blau, Grün, Rot und vor allem Schwarz wären auf
+   Anthrazit kaum zu lesen. Bänder und Kanten behalten die Originale. */
+html[data-stufe="woelflinge"],
+.gs-row[data-stufe="woelflinge"] {
+  --stufe-schrift: var(--stufe-woelflinge);
+}
+html[data-stufe="jungpfadfinder"],
+.gs-row[data-stufe="jungpfadfinder"] {
+  --stufe-schrift: #6aaee6;
+}
+html[data-stufe="pfadfinder"],
+.gs-row[data-stufe="pfadfinder"] {
+  --stufe-schrift: #6cc07a;
+}
+html[data-stufe="rover"],
+.gs-row[data-stufe="rover"] {
+  --stufe-schrift: #f0766b;
+}
+html[data-stufe="leiter"] {
+  --stufe-schrift: #b4b4b4;
+}
+html[data-stufe="altrover"] {
+  --stufe-schrift: var(--ink);
+}
+
+/* Stufenwähler: Schrift hell genug, die blassen Bänder gedeckt statt
+   pastell – wie hell gilt: alle etwa gleich hell. */
+.sw-reiter[data-stufe="woelflinge"],
+.sw-panel[data-stufe="woelflinge"] {
+  --stufe-blass: #6b4a1a;
+}
+.sw-reiter[data-stufe="jungpfadfinder"],
+.sw-panel[data-stufe="jungpfadfinder"] {
+  --stufe-blass: #23486c;
+  --stufe-text: #6aaee6;
+}
+.sw-reiter[data-stufe="pfadfinder"],
+.sw-panel[data-stufe="pfadfinder"] {
+  --stufe-blass: #2b5633;
+}
+.sw-reiter[data-stufe="rover"],
+.sw-panel[data-stufe="rover"] {
+  --stufe-blass: #6b2b25;
+  --stufe-text: #f0766b;
+}
+.sw-reiter[data-stufe="leiter"],
+.sw-panel[data-stufe="leiter"] {
+  --stufe-blass: #4c4e55;
+}
+.sw-reiter[data-stufe="altrover"],
+.sw-panel[data-stufe="altrover"] {
+  --stufe-blass: #4a3d3d;
+  --stufe-text: var(--ink);
+}
+
+/* ===== Nacht: Kopf, Himmel, Flächen ================================ */
+
+/* Nachtszene statt Tagszene. Nur Bild und Farbe tauschen – Lage und
+   Größe (auch die fürs Handy) kommen aus style.css. */
+.hero {
+  --szene-boden: var(--stadt);
+  --szene-berg: var(--berg);
+  background-image:
+    url("/assets/img/ci/web-szene-dunkel.svg"),
+    linear-gradient(var(--szene-boden), var(--szene-boden)),
+    linear-gradient(var(--szene-berg), var(--szene-berg));
+  background-color: var(--navy);
+  color: #fff;
+}
+.hero h1 {
+  color: #fff;
+}
+.hero-sub {
+  color: var(--licht);
+}
+
+/* Der Stadtboden unter dem Kopf läuft als Nachthimmel aus. Auf der
+   Startseite schließt das nahtlos an den Boden der Szene an, auf den
+   übrigen Seiten an die Kopfzeile. */
+.site-main {
+  background: linear-gradient(var(--stadt) 0, rgba(21, 31, 69, 0) 460px) no-repeat;
+}
+
+/* Ankündigung: tiefes Nachtblau mit Licht statt Sandbalken */
+.ankuendigung {
+  background: #0e1530;
+  color: var(--licht);
+  border-bottom-color: var(--nachtlinie);
+}
+.ankuendigung-link {
+  color: #fff;
+}
+
+/* Inhaltskarte: durchscheinend, feine helle Kante statt Sandrahmen */
+.content,
+html[data-form="stamp"] .content {
+  background: var(--nachtflaeche);
+  border-color: var(--nachtlinie);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+}
+.card,
+html[data-stufe="altrover"] .sidebar .card {
+  background-color: var(--nachtflaeche);
+  box-shadow: 0 0 0 1px var(--nachtlinie);
+}
+.card {
+  border-top-color: var(--licht);
+}
+
+/* Überschriften: H1/H2 leuchten, H3 bleibt ruhig */
+.prose h3,
+h4 {
+  color: var(--ink);
+}
+.prose a {
+  text-decoration-color: rgba(242, 223, 174, 0.45);
+}
+.prose a:hover {
+  text-decoration-color: currentColor;
+}
+
+/* Zitate und Termin-Hinweis: keine Sandfläche, nur ein Lichtstrich */
+.prose blockquote,
+.aktion-termin {
+  background: rgba(242, 223, 174, 0.05);
+  border-left-color: var(--licht);
+}
+.mini-events li {
+  border-left-color: rgba(242, 223, 174, 0.55);
+}
+.cal-month {
+  border-bottom-color: var(--nachtlinie);
+}
+.aktionen-weiter {
+  border-top-color: var(--nachtlinie);
+}
+
+/* Kalender, Kontakt, 404: dieselben durchscheinenden Flächen */
+.cal-item,
+html[data-form="stamp"] .cal-item,
+.person,
+.notfound-tips a {
+  background: var(--nachtflaeche);
+  border-color: var(--nachtlinie);
+}
+.cal-item,
+html[data-form="stamp"] .cal-item {
+  border-left-color: rgba(242, 223, 174, 0.55);
+}
+.person {
+  border-top-color: var(--licht);
+}
+
+/* Stufenwähler: Reiter und Panel als Nachtflächen */
+.sw-reiter,
+.sw-panel,
+html[data-form="stamp"] .sw-reiter,
+html[data-form="stamp"] .sw-panel {
+  background: #1b1e25;
+  border-color: var(--nachtlinie);
+}
+
+::selection {
+  background: var(--licht);
+  color: var(--stadt);
+}

@@ -22,6 +22,22 @@
 <link rel="apple-touch-icon" href="/assets/img/ci/favicon-192-dunkel.png">
 <meta name="theme-color" content="#2a3d7c">
 <link rel="stylesheet" href="/assets/css/style.css">
+{#- Dunkelmodus: folgt von Haus aus dem Gerät (media-Abfrage, geht
+    auch ohne JavaScript). Wer den Knopf in der Kopfzeile benutzt hat,
+    dessen Wahl steht in localStorage "farbschema" ("hell"/"dunkel").
+    Das kleine Skript muss VOR dem ersten Zeichnen laufen, sonst blitzt
+    die Seite kurz im falschen Schema auf. Den Knopf bedient nav.js. -#}
+<link rel="stylesheet" href="/assets/css/dunkel.css" media="(prefers-color-scheme: dark)" id="dunkel-css">
+<script>
+(function () {
+  var w;
+  try { w = localStorage.getItem("farbschema"); } catch (e) {}
+  if (w !== "hell" && w !== "dunkel") w = null;
+  if (w) document.getElementById("dunkel-css").media = w === "dunkel" ? "all" : "not all";
+  var dunkel = w ? w === "dunkel" : matchMedia("(prefers-color-scheme: dark)").matches;
+  document.documentElement.setAttribute("data-farbschema", dunkel ? "dunkel" : "hell");
+})();
+</script>
 </head>
 <body>
 {% if banner.nachricht and (banner.gueltig_bis | istGueltig) %}
