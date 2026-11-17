@@ -44,6 +44,9 @@
   src: url("/assets/fonts/source-sans-3-italic.woff2") format("woff2");
 }
 :root {
+  /* Hell ist die Grundfassung. Das dunkle Schema liegt in dunkel.css
+     und überschreibt vor allem die Farbnamen hier oben. */
+  color-scheme: light;
   /* Hausfarben laut Corporate Identity (Repo "corporate-identity",
      README Abschnitt 5): Navy trägt, Sand begleitet, Rot setzt Akzente. */
   --navy: #2a3d7c;
@@ -81,6 +84,14 @@
   --stufe-leiter-tief: #6b6b6b;
   --paper: #ffffff;
   --bg: var(--papier);
+  /* Rollen statt Farben: Schrift, die im Dunkelmodus (dunkel.css) hell
+     werden muss, nimmt diese Namen statt Navy direkt. Hell sind es
+     genau die bisherigen Töne. */
+  --titel: var(--navy-dark); /* Überschriften, Namen */
+  --akzent: var(--brand-dark); /* Links, Zwischenüberschriften */
+  --akzent-hover: var(--brand);
+  --schrift-stark: var(--brand-darker); /* Tag und Uhrzeit */
+  --muster: url("/assets/img/ci/web-muster-hell.svg");
   --radius: 12px;
   --shadow: 0 2px 8px rgba(30, 40, 70, 0.08);
   --shadow-lg: 0 10px 30px rgba(20, 30, 70, 0.14);
@@ -105,7 +116,7 @@ body {
   color: var(--ink);
   /* Dezentes Lilien-Muster aus der CI – liegt nur am Rand neben den
      weißen Inhaltskarten. */
-  background: var(--bg) url("/assets/img/ci/web-muster-hell.svg") repeat;
+  background: var(--bg) var(--muster) repeat;
   line-height: 1.65;
   font-size: 18px;
   -webkit-font-smoothing: antialiased;
@@ -120,11 +131,11 @@ img {
   padding: 0 22px;
 }
 a {
-  color: var(--brand-dark);
+  color: var(--akzent);
   text-decoration: none;
 }
 a:hover {
-  color: var(--brand);
+  color: var(--akzent-hover);
   text-decoration: underline;
 }
 h1,
@@ -133,7 +144,7 @@ h3,
 h4 {
   font-family: var(--head);
   line-height: 1.12;
-  color: var(--navy-dark);
+  color: var(--titel);
   margin: 0 0 0.5em;
   letter-spacing: 0.2px;
 }
@@ -180,7 +191,7 @@ p {
   gap: 10px;
 }
 .ankuendigung-link {
-  color: var(--brand-dark);
+  color: var(--akzent);
   font-weight: 700;
   white-space: nowrap;
 }
@@ -273,7 +284,7 @@ p {
   top: 100%;
   left: 0;
   min-width: 220px;
-  background: #fff;
+  background: var(--paper);
   border-radius: 10px;
   box-shadow: var(--shadow-lg);
   padding: 8px;
@@ -300,7 +311,7 @@ p {
 }
 .submenu a:hover {
   background: var(--sand-bg);
-  color: var(--brand-dark);
+  color: var(--akzent);
 }
 .submenu a.active {
   background: var(--brand);
@@ -329,6 +340,54 @@ p {
   background: #fff;
   border-radius: 2px;
   transition: 0.2s;
+}
+
+/* ===== Farbschema-Knopf (hell/dunkel) =====
+   Rund, ruhig, Ton in Ton mit der Kopfzeile. Er zeigt, wohin er
+   schaltet: im hellen Modus den Mond, im dunklen die Sonne. Ohne
+   JavaScript bleibt er versteckt (Attribut hidden im HTML) – das
+   Farbschema folgt dann einfach dem Gerät. */
+.site-nav {
+  margin-left: auto;
+}
+.farbschema-knopf {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1.5px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--sand);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+.farbschema-knopf[hidden] {
+  display: none;
+}
+.farbschema-knopf:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+.farbschema-knopf:focus-visible {
+  outline: 3px solid var(--sand);
+  outline-offset: 2px;
+}
+.farbschema-knopf svg {
+  width: 20px;
+  height: 20px;
+}
+.farbschema-knopf .fk-sonne,
+html[data-farbschema="dunkel"] .farbschema-knopf .fk-mond {
+  display: none;
+}
+html[data-farbschema="dunkel"] .farbschema-knopf .fk-sonne {
+  display: block;
+}
+html[data-form="stamp"] .farbschema-knopf {
+  border-radius: 3px;
 }
 
 /* ===== Hero ===== */
@@ -505,7 +564,7 @@ p {
 /* ===== Prose ===== */
 .prose h2 {
   margin-top: 1.6em;
-  color: var(--brand-dark);
+  color: var(--akzent);
 }
 .prose h3 {
   margin-top: 1.4em;
@@ -617,7 +676,7 @@ p {
 .gs-name {
   font-family: var(--head);
   font-weight: 700;
-  color: var(--navy-dark);
+  color: var(--titel);
   margin-bottom: 0.3em;
 }
 .mini-events {
@@ -679,7 +738,7 @@ a.btn {
 .btn-outline {
   background: transparent;
   border: 2px solid var(--brand);
-  color: var(--brand-dark);
+  color: var(--akzent);
 }
 .btn-outline:hover {
   background: var(--brand);
@@ -712,7 +771,7 @@ a.btn {
 table {
   border-collapse: collapse;
   width: 100%;
-  background: #fff;
+  background: var(--paper);
   border-radius: 10px;
   overflow: hidden;
   box-shadow: var(--shadow);
@@ -754,7 +813,7 @@ tbody tr:nth-child(even) {
   align-items: start;
   gap: 10px 18px;
   padding: 16px 20px;
-  background: #fff;
+  background: var(--paper);
   border-left: 4px solid var(--stufe, var(--brand));
 }
 .gs-row:nth-child(even) {
@@ -775,7 +834,7 @@ tbody tr:nth-child(even) {
   font-weight: 700;
   text-transform: none;
   letter-spacing: normal;
-  color: var(--stufe, var(--navy-dark));
+  color: var(--stufe-schrift, var(--stufe, var(--titel)));
 }
 .gs-age {
   color: var(--muted);
@@ -789,10 +848,10 @@ tbody tr:nth-child(even) {
 }
 .gs-day {
   font-weight: 700;
-  color: var(--brand-darker);
+  color: var(--schrift-stark);
 }
 .gs-time {
-  color: var(--brand-darker);
+  color: var(--schrift-stark);
 }
 .gs-leiter {
   font-size: 0.9rem;
@@ -1496,7 +1555,7 @@ tbody tr:nth-child(even) {
   font-family: var(--head);
   font-weight: 700;
   font-size: 1.3rem;
-  color: var(--navy-dark);
+  color: var(--titel);
 }
 .at-wann small {
   font-family: var(--sans);
@@ -1584,7 +1643,7 @@ tbody tr:nth-child(even) {
 .cal-month {
   margin: 1.8em 0 0.6em;
   font-size: 1.35rem;
-  color: var(--brand-dark);
+  color: var(--akzent);
   border-bottom: 2px solid var(--sand-line);
   padding-bottom: 0.2em;
 }
@@ -1600,7 +1659,7 @@ tbody tr:nth-child(even) {
   display: grid;
   grid-template-columns: 220px 1fr;
   gap: 16px;
-  background: #fff;
+  background: var(--paper);
   border-radius: 10px;
   box-shadow: var(--shadow);
   padding: 16px 20px;
@@ -1608,7 +1667,7 @@ tbody tr:nth-child(even) {
 }
 .cal-when {
   font-weight: 700;
-  color: var(--brand-dark);
+  color: var(--akzent);
   font-family: var(--head);
   letter-spacing: 0.3px;
 }
@@ -1629,7 +1688,7 @@ tbody tr:nth-child(even) {
   margin: 1.3em 0;
 }
 .person {
-  background: #fff;
+  background: var(--paper);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: 20px;
@@ -1645,7 +1704,7 @@ tbody tr:nth-child(even) {
 .person .name {
   font-family: var(--head);
   font-size: 1.3rem;
-  color: var(--navy-dark);
+  color: var(--titel);
   margin: 0.1em 0 0.5em;
 }
 
@@ -1687,14 +1746,14 @@ tbody tr:nth-child(even) {
   font-family: var(--head);
   font-weight: 700;
   font-size: 0.85rem;
-  color: var(--navy-dark);
+  color: var(--titel);
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 .notfound-tips a:hover {
   text-decoration: none;
-  color: var(--brand-dark);
+  color: var(--akzent);
 }
 .notfound-tips svg {
   width: 15px;
@@ -1762,6 +1821,10 @@ tbody tr:nth-child(even) {
   }
   .nav-toggle {
     display: flex;
+    order: 1; /* Menü ganz rechts, der Farbschema-Knopf links daneben */
+  }
+  .farbschema-knopf {
+    margin-left: auto;
   }
   /* Das zugeklappte Menü liegt rechts außerhalb des Bildschirms und
      darf die Seite nicht breiter machen (sonst kann man es auf dem
@@ -1942,11 +2005,11 @@ html[data-stufe] .page-title {
   border-bottom-color: var(--stufe);
 }
 html[data-stufe] .eyebrow {
-  color: var(--stufe);
+  color: var(--stufe-schrift, var(--stufe));
 }
 html[data-stufe] .prose h2,
 html[data-stufe] .prose h3 {
-  color: var(--stufe);
+  color: var(--stufe-schrift, var(--stufe));
 }
 html[data-stufe] .sidebar .card {
   border-top-color: var(--stufe);
@@ -1955,7 +2018,7 @@ html[data-stufe] .mini-events li {
   border-left-color: var(--stufe);
 }
 html[data-stufe] .gs-name {
-  color: var(--stufe);
+  color: var(--stufe-schrift, var(--stufe));
 }
 html[data-stufe] .btn {
   background: var(--stufe);

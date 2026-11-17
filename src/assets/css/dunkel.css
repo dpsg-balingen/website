@@ -1,0 +1,160 @@
+/* ===== DPSG Balingen – Dunkelmodus ===============================
+
+   Wird NACH style.css geladen und gilt nur, wenn das Farbschema
+   dunkel ist. Wann das ist, entscheidet das media-Attribut des
+   <link> in layouts/base.njk:
+
+     (prefers-color-scheme: dark)   Gerät/Browser steht auf dunkel
+                                    (Standard, klappt auch ohne JS)
+     all                            Knopf auf "dunkel" gestellt
+     not all                        Knopf auf "hell" gestellt
+
+   Deshalb stehen hier KEINE Bedingungen in den Selektoren – die
+   Regeln greifen einfach, sobald die Datei aktiv ist. Wer hier etwas
+   überschreibt, braucht mindestens dieselbe Spezifität wie die Regel
+   in style.css (die Reihenfolge entscheidet dann für uns).
+
+   Farben laut Corporate Identity: ruhiges Anthrazit wie in der
+   Pfadicloud und auf dem Cloud Status (Repo "corporate-identity",
+   src/werkzeug/dienste.py, rollen_dunkel). Navy bleibt die tragende
+   Farbe – Kopfzeile, Hero und Fußzeile sehen aus wie hell. Knöpfe
+   werden Sand, wie in den Mails im Dunkelmodus.
+   ================================================================ */
+:root {
+  color-scheme: dark;
+
+  /* Flächen */
+  --bg: #17191e; /* Seitengrund (CI: background) */
+  --paper: #1f2228; /* Karten (CI: surfaceContainer) */
+  --sand-bg: #29271f; /* Infoboxen, Zebrastreifen: warmes Anthrazit */
+  --sand-line: #3a3630; /* Rahmen der Stempel-Form */
+  --line: #33373f; /* CI: outlineVariant */
+  --muster: url("/assets/img/ci/web-muster-anthrazit.svg");
+
+  /* Schrift */
+  --ink: #e8e6e1; /* CI: onSurface */
+  --muted: #b3b5bd; /* CI: onSurfaceVariant */
+  --titel: #e8e6e1;
+  --akzent: #aebbe6; /* CI: primary dunkel */
+  --akzent-hover: #cdd6f3;
+  --schrift-stark: #dfe3f2;
+  --sand-dark: #d9c49a; /* CI: secondary dunkel – Kicker, Daten */
+
+  /* Stufenfarben als Schrift: die "tiefen" Fassungen sind für Weiß
+     gemacht. Auf Anthrazit braucht es hellere. */
+  --stufe-woelflinge-tief: #f5a43a;
+  --stufe-pfadfinder-tief: #6cc07a;
+  --stufe-leiter-tief: #b4b4b4;
+
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* ===== Knöpfe: Sand mit Stadt-Schrift ===== */
+a.btn,
+.btn-navy {
+  background: var(--sand);
+  color: var(--stadt);
+}
+.btn:hover,
+.btn-navy:hover {
+  background: var(--sand-dark);
+  color: var(--stadt);
+}
+a.btn.btn-red {
+  background: var(--red);
+  color: #fff;
+}
+a.btn.btn-red:hover {
+  background: var(--red-dark);
+  color: #fff;
+}
+a.btn.btn-outline {
+  background: transparent;
+  border-color: var(--sand);
+  color: var(--sand);
+}
+a.btn.btn-outline:hover {
+  background: var(--sand);
+  color: var(--stadt);
+}
+.sidebar .btn,
+.sidebar .btn:hover {
+  background: var(--sand);
+  color: var(--stadt);
+}
+/* Auf den Stufenseiten bleibt der Knopf in Stufenfarbe, mit weißer
+   Schrift wie im hellen Modus. */
+html[data-stufe] .btn,
+html[data-stufe] .btn:hover {
+  color: #fff;
+}
+
+/* ===== Linien, die hell in Navy stehen ===== */
+.person {
+  border-top-color: var(--berg);
+}
+.notfound-compass {
+  color: var(--akzent);
+}
+.sw-reiter:has(.sw-schalter:focus-visible) {
+  outline-color: var(--akzent);
+}
+
+/* ===== Stufenfarben als Schrift =====
+   style.css nimmt für Überschriften auf Stufenseiten und in der
+   Gruppenstunden-Liste "--stufe-schrift", wenn es gesetzt ist. Das
+   gibt es nur hier: Blau, Grün, Rot und vor allem Schwarz wären auf
+   Anthrazit kaum zu lesen. Bänder und Kanten behalten die Originale. */
+html[data-stufe="woelflinge"],
+.gs-row[data-stufe="woelflinge"] {
+  --stufe-schrift: var(--stufe-woelflinge);
+}
+html[data-stufe="jungpfadfinder"],
+.gs-row[data-stufe="jungpfadfinder"] {
+  --stufe-schrift: #6aaee6;
+}
+html[data-stufe="pfadfinder"],
+.gs-row[data-stufe="pfadfinder"] {
+  --stufe-schrift: #6cc07a;
+}
+html[data-stufe="rover"],
+.gs-row[data-stufe="rover"] {
+  --stufe-schrift: #f0766b;
+}
+html[data-stufe="leiter"] {
+  --stufe-schrift: #b4b4b4;
+}
+html[data-stufe="altrover"] {
+  --stufe-schrift: var(--ink);
+}
+
+/* Stufenwähler: Schrift hell genug, die blassen Bänder gedeckt statt
+   pastell – wie hell gilt: alle etwa gleich hell. */
+.sw-reiter[data-stufe="woelflinge"],
+.sw-panel[data-stufe="woelflinge"] {
+  --stufe-blass: #6b4a1a;
+}
+.sw-reiter[data-stufe="jungpfadfinder"],
+.sw-panel[data-stufe="jungpfadfinder"] {
+  --stufe-blass: #23486c;
+  --stufe-text: #6aaee6;
+}
+.sw-reiter[data-stufe="pfadfinder"],
+.sw-panel[data-stufe="pfadfinder"] {
+  --stufe-blass: #2b5633;
+}
+.sw-reiter[data-stufe="rover"],
+.sw-panel[data-stufe="rover"] {
+  --stufe-blass: #6b2b25;
+  --stufe-text: #f0766b;
+}
+.sw-reiter[data-stufe="leiter"],
+.sw-panel[data-stufe="leiter"] {
+  --stufe-blass: #4c4e55;
+}
+.sw-reiter[data-stufe="altrover"],
+.sw-panel[data-stufe="altrover"] {
+  --stufe-blass: #4a3d3d;
+  --stufe-text: var(--ink);
+}
